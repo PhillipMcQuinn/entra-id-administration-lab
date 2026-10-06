@@ -1,1 +1,1 @@
-This portfolio documents my hands-on Microsoft Entra ID administration practice in a personal lab.
+This portfolio documents my hands-on Microsoft Entra ID administration practice in a personal lab. Projects cover user lifecycle management, security groups, administrative roles, MFA, sign-in troubleshooting. Each completed project includes configuration steps, validation results, and redacted evidence.
