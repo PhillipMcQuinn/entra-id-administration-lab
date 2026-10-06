@@ -1,3 +1,5 @@
+![User created](screenshots/01-user-created.png)
+
 # Lab 01: Employee Onboarding and Offboarding
 
 ## Objective
