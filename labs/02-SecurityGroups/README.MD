@@ -89,7 +89,7 @@ membership in these Assigned groups.
 
 Evidence:
 
-![User Profile](screenshots/04-User-Profile.png
+![User Profile](screenshots/04-User-Profile.png)
 
 ![Updated department](screenshots/05-User-Profile-Update.png)
 
