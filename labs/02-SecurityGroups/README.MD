@@ -56,7 +56,7 @@ For each missing group:
 
 Evidence:
 
-![Procurement Department security groups](screenshots/01-security-groups-Create.png)
+![Procurement Department security groups](screenshots/01-Security-Groups-Create.png)
 
 ## Part 2: Add Members
 
