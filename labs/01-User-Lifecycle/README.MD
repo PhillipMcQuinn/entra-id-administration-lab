@@ -1,5 +1,3 @@
-![User created](screenshots/01-user-created.png)
-
 # Lab 01: Employee Onboarding and Offboarding
 
 ## Objective
@@ -47,14 +45,18 @@ Set and verify:
 - Hire date, if configured
 - Manager
 
-Evidence: Screenshots/02-user-attributes.png
+Evidence: 
+
+![Populate Employee Attributes](Screenshots/02-user-attributes.png)
 
 ### 3. Assign department membership
 
 Add Barbara Gordon to SG-IT-Employees.
 Verify the membership from the group or user record.
 
-Evidence: Screenshots/03-group-membership.png
+Evidence: 
+
+![Assign Department Membership](Screenshots/03-group-membership.png)
 
 ### 4. Verify employee sign-in
 
@@ -70,7 +72,9 @@ Record:
 Locate the available audit events for account creation,
 attribute changes, and group membership changes.
 
-Evidence: Screenshots/04-onboarding-audit.png
+Evidence:
+
+![Review Audit](Screenshots/04-onboarding-audit.png)
 
 ## Part 2: Offboarding
 
@@ -84,7 +88,9 @@ current group memberships.
 Block sign-in for the employee account.
 Verify the account's disabled state.
 
-Evidence: Screenshots/05-sign-in-blocked.png
+Evidence: 
+
+![Confirmed blocked Sign-in](Screenshots/05-sign-in-blocked.png)
 
 ### 3. Revoke sessions
 
@@ -100,7 +106,9 @@ groups assigned during this lab.
 
 Verify that the memberships were removed.
 
-Evidence: Screenshots/06-membership-removed.png
+Evidence:
+
+![RemoveMembership](Screenshots/06-membership-removed.png)
 
 ## Cleanup
 
@@ -111,7 +119,9 @@ Record whether the account was:
 
 Account was deleted for offboarding access
 
-Evidence: Screenshots/07-account-deleted.png
+Evidence:
+
+![UserCleanup](Screenshots/07-account-deleted.png)
 
 ## Issues and Troubleshooting
 
