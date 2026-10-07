@@ -53,20 +53,18 @@ Dick Grayson enters an incorrect password.
 1. Open a separate browser session.
 2. Attempt one sign-in with an intentionally incorrect password.
 3. Record the displayed error and timestamp.
-
+ "Your account or password is incorrect." 
 Avoid repeated attempts that could trigger account lockout.
 
 ### Investigation
 
 Locate the matching failed sign-in event.
 
-Record:
-- User:
-- Timestamp and time zone:
-- Error code:
-- Failure reason:
-- Authentication details:
-- Correlation ID, if useful:
+Record: b93357b4-1d0b-4e4a-92d4-63cb85850d00
+- User: DickGrayson
+- Timestamp and time zone: 2026-10-06T21:24:18z
+- Error code: 50126
+- Failure reason: error validating credentials due to invalid username or password.
 
 Evidence:
 
@@ -82,6 +80,7 @@ The user explained they are getting a login error with incorrect account passwor
 ### Resolution
 
 Retry with the known correct password.
+sign-in Successful
 
 If simulating a forgotten password instead, document the authorized
 password reset and any password-change prompt.
@@ -155,17 +154,22 @@ Evidence:
 
 | Case | Observed cause | Fix applied | Retest result |
 |---|---|---|---|
-| Incorrect password | incorrect password | asked user to sign in with last known password | Resolved |
-| Sign-in blocked | account was disabled | enabled account | Resolved |
+| Incorrect password | incorrect password | asked user to sign in with last known password | Resolved, user sign-in was successful.  |
+| Sign-in blocked | account was disabled | enabled account | Resolved, user sign-in was successful. |
 
 ## Troubleshooting Notes
 
 Document any investigation difficulties, such as:
 - Log events taking time to appear.
+there is a couple minute delay in the event logs showing in the tenant.
 - Selecting the wrong application or time range.
+by validating a failed event and matching time stamps, the selection of wrong events is slim.
 - Existing browser sessions affecting the test.
+no browser sessions were impacted during the lab.
 - Missing permissions to view logs.
+no permission issues during lab.
 - A different failure occurring before the expected one.
+no other failures occurred during the lab.
 
 Record how each difficulty was resolved.
 
