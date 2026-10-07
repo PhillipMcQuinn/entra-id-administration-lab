@@ -134,13 +134,13 @@ Evidence:
 
 | Test | Expected result | Actual result |
 |---|---|---|
-| Role assignment | Helpdesk Administrator assigned at tenant scope | Complete |
-| Standard-user password reset | Reset succeeds | Complete |
-| Employee sign-in | New password works | Complete |
-| Administrator role assignment | Unavailable or denied | Complete |
-| Role removal | Assignment no longer appears | Complete |
-| Password reset after removal | Unavailable or denied | Complete |
-| Audit review | Successful changes have supporting events | Complete |
+| Role assignment | Helpdesk Administrator assigned at tenant scope | Roles show under "Assigned Roles" in the users profile, and in the Roles & admins <selected role> "assignments"  |
+| Standard-user password reset | Reset succeeds | Successfully reset a standard users password with no issues or errors. |
+| Employee sign-in | New password works | User had to reset password upon login, temp password that was assigned from helpdesk-test worked as expected. |
+| Administrator role assignment | Unavailable or denied | Cant complete task, the option to add assignments is grayed out. |
+| Role removal | Assignment no longer appears | After removal of the role, total roles assigned is 0 in the users assigned roles |
+| Password reset after removal | Unavailable or denied | Helpdesk-test can no longer complete this task as the user longer has any administrative roles assigned to the account. |
+| Audit review | Successful changes have supporting events | Audit longs confirm all roles added and removed to the users profile, password changes to Dick Grayson's account. |
 
 ## Troubleshooting
 
@@ -150,6 +150,7 @@ Record:
 - Investigation.
 - Resolution.
 - Retest result.
+no errors occurred during this lab. All Tasks were successful.
 
 ## Cleanup
 
@@ -163,10 +164,12 @@ Record:
 Complete after testing:
 
 - Why Helpdesk Administrator fit the task.
-This role grants a user access to change other "non administrator" permissions and password.
+This role grants a user access to change other standard user permissions and password.
 - The difference between group membership and an administrator role.
 Memberships define what users belong together while roles provide privileges to complete tasks for other users.
 - How allowed and denied actions demonstrate least privilege.
 If a user does not have "privileged" roles, than tasks remain grayed out preventing an action from being taken. 
 - What happened after the role was removed.
-After the Helpdesk Administrator was removed from the test account, all "privileged" tasks became grayed out preventing thee test user from executing that task.
+After the Helpdesk Administrator was removed from the test account, all "privileged" tasks became grayed out preventing the test user from executing that task.
+
+Helpdesk-test account was removed upon completion of the lab.
