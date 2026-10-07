@@ -12,7 +12,7 @@ Complete
 ## Environment
 
 - Tenant: Gotham IAM Lab
-- License: Entra ID-FREE
+- License: Entra ID-Free
 - Date performed: October 6, 2026
 - Test administrator: helpdesk-test
 - Assigned role: Helpdesk Administrator
