@@ -117,12 +117,12 @@ Evidence:
 
 | Test | Expected result | Actual result |
 |---|---|---|
-| Group creation | Groups exist with the intended settings | Complete |
-| Add members | Intended employees appear in their groups | Complete |
-| Change department | Assigned memberships remain unchanged until manually edited | Complete |
-| Remove IT membership | Dick no longer appears in the IT group | Complete |
-| Add Procurement membership | Dick appears in the Procurement group | Complete |
-| Audit review | Relevant group changes are recorded | Complete |
+| Group creation | Groups exist with the intended settings | Group creation and adding members/owners works as expected. |
+| Add members | Intended employees appear in their groups | Adding groups members display in the appropriate members section, they also show under the users profile group membership section. |
+| Change department | Assigned memberships remain unchanged until manually edited | When changing a users department in their profile settings, it does not automatically edit the group assignments. |
+| Remove IT membership | Dick no longer appears in the IT group | Removed user from the IT. |
+| Add Procurement membership | Dick appears in the Procurement group | Manually added user to Procurement department. |
+| Audit review | Relevant group changes are recorded | Audit shows individual records of user group changes. |
 
 ## Troubleshooting
 
@@ -156,3 +156,5 @@ Group memberships don't automatically update. If a user is transferred between d
 you can validate user membership within audit logs "GroupManagement" log or see all groups a user belongs to within their profile "group membership".
 - How audit logs support investigation of administrative changes.
 Audit logs can show successful or failed changes. The logs will indicate who made the change, when it changed, and what changed.
+
+Dick Grayson's account was reverted back to IT department, and correct group assignments were restored.
