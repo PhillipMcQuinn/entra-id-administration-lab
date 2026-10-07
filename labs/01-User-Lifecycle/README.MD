@@ -118,7 +118,7 @@ Record whether the account was:
 - Re-enabled for another lab
 - Deleted after testing
 
-Account was deleted for offboarding. session revocation completed to prevent the user from access tenant.
+session revocation completed to remove the users current session. Account deleted to remove all tenant access.
 
 Evidence:
 
