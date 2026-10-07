@@ -170,6 +170,6 @@ Memberships define what users belong together while roles provide privileges to 
 - How allowed and denied actions demonstrate least privilege.
 If a user does not have "privileged" roles, than tasks remain grayed out preventing an action from being taken. 
 - What happened after the role was removed.
-After the Helpdesk Administrator was removed from the test account, all "privileged" tasks became grayed out preventing the test user from executing that task.
+After the Helpdesk Administrator was removed from the test account, all administrative tasks like changing passwords became grayed out preventing the test user from executing that task.
 
 Helpdesk-test account was removed upon completion of the lab.
