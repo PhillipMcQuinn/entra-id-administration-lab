@@ -39,7 +39,7 @@ The following records are example lab data.
 | Bruce Wayne | BruceWayne | Chief Executive Officer | Executive | Phillip McQuinn |
 | Alfred Pennyworth | AlfredPennyworth | Assistant Executive | Executive | Bruce Wayne
 | Lucius Fox | LuciusFox | IT Director | IT | Bruce Wayne |
-| Barbara Gordon | BarbaraGordon | IAM Analyst | IT | Lucius Fox |
+| Barbara Gordon | BarbaraGordon | Systems Administrator | IT | Lucius Fox |
 | Dick Grayson | DickGrayson | Support Specialist | IT | Lucius Fox |
 | Selina Kyle | selinakyle | Procurement Specialist | Bruce Wayne |
 
