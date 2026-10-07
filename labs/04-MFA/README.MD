@@ -20,7 +20,7 @@ Completed
 | Test user admin roles | None |
 | Authentication method | Microsoft Authenticator |
 | MFA enforcement mechanism | Security default |
-| Administrator role used | Global Admininstrator |
+| Administrator role used | Global Administrator |
 
 ## Scenario
 
