@@ -120,8 +120,8 @@ Evidence:
 | Group creation | Groups exist with the intended settings | Group creation and adding members/owners works as expected. |
 | Add members | Intended employees appear in their groups | Adding groups members display in the appropriate members section, they also show under the users profile group membership section. |
 | Change department | Assigned memberships remain unchanged until manually edited | When changing a users department in their profile settings, it does not automatically edit the group assignments. |
-| Remove IT membership | Dick no longer appears in the IT group | Removed user from the IT. |
-| Add Procurement membership | Dick appears in the Procurement group | Manually added user to Procurement department. |
+| Remove IT membership | Dick no longer appears in the IT group | Removed user from the IT group. |
+| Add Procurement membership | Dick appears in the Procurement group | Manually added user to Procurement group. |
 | Audit review | Relevant group changes are recorded | Audit shows individual records of user group changes. |
 
 ## Troubleshooting
