@@ -64,7 +64,7 @@ Use a separate browser session to sign in as Barbara Gordon.
 Complete any password-change or authentication prompts.
 
 Record:
-- Private browser opend, logged into entra.microsoft with test user.
+- Private browser opened, logged into entra.microsoft with test user.
 -Prompted to change user password, and than set up Microsoft Authenticator. After set up, login was successful.
 
 ### 5. Review audit evidence
