@@ -112,7 +112,7 @@ Using the administrator account:
 ### Investigation
 
 1. Locate the matching failed sign-in event.
-fa513848-do83-4ca3-9911-29ccb2d00f00
+fa513848-d083-4ca3-9911-29ccb2d00f00
 2. Record the error code and failure reason.
 The User account is disabled.
 3. error code.
@@ -186,8 +186,6 @@ Record how each difficulty was resolved.
 - Check screenshots for passwords and personal information.
 
 ## Lessons Learned
-
-Complete after testing:
 
 - How timestamps help match a user's report to a sign-in event.
   Log-in logs can get crowded with multiple users. time stamps can help quickly narrow the search to the log required for troubleshooting.
