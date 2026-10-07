@@ -161,8 +161,6 @@ no errors occurred during this lab. All Tasks were successful.
 
 ## Lessons Learned
 
-Complete after testing:
-
 - Why Helpdesk Administrator fit the task.
 This role grants a user access to change other standard user password without granting global administrator access.
 - The difference between group membership and an administrator role.
