@@ -16,7 +16,7 @@ Completed
 - Date performed: October 6, 2026
 - Test user: Dick Grayson
 - Administrator role used: Global Administrator
-- Time zone used for recorded events: MST
+- Time zone used for recorded events: UTC
 
 ## Prerequisites
 
@@ -74,7 +74,6 @@ Evidence:
 
 ### Diagnosis
 
-Explain the cause using the observed message and log evidence.
 The user explained they are getting a login error with incorrect account password, the logs indicate failed login attempt with incorrect username or password.
   
 ### Resolution
@@ -117,7 +116,7 @@ f513848-do83-4ca3-9911-29ccb2d00f00
 2. Record the error code and failure reason.
 The User account is disabled.
 3. error code.
-5057
+50057
 4. Review Dick's account status.
 User account is disabled.
 5. Confirm whether the account state explains the failure.
@@ -131,7 +130,6 @@ Evidence:
 
 ### Diagnosis
 
-Explain how the account setting and log evidence support the diagnosis.
 Looking at the sign-in logs and viewing a failure status for a log entry, the failure status provides a good explaination of what the reason is.
   
 ### Resolution
