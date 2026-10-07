@@ -33,7 +33,7 @@ This lab simulates the recovery process using a fictional account.
 
 - Selina's account is enabled and available for testing.
 - Microsoft Authenticator is installed on the test phone.
-- A separate browser session is available for Salina.
+- A separate browser session is available for Selina.
 - An authorized administrator can manage her authentication methods.
 - The main administrator account remains accessible during testing.
 
@@ -41,7 +41,7 @@ This lab simulates the recovery process using a fictional account.
 
 1. Check whether security defaults are enabled.
 2. Record the current MFA enforcement mechanism.
-3. Review Salina's existing authentication methods.
+3. Review Selina's existing authentication methods.
 4. Record whether she is already registered.
 
 Security defaults apply tenant-wide.
@@ -125,12 +125,6 @@ Evidence:
 
 ## Troubleshooting
 
-For each issue, record:
-- Symptom or error.
-- Current authentication configuration.
-- Investigation.
-- Resolution.
-- Retest result.
 There was no errors during the lab, all actions taken were completed as expected.
 
 ## Cleanup
@@ -141,8 +135,6 @@ There was no errors during the lab, all actions taken were completed as expected
 - Confirm screenshots contain no QR codes, secrets, or recovery codes.
 
 ## Lessons Learned
-
-Complete after testing:
 
 - The difference between MFA registration and enforcement.
   Registering Microsoft Authenticator adds an authentication method. The applicable sign-in policy determines when MFA is required.
