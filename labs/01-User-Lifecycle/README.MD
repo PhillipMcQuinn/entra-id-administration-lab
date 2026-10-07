@@ -17,7 +17,7 @@ Barbara Gordon joins Gotham IAM Lab as a System Administrator.
 |---|---|
 | Display name | Barbara Gordon |
 | Username | BarbaraGordon@phillipmcquinngmail.onmicrosoft.com |
-| Job title | System ADministrator |
+| Job title | System Administrator |
 | Department | IT |
 | Manager | Lucius Fox |
 | Employee ID | WE005 |
