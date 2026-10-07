@@ -74,7 +74,7 @@ Evidence:
 
 ### Diagnosis
 
-<Explain the cause using the observed message and log evidence.>
+Explain the cause using the observed message and log evidence.
 The user explained they are getting a login error with incorrect account password, the logs indicate failed login attempt with incorrect username or password.
   
 ### Resolution
@@ -113,9 +113,15 @@ Using the administrator account:
 ### Investigation
 
 1. Locate the matching failed sign-in event.
+f513848-do83-4ca3-9911-29ccb2d00f00
 2. Record the error code and failure reason.
-3. Review Dick's account status.
-4. Confirm whether the account state explains the failure.
+The User account is disabled.
+3. error code.
+5057
+4. Review Dick's account status.
+User account is disabled.
+5. Confirm whether the account state explains the failure.
+yes, the account state is disabled, preventing the user from logging into the tenant.
 
 Evidence:
 
@@ -125,7 +131,7 @@ Evidence:
 
 ### Diagnosis
 
-<Explain how the account setting and log evidence support the diagnosis.>
+Explain how the account setting and log evidence support the diagnosis.
 Looking at the sign-in logs and viewing a failure status for a log entry, the failure status provides a good explaination of what the reason is.
   
 ### Resolution
