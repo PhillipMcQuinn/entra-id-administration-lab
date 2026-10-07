@@ -39,7 +39,7 @@ Review Microsoft's description of Helpdesk Administrator.
 
 Document:
 - Why this role was selected.
-This role grants necassary privlidges to perform tasks for other non administrative users. 
+This role grants necessary privileges to perform tasks for other non administrative users. 
 - Which actions it permits.
 Users with this role can change passwords, invalidate refresh tokens, manage service requests, and monitor service health.
 - Which actions fall outside its permissions.
@@ -166,7 +166,7 @@ This role grants a user access to change other standard user password without gr
 - The difference between group membership and an administrator role.
 Memberships define what users belong together while roles provide privileges to complete tasks for other users.
 - How allowed and denied actions demonstrate least privilege.
-If a user does not have "privileged" roles, than tasks remain grayed out preventing an action from being taken. 
+If a user does not have "privileged" roles, then tasks remain grayed out preventing an action from being taken. 
 - What happened after the role was removed.
 After the Helpdesk Administrator was removed from the test account, all administrative tasks like changing passwords became grayed out preventing the test user from executing that task.
 
