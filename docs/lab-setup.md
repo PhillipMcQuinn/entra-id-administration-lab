@@ -56,7 +56,7 @@ Additional fictional attributes:
 | SG-IT-Employees | Assigned | Practice IT department membership |
 | SG-Executive-Employees | Assigned | Practice department transfers |
 | SG-Lab-Test-Users | Assigned | Identify accounts used for testing |
-| SG-Procurement-Users | Assigned | Practice Procurement department membership |
+| SG-Procurement-Employees | Assigned | Practice Procurement department membership |
 
 Group membership alone does not provide application access.
 Application permissions are documented in the relevant lab.
