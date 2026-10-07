@@ -98,6 +98,7 @@ Revoke the employee's sign-in sessions.
 
 Record when the action was performed and the behavior observed.
 Do not assume every existing application session ends immediately.
+Once the signin block was removed, the user could sign in as expected. Sign in required username, password, and MFA authentication.
 
 ### 4. Remove group memberships
 
@@ -117,7 +118,7 @@ Record whether the account was:
 - Re-enabled for another lab
 - Deleted after testing
 
-Account was deleted for offboarding access
+Account was deleted for offboarding. session revocation completed to prevent the user from access tenant.
 
 Evidence:
 
@@ -131,6 +132,5 @@ no issues occurred during onboarding, testing, account manipulation, and offboar
 
 Write what you observed, including:
 - The main difference between blocking sign-in (for PTO or LoA)  verses revoking a session is the access the user has on the account.
-                                                if an account is blocked the user must contact an admin to remove the block.
-                                                if a users session gets revoked, they can login and reauthenticate to gain access.
+  if an account is blocked the user must contact an admin to remove the block, if a users session gets revoked, they can login and reauthenticate to gain access.
 - Audit logs are a great way to validate the success or failure of a change. System audit logs are a great way to track evidence of where the change came from, who made the change, and what occured.
