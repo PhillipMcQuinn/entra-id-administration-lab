@@ -9,7 +9,7 @@ exclusively for training.
 
 | Setting | Configuration |
 |---|---|
-| Gotham IAM Lab |
+| Organization name | Gotham IAM Lab |
 | Tenant type | Workforce |
 | License | Microsoft Entra ID Free
 | Tenant domain | phillipmcquinngmail.onmicrosoft.com |
@@ -41,6 +41,7 @@ The following records are example lab data.
 | Lucius Fox | LuciusFox | IT Director | IT | Bruce Wayne |
 | Barbara Gordon | BarbaraGordon | IAM Analyst | IT | Lucius Fox |
 | Dick Grayson | DickGrayson | Support Specialist | IT | Lucius Fox |
+| Selina Kyle | selinakyle | Procurement Specialist | Bruce Wayne |
 
 Usernames use the lab tenant's .onmicrosoft.com domain.
 
@@ -55,6 +56,7 @@ Additional fictional attributes:
 | SG-IT-Employees | Assigned | Practice IT department membership |
 | SG-Executive-Employees | Assigned | Practice department transfers |
 | SG-Lab-Test-Users | Assigned | Identify accounts used for testing |
+| SG-Procurement-Users | Assigned | Practice Procurement department membership |
 
 Group membership alone does not provide application access.
 Application permissions are documented in the relevant lab.
