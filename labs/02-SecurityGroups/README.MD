@@ -100,13 +100,6 @@ Evidence:
 
 Locate the available events for group creation and membership changes.
 
-Record:
-- Date and time
-- Activity
-- Initiating account
-- Target group or user
-- Result
-
 Evidence:
 
 ![Group administration audit events](screenshots/08-group-audit.png)
