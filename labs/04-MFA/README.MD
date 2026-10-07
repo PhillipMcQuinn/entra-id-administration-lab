@@ -19,7 +19,7 @@ Completed
 | Test user | Selina Kyle |
 | Test user admin roles | None |
 | Authentication method | Microsoft Authenticator |
-| MFA enforcement mechanism | Security default |
+| MFA enforcement mechanism | Security defaults |
 | Administrator role used | Global Administrator |
 
 ## Scenario
@@ -86,7 +86,7 @@ Evidence:
 
 Using an authorized administrator:
 
-1. Open Selinas's Authentication methods.
+1. Open Selina's Authentication methods.
 2. Record the existing methods without exposing secrets.
 3. Select Require re-register multifactor authentication.
 4. Record the confirmation and changes to her method list.
@@ -125,7 +125,7 @@ Evidence:
 
 ## Troubleshooting
 
-There was no errors during the lab, all actions taken were completed as expected.
+There were no errors during the lab, all actions taken were completed as expected.
 
 ## Cleanup
 
@@ -141,7 +141,7 @@ There was no errors during the lab, all actions taken were completed as expected
 - How security defaults affected the test user's sign-ins.
   the user had to reset their password and set up Microsoft Authenticator in order to be granted access to the tenant.
 - How Authentication Details supported verification.
-  Authentication details include method, type of device used, and version of installed application. These details validate the verification of installed and set up validation moethod.
+  Authentication details include method, type of device used, and version of installed application. These details validate the verification of installed and set up validation method.
 - How requiring re-registration helped simulate phone replacement.
   re-registration was a simple example of registering a new device or a failed set up.
 - Why resetting a password is different from resetting MFA methods.
