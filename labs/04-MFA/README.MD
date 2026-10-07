@@ -145,7 +145,7 @@ There was no errors during the lab, all actions taken were completed as expected
 Complete after testing:
 
 - The difference between MFA registration and enforcement.
-  you can set up MFA registration for everyone, but does not mean its required or enforced to sign in every attempt, in fact there is an exclude list available to prevent MFA Authentication requirements for groups.
+  Registering Microsoft Authenticator adds an authentication method. The applicable sign-in policy determines when MFA is required.
 - How security defaults affected the test user's sign-ins.
   the user had to reset their password and set up Microsoft Authenticator in order to be granted access to the tenant.
 - How Authentication Details supported verification.
