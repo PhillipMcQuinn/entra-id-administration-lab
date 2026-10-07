@@ -41,7 +41,7 @@ The following records are example lab data.
 | Lucius Fox | LuciusFox | IT Director | IT | Bruce Wayne |
 | Barbara Gordon | BarbaraGordon | Systems Administrator | IT | Lucius Fox |
 | Dick Grayson | DickGrayson | Support Specialist | IT | Lucius Fox |
-| Selina Kyle | selinakyle | Procurement Specialist | Bruce Wayne |
+| Selina Kyle | SelinaKyle | Procurement Specialist | Bruce Wayne |
 
 Usernames use the lab tenant's .onmicrosoft.com domain.
 
