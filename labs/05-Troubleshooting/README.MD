@@ -13,7 +13,7 @@ Completed
 
 - Tenant: Gotham IAM Lab
 - License: Entra ID-Free
-- Date performed: Octoer 6, 2026
+- Date performed: October 6, 2026
 - Test user: Dick Grayson
 - Administrator role used: Global Administrator
 - Time zone used for recorded events: MST
