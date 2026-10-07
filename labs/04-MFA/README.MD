@@ -19,7 +19,7 @@ Completed
 | Test user | Selina Kyle |
 | Test user admin roles | None |
 | Authentication method | Microsoft Authenticator |
-| MFA enforcement mechanism | <Security default |
+| MFA enforcement mechanism | Security default |
 | Administrator role used | Global Admininstrator |
 
 ## Scenario
@@ -101,7 +101,7 @@ Evidence:
 
 ![Method registered again](screenshots/05-method-reregistered.png)
 
-## Part 6: Retest and Review Audit Evidence
+## Part 5: Retest and Review Audit Evidence
 
 1. Repeat the sign-in test.
 2. Record whether an MFA challenge occurred.
@@ -116,12 +116,12 @@ Evidence:
 
 | Test | Expected result | Actual result |
 |---|---|---|
-| Configuration review | Enforcement mechanism identified | Completed |
-| Authenticator registration | Method appears on test account | Completed |
-| Log review | Authentication details explain the sign-in | Completed |
-| Re-registration action | User's applicable methods reset for registration | Completed |
-| Recovery | User registers Authenticator again | Completed |
-| Retest | Sign-in behavior verified after recovery | Completed |
+| Configuration review | Enforcement mechanism identified | MFA configuration was set up with tenant creation and no changes were needed. |
+| Authenticator registration | Method appears on test account | User shows authentication set up under authentication method details. |
+| Log review | Authentication details explain the sign-in | Audit logs indicated a successful log-in with authentication details |
+| Re-registration action | User's applicable methods reset for registration | After requiring user to re-register MFA, user received MFA error log upon sign in attempt. |
+| Recovery | User registers Authenticator again | User set up of MFA authentication was successful on desired mobile device.  |
+| Retest | Sign-in behavior verified after recovery | User was able to sign in and was required to authenticate with MFA as expected. |
 
 ## Troubleshooting
 
@@ -131,6 +131,7 @@ For each issue, record:
 - Investigation.
 - Resolution.
 - Retest result.
+There was no errors during the lab, all actions taken were completed as expected.
 
 ## Cleanup
 
@@ -144,7 +145,7 @@ For each issue, record:
 Complete after testing:
 
 - The difference between MFA registration and enforcement.
-  you can set up MFA registration for everyone, but does not mean its required or enforced to sign in, in fact there is an exclude list available to prevent MFA Authentication requirements for users on the list.
+  you can set up MFA registration for everyone, but does not mean its required or enforced to sign in every attempt, in fact there is an exclude list available to prevent MFA Authentication requirements for groups.
 - How security defaults affected the test user's sign-ins.
   the user had to reset their password and set up Microsoft Authenticator in order to be granted access to the tenant.
 - How Authentication Details supported verification.
