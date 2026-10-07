@@ -140,7 +140,7 @@ Evidence:
 | Administrator role assignment | Unavailable or denied | Cant complete task, the option to add assignments is grayed out. |
 | Role removal | Assignment no longer appears | After removal of the role, total roles assigned is 0 in the users assigned roles |
 | Password reset after removal | Unavailable or denied | Helpdesk-test can no longer complete this task as the user longer has any administrative roles assigned to the account. |
-| Audit review | Successful changes have supporting events | Audit longs confirm all roles added and removed to the users profile, password changes to Dick Grayson's account. |
+| Audit review | Successful changes have supporting events | Audit logs confirm all roles added and removed to the users profile, password changes to Dick Grayson's account. |
 
 ## Troubleshooting
 
