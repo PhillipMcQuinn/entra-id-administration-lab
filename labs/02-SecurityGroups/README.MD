@@ -119,13 +119,7 @@ Evidence:
 
 ## Troubleshooting
 
-For each issue, record:
-- Symptom
-- Investigation
-- Resolution
-- Retest result
-
-If no issues occurred, state that after completing the lab.
+No unexpected errors occurred during this lab.
 
 ## Cleanup
 
