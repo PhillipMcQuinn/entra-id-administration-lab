@@ -112,7 +112,7 @@ Using the administrator account:
 ### Investigation
 
 1. Locate the matching failed sign-in event.
-f513848-do83-4ca3-9911-29ccb2d00f00
+fa513848-do83-4ca3-9911-29ccb2d00f00
 2. Record the error code and failure reason.
 The User account is disabled.
 3. error code.
