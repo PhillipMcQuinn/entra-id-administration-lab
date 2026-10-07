@@ -34,7 +34,6 @@ Membership alone does not grant access to an application.
 |---|---|
 | Bruce Wayne | SG-Executive-Employees |
 | Lucius Fox | SG-IT-Employees |
-| Barbara Gordon | SG-IT-Employees |
 | Dick Grayson | SG-IT-Employees |
 | Selina Kyle | SG-Procurement-Employees |
 
