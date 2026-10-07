@@ -146,8 +146,6 @@ Verify and document the restored state.
 
 ## Lessons Learned
 
-Complete after testing:
-
 - How Assigned group membership is managed.
 Group membership is managed individually per user, not automatically after a department update in user profile.
 - Why a department change requires a membership update.
