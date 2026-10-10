@@ -38,7 +38,7 @@ Gotham IAM Lab uses seven fictional regular users and two administrator accounts
 - A working recovery administrator session before enforcing Conditional Access.
 - Access to Conditional Access, What If, sign-in logs, and Identity Protection.
 
-Record the actual administrator role and licensing used:
+Administrative environment used:
 
 - **Administrator role:** Global Administrator
 - **License edition:** Microsoft Entra ID P2
