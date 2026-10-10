@@ -4,9 +4,39 @@
 
 This document describes the configuration used for personal, hands-on Microsoft Entra ID and Identity and Access Management (IAM) training. Employee identities, departments, and application resources are fictional. Tests were conducted in nonproduction lab environments. Screenshots and results for individual controls are maintained in their respective lab READMEs.
 
-## Environment History and Tenant Identification
+## Lab Environment Overview
 
-The original setup notes and the later GothamLabz exercises show different `.onmicrosoft.com` domains. The available documentation does **not** establish whether these are independent tenants or whether the original entry was incorrect. The values are therefore kept separate rather than presented as a verified tenant migration.
+This portfolio uses two separate Microsoft Entra ID environments to demonstrate progression from foundational identity administration to advanced Identity and Access Management (IAM) security controls.
+
+### Environment 1 — Microsoft Entra ID Free (Labs 01–05)
+
+**Tenant:** `phillipmcquinngmail.onmicrosoft.com`  
+**License:** Microsoft Entra ID Free
+
+This environment was used for introductory IAM administration exercises:
+
+- Lab 01: User Lifecycle Management
+- Lab 02: Security Group Administration
+- Lab 03: Administrative Roles and Permissions
+- Lab 04: MFA Registration and Recovery
+- Lab 05: Sign-in Troubleshooting
+
+### Environment 2 — Microsoft Entra ID P2 (Labs 06–08)
+
+**Tenant:** `GothamLabz.onmicrosoft.com`  
+**License:** Microsoft Entra ID P2
+
+This environment was used for advanced IAM exercises requiring additional identity security and governance capabilities:
+
+- Lab 06: Joiner–Mover–Leaver Identity Lifecycle Management
+- Lab 07: Conditional Access and Identity Protection
+- Lab 08: Enterprise Application Integration and Troubleshooting
+
+The environment includes two administrator accounts, seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments.
+
+### Environment Separation
+
+Configuration settings, licenses, user accounts, and test results should be interpreted within their respective environments rather than assumed to apply across both tenants.
 
 | Setting | Original setup record (October 5, 2026) | Later GothamLabz lab configuration (October 8–10, 2026) |
 |---|---|---|
