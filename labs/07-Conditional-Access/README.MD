@@ -223,7 +223,17 @@ The policy is configured and On, and its What If targeting was successful. Howev
 - **Security Defaults prevented custom Conditional Access enforcement.** The transition was deferred until replacement policies and recovery access were prepared.
 - **Report-only and disabled sign-in log results initially caused confusion.** Verified targeting through What If and later verified actual enforcement separately.
 - **Recovery passkey profile naming/assignment was confusing.** Confirmed the custom profile, group targeting, allowed Windows Hello authenticators, and successful passkey registration.
-- **Regular administrator passkey registration initially failed.** Repeated registration, Can't use DuckDuckGo browser for Windows Hello Authenticator.; registration succeeded and Windows Hello sign-in was confirmed.
+**Issue: Windows Hello Passkey Registration**
+
+**Symptom:** Windows Hello passkey registration could not be completed using the DuckDuckGo browser.
+
+**Investigation:** The registration process was retried, and browser compatibility was identified as a potential contributing factor.
+
+**Resolution:** Switched to a compatible browser and successfully registered the Windows Hello passkey.
+
+**Verification:** Confirmed successful authentication using the registered Windows Hello passkey to access the Microsoft Entra admin center.
+
+**Lesson Learned:** Browser compatibility can affect passkey registration and authentication workflows. When troubleshooting passkey enrollment issues, verify browser support before investigating account configuration or tenant authentication policies.
 - **Sign-in logs sometimes reported previously satisfied MFA.** Recorded that result without claiming a fresh prompt for the specific event.
 - **No actual legacy-client event appeared in the filtered logs.** Recorded the protocol block as not tested rather than claiming a demonstrated denial.
 
