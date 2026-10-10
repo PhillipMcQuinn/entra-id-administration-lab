@@ -2,147 +2,137 @@
 
 ## Objective
 
-Practice Microsoft Authenticator registration, verify MFA sign-in
-behavior, and require a standard test user to re-register MFA.
+Practice Microsoft Authenticator enrollment and recovery for a standard Microsoft Entra ID user. Review how Security Defaults affects sign-in, inspect authentication details, require MFA re-registration to simulate replacing a phone, and validate that the user can authenticate again.
 
 ## Status
 
-Completed
+**Completed — October 6, 2026.** Registration, re-registration, and successful post-recovery MFA sign-in were reported and documented. The original notes do not identify the exact error code from the interim failed sign-in.
 
 ## Environment
 
 | Setting | Value |
 |---|---|
-| Tenant | Gotham IAM Lab |
-| License | Entra ID Free |
+| Tenant | `phillipmcquinngmail.onmicrosoft.com` (original Gotham IAM Lab environment) |
+| License | Microsoft Entra ID Free |
 | Date performed | October 6, 2026 |
 | Test user | Selina Kyle |
-| Test user admin roles | None |
+| Test user's admin roles | None |
 | Authentication method | Microsoft Authenticator |
-| MFA enforcement mechanism | Security defaults |
+| MFA enforcement configuration | Security Defaults |
 | Administrator role used | Global Administrator |
 
 ## Scenario
 
-Selina Kyle needs to register Microsoft Authenticator.
-Later, she replaces her phone and needs help registering again.
+Selina Kyle is a fictional standard user who needs to enroll Microsoft Authenticator. A simulated phone replacement then requires her existing MFA registration to be reset so she can enroll the method again and regain normal sign-in capability.
 
-This lab simulates the recovery process using a fictional account.
+The scenario uses a personal lab account and a test device; it does not involve an actual employee's lost or replaced phone.
 
 ## Prerequisites
 
-- Selina's account is enabled and available for testing.
-- Microsoft Authenticator is installed on the test phone.
-- A separate browser session is available for Selina.
-- An authorized administrator can manage her authentication methods.
-- The main administrator account remains accessible during testing.
+- An enabled Selina Kyle account without assigned administrator roles.
+- Microsoft Authenticator on the test mobile device.
+- A separate browser session for testing Selina's sign-in.
+- An authorized administrator able to review and manage user authentication methods.
+- Continued access to the primary administrator account.
 
-## Part 1: Review the Current Configuration
+## Part 1: Review MFA Configuration
 
-1. Check whether security defaults are enabled.
-2. Record the current MFA enforcement mechanism.
-3. Review Selina's existing authentication methods.
-4. Record whether she is already registered.
+Reviewed the tenant's MFA configuration and identified **Security Defaults** as the mechanism applicable to this exercise. The original notes state that the setting was already configured at tenant creation and no changes were needed.
 
-Security defaults apply tenant-wide.
-If already enabled, document the setting without changing it.
-
-Evidence:
+**Evidence:**
 
 ![MFA configuration](screenshots/01-mfa-configuration.png)
 
+**Important distinction:** Security Defaults is a tenant-level security setting; registering an authentication method does not, by itself, define when an MFA challenge is required.
+
 ## Part 2: Register Microsoft Authenticator
 
-1. Sign in as Selina in a separate browser session.
-2. Follow the registration prompt, or open:
-   https://mysignins.microsoft.com/security-info
-3. Add Microsoft Authenticator using the displayed instructions.
-4. Complete the verification prompt.
-5. Confirm the method appears in Selina's Security info.
+Signed in using Selina's standard account and completed the registration process for Microsoft Authenticator. Confirmed that the authentication method appeared in the user's account information.
 
-Do not capture or publish the registration QR code or setup secret.
+**Observed result:** The method was successfully registered. The original notes also describe a password change during the initial account sign-in; this was an onboarding sign-in step, not proof that changing a password resets MFA.
 
-Evidence:
+**Evidence:**
 
 ![Registered authentication method](screenshots/02-method-registered.png)
 
-## Part 3: Review Sign-In Logs
+For security, registration QR codes, setup secrets, recovery codes, and passwords should not be included in public evidence.
 
-Using an administrator with permission to read sign-in logs:
+## Part 3: Review Sign-In Authentication Details
 
-1. Locate Selina's sign-in event.
-2. Review Authentication Details.
-3. Record the authentication requirement, methods, and results.
-4. Compare the log with the prompts observed during testing.
+Reviewed Selina's sign-in records and their authentication details to correlate the recorded event with the sign-in test.
 
-If MFA was satisfied by an existing claim, document that explicitly.
-Do not describe it as a new Authenticator challenge.
+**Observed result:** The original lab recorded a successful sign-in with authentication details available for review. The supplied notes do not specify the precise sequence of authentication methods or whether a particular event used a fresh Microsoft Authenticator challenge versus a previously satisfied MFA claim. Those distinctions should be taken from the screenshot or full log rather than assumed.
 
-Evidence:
+**Evidence:**
 
 ![Authentication details](screenshots/03-authentication-details.png)
 
-## Part 4: Simulate Phone Replacement
+## Part 4: Simulate Phone Replacement and Re-Registration
 
-Using an authorized administrator:
+From the administrator session, used **Require re-register multifactor authentication** for Selina's account to simulate the need to enroll a replacement device.
 
-1. Open Selina's Authentication methods.
-2. Record the existing methods without exposing secrets.
-3. Select Require re-register multifactor authentication.
-4. Record the confirmation and changes to her method list.
-5. Have Selina sign in and complete registration again.
-6. Verify the newly registered method.
+**Observed sequence:**
 
-Perform this action only on the lab user.
+1. The administrator initiated the MFA re-registration action.
+2. During the subsequent sign-in attempt, the user encountered an MFA-related error, as reported in the original lab's validation table.
+3. Selina completed Microsoft Authenticator setup on the intended mobile device.
+4. The new registration succeeded.
 
-Evidence:
+The reported interim error was not recorded with an error code or detailed failure reason. It should not be attributed to a particular Entra policy or service condition without the corresponding sign-in details.
 
-![Re-registration action](screenshots/04-reregister-action.png)
+**Evidence:**
 
-![Method registered again](screenshots/05-method-reregistered.png)
+![MFA re-registration action](screenshots/04-reregister-action.png)
 
-## Part 5: Retest and Review Audit Evidence
+![Microsoft Authenticator registered again](screenshots/05-method-reregistered.png)
 
-1. Repeat the sign-in test.
-2. Record whether an MFA challenge occurred.
-3. Review the relevant sign-in authentication details.
-4. Locate available audit events for authentication-method changes.
+## Part 5: Verify Recovery
 
-Evidence:
+Repeated the sign-in test after completing re-registration.
+
+**Observed result:** Selina successfully signed in and completed the required MFA authentication. This confirms the recovery flow returned the lab account to a usable state.
+
+**Evidence:**
 
 ![Recovery verification](screenshots/06-recovery-verification.png)
 
 ## Validation Results
 
-| Test | Expected result | Actual result |
-|---|---|---|
-| Configuration review | Enforcement mechanism identified | MFA configuration was set up with tenant creation and no changes were needed. |
-| Authenticator registration | Method appears on test account | User shows authentication set up under authentication method details. |
-| Log review | Authentication details explain the sign-in | Audit logs indicated a successful log-in with authentication details |
-| Re-registration action | User's applicable methods reset for registration | After requiring user to re-register MFA, user received MFA error log upon sign in attempt. |
-| Recovery | User registers Authenticator again | User set up of MFA authentication was successful on desired mobile device.  |
-| Retest | Sign-in behavior verified after recovery | User was able to sign in and was required to authenticate with MFA as expected. |
+| Test | Expected result | Observed result | Status |
+|---|---|---|---|
+| Security Defaults review | Identify the applicable MFA configuration | Existing configuration reviewed; no change required | Passed |
+| Initial Authenticator enrollment | Method registered on Selina's account | Authentication method appeared in account details | Passed |
+| Initial sign-in log review | Locate authentication-related sign-in evidence | Successful sign-in and authentication details recorded | Passed |
+| Require MFA re-registration | Trigger a new registration process | Re-registration initiated; an interim MFA-related sign-in error was reported | Completed with observation |
+| Authenticator re-enrollment | Method successfully registered again | Setup succeeded on intended mobile device | Passed |
+| Recovery sign-in | User signs in with required MFA | Successful sign-in following MFA verification | Passed |
 
-## Troubleshooting
+## Issues and Troubleshooting
 
-There were no errors during the lab, all actions taken were completed as expected.
+**Observed issue:** An MFA-related error occurred on a sign-in attempt after the administrator required re-registration.
+
+**Action taken:** Completed Microsoft Authenticator registration again on the intended mobile device.
+
+**Result:** A later sign-in succeeded with MFA.
+
+**Evidence limitation:** The original written results do not include the interim error code, exact on-screen wording, or a confirmed underlying cause. No specific failure diagnosis is claimed.
+
+No other unexpected issues were documented.
 
 ## Cleanup
 
-- Keep the test account in a documented, usable state.
-- Remove temporary administrator role assignments, if used.
-- Confirm the main administrator remains accessible.
-- Confirm screenshots contain no QR codes, secrets, or recovery codes.
+Selina's lab account remained available after successful MFA recovery. The final documented outcome was a usable account with Microsoft Authenticator re-registered.
+
+The original cleanup checklist recommended confirming primary administrator access and ensuring no secrets were visible in screenshots; it does not independently record screenshots or separate results for those checks. No temporary administrator role assignment was described for the test user.
 
 ## Lessons Learned
 
-- The difference between MFA registration and enforcement.
-  Registering Microsoft Authenticator adds an authentication method. The applicable sign-in policy determines when MFA is required.
-- How security defaults affected the test user's sign-ins.
-  the user had to reset their password and set up Microsoft Authenticator in order to be granted access to the tenant.
-- How Authentication Details supported verification.
-  Authentication details include method, type of device used, and version of installed application. These details validate the verification of installed and set up validation method.
-- How requiring re-registration helped simulate phone replacement.
-  re-registration was a simple example of registering a new device or a failed set up.
-- Why resetting a password is different from resetting MFA methods.
-  MFA methods are a secondary step of authentication beyond a guessable password. There are multiple different methods of MFA, this only shows a token example.
+- **Registration and enforcement are different.** Enrolling Microsoft Authenticator makes the method available; the applicable authentication configuration determines when MFA is required.
+- **Authentication Details provide verification context.** Sign-in logs help distinguish successful authentication, a newly performed challenge, and MFA satisfied by an existing claim when those details are available.
+- **Re-registration supports account recovery.** Requiring MFA re-registration can be part of an administrator-assisted recovery workflow when a user changes devices or must reset their authentication methods.
+- **Password changes and MFA recovery are separate actions.** Changing a password does not automatically establish or replace an Authenticator registration.
+- **Evidence must support the diagnosis.** An observed MFA error should be recorded with its exact code and failure details before claiming a specific cause.
+
+---
+
+**Lab scope:** Microsoft Entra ID Free in the `phillipmcquinngmail.onmicrosoft.com` tenant. Labs 06–08 use the separate GothamLabz Microsoft Entra ID P2 environment.
