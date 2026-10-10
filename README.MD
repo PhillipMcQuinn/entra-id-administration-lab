@@ -26,7 +26,7 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | 05 | [Sign-in Troubleshooting](labs/05-Troubleshooting/README.MD) | Diagnosing authentication failures through Entra sign-in logs |
 | 06 | [Joiner–Mover–Leaver Identity Lifecycle](labs/06-Joiner-Mover-Leaver/README.MD) | Department transfer, group-based application access, access review, and offboarding |
 | 07 | [Conditional Access and Identity Protection](labs/07-Conditional-Access/README.MD) | MFA, phishing-resistant authentication, legacy-auth blocking policy, and risk simulations |
-| 08 | [Enterprise Application Integration and Troubleshooting](labs/08-Enterprise Application Integration/README.MD) | OpenID Connect, app roles, My Apps visibility, consent, RBAC, and assignment-based access revocation |
+| 08 | [Enterprise Application Integration and Troubleshooting]([Enterprise Application Integration](labs/08-Enterprise%20Application%20Integration/README.MD) | OpenID Connect, app roles, My Apps visibility, consent, RBAC, and assignment-based access revocation |
 
 ## Lab Environments
 
