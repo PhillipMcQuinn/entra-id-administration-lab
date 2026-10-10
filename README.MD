@@ -15,4 +15,4 @@ This portfolio documents my hands-on Microsoft Entra ID administration practice 
 5. [Sign-in troubleshooting](labs/05-Troubleshooting/README.MD)
 6. [Joiner-Mover-Leaver](labs/labs/06-Joiner-Mover-Leaver/README.MD)
 7. [Conditional-Access](labs/07-Conditional-Access/README.MD)
-8. [Enterprise Application Integration](labs/08-Enterprise Application Integration/README.MD)
+8. [Enterprise Application Integration](labs/labs/08-Enterprise Application Integration/README.MD)
