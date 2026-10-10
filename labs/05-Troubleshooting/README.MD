@@ -1,197 +1,154 @@
-# Lab 05: Sign-In Troubleshooting
+# Lab 05: Microsoft Entra ID Sign-In Troubleshooting
 
 ## Objective
 
-Investigate failed Microsoft Entra ID sign-ins using error messages,
-account settings, and sign-in logs. Apply a targeted fix and verify recovery.
+Investigate Microsoft Entra ID sign-in failures by correlating user-reported errors with sign-in logs and account settings. Apply an appropriate correction and confirm recovery through a successful fresh sign-in.
 
 ## Status
 
-Completed
+**Completed — both test scenarios were diagnosed and successfully retested.**
 
 ## Environment
 
-- Tenant: Gotham IAM Lab
-- License: Entra ID-Free
-- Date performed: October 6, 2026
-- Test user: Dick Grayson
-- Administrator role used: Global Administrator
-- Time zone used for recorded events: UTC
+| Setting | Value |
+|---|---|
+| Lab environment | Original Gotham IAM Lab |
+| Tenant | `phillipmcquinngmail.onmicrosoft.com` |
+| License | Microsoft Entra ID Free |
+| Date performed | October 6, 2026 |
+| Test user | Dick Grayson |
+| Administrator role used | Global Administrator |
+| Sign-in event time zone | UTC |
+
+This exercise used the original Free-license tenant for Labs 01–05, not the separate GothamLabz P2 tenant used in later labs. Accounts and scenarios are fictional.
 
 ## Prerequisites
 
-- Test account exists and initially has sign-in enabled.
-- A successful baseline sign-in has been verified.
-- Administrator can view sign-in logs and perform the required fixes.
-- Separate browser sessions are used for administrator and employee.
-- Original account configuration has been recorded.
+- Dick Grayson's account existed and initially permitted sign-in.
+- A successful baseline sign-in had been established.
+- An authorized administrator could inspect sign-in logs and update the test account.
+- Separate administrator and employee browser sessions were available.
 
 ## Investigation Method
 
-For each failed sign-in:
+For each scenario, a failed sign-in was reproduced, the reported error was compared with the corresponding sign-in event, and the account configuration was reviewed before applying a correction. The outcome was verified with another sign-in attempt.
 
-1. Record the username, application, timestamp, and displayed error.
-2. Locate the matching event in Sign-in logs.
-3. Confirm the user, application, and event time match the test.
-4. Review the status, error code, and failure reason.
-5. Review Authentication Details and Conditional Access information,
-   if available and relevant.
-6. Compare the log evidence with the user's account settings.
-7. Apply a fix supported by the findings.
-8. Repeat the sign-in and document the outcome.
+Sign-in logs can have a short reporting delay, so the event timestamp, user identity, and failure reason were used together to identify the relevant record. A failure was not assumed to be MFA-related without supporting evidence.
 
-Do not assume every failed sign-in is caused by MFA.
+## Part 1: Incorrect Password
 
-## Case 1: Incorrect Password
+### 1. Reproduce the authentication failure
 
-### Scenario
+Attempted to sign in as Dick Grayson using an intentionally incorrect password. The sign-in page reported:
 
-Dick Grayson enters an incorrect password.
+> Your account or password is incorrect.
 
-### Reproduce the Issue
+Only a controlled test attempt was required; repeated invalid-password attempts were avoided to reduce the risk of account lockout.
 
-1. Open a separate browser session.
-2. Attempt one sign-in with an intentionally incorrect password.
-3. Record the displayed error and timestamp.
- "Your account or password is incorrect." 
-Avoid repeated attempts that could trigger account lockout.
-
-### Investigation
-
-Locate the matching failed sign-in event.
-
-Record: b93357b4-1d0b-4e4a-92d4-63cb85850d00
-- User: DickGrayson
-- Timestamp and time zone: 2026-10-06T21:24:18z
-- Error code: 50126
-- Failure reason: error validating credentials due to invalid username or password.
-
-Evidence:
+**Evidence:**
 
 ![Incorrect-password error](screenshots/01-password-error.png)
 
+### 2. Investigate the sign-in event
+
+Located the corresponding failure in Microsoft Entra ID sign-in logs.
+
+| Field | Recorded observation |
+|---|---|
+| User | Dick Grayson |
+| Event time (UTC) | `2026-10-06T21:24:18Z` |
+| Recorded event identifier | `b93357b4-1d0b-4e4a-92d4-63cb85850d00` |
+| Error code | **50126** |
+| Failure reason | Error validating credentials due to an invalid username or password |
+
+The event identifier is retained as recorded in the original lab notes; its precise log-field type was not specified.
+
+**Evidence:**
+
 ![Matching failed sign-in](screenshots/02-password-failure-log.png)
 
-### Diagnosis
+### 3. Diagnosis and resolution
 
-The user explained they are getting a login error with incorrect account password, the logs indicate failed login attempt with incorrect username or password.
-  
-### Resolution
+The failed sign-in and error **50126** were consistent with the deliberately incorrect password. No account-setting change was needed. The test user retried authentication using the known correct password.
 
-Retry with the known correct password.
-sign-in Successful
+### 4. Verify recovery
 
-If simulating a forgotten password instead, document the authorized
-password reset and any password-change prompt.
+A subsequent sign-in succeeded after the correct password was entered.
 
-### Verification
+**Evidence:**
 
-Record whether the user signed in successfully.
-Locate the corresponding successful sign-in event.
+![Successful sign-in after entering the correct password](screenshots/03-CorrectPassword.png)
 
-Evidence:
+## Part 2: Disabled User Account
 
-![Successful sign-in after correction](screenshots/03-CorrectPassword.png)
+### 1. Reproduce blocked sign-in
 
-## Case 2: Sign-In Blocked
+An authorized administrator blocked sign-in for Dick Grayson's test account. The test user then attempted a fresh sign-in in a separate browser session.
 
-### Scenario
-
-Dick's account was disabled during offboarding, but he now needs
-to return to the lab.
-
-### Reproduce the Issue
-
-Using the administrator account:
-
-1. Block sign-in for Dick's test account.
-2. Confirm the disabled state.
-3. Attempt a fresh sign-in as Dick in a separate browser session.
-4. Record the displayed error and timestamp.
-
-### Investigation
-
-1. Locate the matching failed sign-in event.
-fa513848-d083-4ca3-9911-29ccb2d00f00
-2. Record the error code and failure reason.
-The User account is disabled.
-3. error code.
-50057
-4. Review Dick's account status.
-User account is disabled.
-5. Confirm whether the account state explains the failure.
-yes, the account state is disabled, preventing the user from logging into the tenant.
-
-Evidence:
+**Evidence:**
 
 ![Account sign-in blocked](screenshots/04-account-blocked.png)
 
+### 2. Investigate the sign-in event and account state
+
+The failed sign-in record reported **50057** and identified the user account as disabled. An account review independently showed that Dick's sign-in was blocked.
+
+| Field | Recorded observation |
+|---|---|
+| User | Dick Grayson |
+| Recorded event identifier | `fa513848-d083-4ca3-9911-29ccb2d00f00` |
+| Error code | **50057** |
+| Failure reason | User account is disabled |
+| Account setting | Sign-in blocked |
+
+The event identifier is preserved from the lab notes without assuming its precise field type. A timestamp for this specific event was not supplied.
+
+**Evidence:**
+
 ![Blocked-account sign-in event](screenshots/05-blocked-sign-in-log.png)
 
-### Diagnosis
+### 3. Diagnosis and resolution
 
-Looking at the sign-in logs and viewing a failure status for a log entry, the failure status provides a good explaination of what the reason is.
-  
-### Resolution
+The account's disabled state explained why the test user could not sign in. Because this was an explicitly authorized lab scenario, the administrator restored the account to an enabled state.
 
-The lab scenario explicitly authorizes re-enabling the fictional account.
+In an operational environment, restoring an offboarded employee's account would require appropriate authorization and identity verification before access was reinstated.
 
-1. Unblock sign-in.
-2. Confirm the account is enabled.
-3. Record the time of the change.
+### 4. Verify recovery
 
-In a real environment, verify authorization before restoring access
-to an offboarded employee.
+Dick Grayson completed a successful fresh sign-in after the account was re-enabled. This confirmed the observed issue was resolved in the lab.
 
-### Verification
+**Evidence:**
 
-1. Attempt a fresh sign-in.
-2. Record the outcome.
-3. Locate the successful sign-in event.
-4. Record any delay between re-enabling the account and successful access.
+![Successful sign-in after account re-enabled](screenshots/06-account-retest.png)
 
-Evidence:
+## Validation Results
 
-![Successful sign-in after re-enabling](screenshots/06-account-retest.png)
-
-## Results
-
-| Case | Observed cause | Fix applied | Retest result |
+| Scenario | Observed cause | Corrective action | Retest result |
 |---|---|---|---|
-| Incorrect password | incorrect password | asked user to sign in with last known password | Resolved, user sign-in was successful.  |
-| Sign-in blocked | account was disabled | enabled account | Resolved, user sign-in was successful. |
+| Incorrect password | Sign-in failure **50126** indicated invalid credentials | Entered the correct password | **Passed:** Sign-in successful |
+| Blocked sign-in | Sign-in failure **50057** and disabled account setting | Re-enabled the authorized test account | **Passed:** Sign-in successful |
 
-## Troubleshooting Notes
+## Issues and Troubleshooting
 
-Document any investigation difficulties, such as:
-- Log events taking time to appear.
-there is a couple minute delay in the event logs showing in the tenant.
-- Selecting the wrong application or time range.
-by validating a failed event and matching time stamps, the selection of wrong events is slim.
-- Existing browser sessions affecting the test.
-no browser sessions were impacted during the lab.
-- Missing permissions to view logs.
-no permission issues during lab.
-- A different failure occurring before the expected one.
-no other failures occurred during the lab.
-
-Record how each difficulty was resolved.
+- **Sign-in log reporting delay:** Events sometimes took a couple of minutes to become visible in the Entra admin center. The relevant event was identified by matching user and event details rather than assuming immediate log availability.
+- **Event selection:** Matching timestamps and failure information helped distinguish the intended test events from other sign-ins.
+- **Browser sessions:** No browser-session interference was reported during this exercise.
+- **Permissions:** No issues accessing sign-in logs or performing the authorized lab changes were reported.
+- **Additional failures:** No additional failure condition was observed during the successful retests.
 
 ## Cleanup
 
-- Confirm Dick's sign-in is enabled.
-- Restore any settings changed during testing.
-- Remove temporary administrator role assignments.
-- Sign out of test sessions.
-- Check screenshots for passwords and personal information.
+Dick Grayson's account was returned to an **enabled** state after the disabled-account test. The original notes do not independently confirm session sign-out, other configuration restoration, or screenshot redaction as separate completed cleanup actions, so those are not claimed as verified results.
 
 ## Lessons Learned
 
-- How timestamps help match a user's report to a sign-in event.
-  Log-in logs can get crowded with multiple users. time stamps can help quickly narrow the search to the log required for troubleshooting.
-- Why error codes should be interpreted with the failure reason.
-  error codes and failure reason can vary if the reason given can me mulltiple failure points.
-- How account settings and logs support diagnosis together.
-- error logs can give a good starting point for troubleshooting root cause of an issue as long as thr failure reason in percise.
-- Why a successful retest is needed to confirm resolution.
-  error logs may only indicate one failure point, if a retest in unsuccessful, there may be more troubleshooting required to find multiple failure points, or root cause. Validating issues resolved and record keeping are a key component of any good troubleshooting.
+- **Correlate user reports with the correct sign-in event.** User identity, timestamps, application context, and failure information help narrow an investigation when logs contain multiple records.
+- **Read the error code alongside its failure reason.** Error **50126** was consistent with invalid credentials; error **50057** indicated a disabled user account. The diagnosis should be supported by the surrounding context.
+- **Check account configuration.** Sign-in logs identified the failure, while account settings independently confirmed that the test user was blocked in the second scenario.
+- **Choose targeted fixes.** Re-entering a correct password and re-enabling an authorized test account addressed different causes; neither required changing MFA settings.
+- **Verify a fix with a fresh test.** A successful sign-in after remediation demonstrated recovery for both scenarios. If the retest had failed, further investigation would have been necessary.
+- **Account for log delays.** Sign-in activity may not appear instantaneously in the admin center, so recorded event times and careful matching improve troubleshooting accuracy.
+
+---
+
+**Scope note:** This lab documents basic troubleshooting in a personal Microsoft Entra ID Free environment. It does not claim production incident response or advanced P2 sign-in risk testing.
