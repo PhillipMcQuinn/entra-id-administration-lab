@@ -34,7 +34,7 @@ Tim Drake is the fictional employee in Gotham IAM Lab. He begins with access to 
 - Separate employee browser session for access tests.
 - Access to Entra ID audit and sign-in logs.
 
-Record the actual administrator role and licensing used:
+Administrative environment used:
 
 - **Administrator role:** Global Administrator
 - **License edition:** Microsoft Entra ID P2
