@@ -13,3 +13,6 @@ This portfolio documents my hands-on Microsoft Entra ID administration practice 
 3. [Administrative roles](labs/03-Admin-roles/README.MD)
 4. [MFA registration and recovery](labs/04-MFA/README.MD)
 5. [Sign-in troubleshooting](labs/05-Troubleshooting/README.MD)
+6. [Joiner-Mover-Leaver](labs/06-Joiner--Mover-Leaver/README.MD)
+7. [Conditional-Access](labs/07-Coonditional-Access/README.MD)
+8. [Enterprise Application Integration](labs/08-Enterprise Application Integration/README.MD)
