@@ -2,144 +2,157 @@
 
 ## Objective
 
-Practice creating department security groups, adding and removing
-members, and verifying changes through membership records and audit logs.
+Practice administering Microsoft Entra ID **Assigned** security groups for fictional departments. Verify group creation and membership, simulate an employee transfer between departments, and use group membership views and audit logs to confirm changes.
 
 ## Status
 
-Complete
+**Completed — October 6, 2026.** The exercise included a department transfer and subsequent restoration of the test user's original department and group memberships.
 
 ## Environment
 
-- Tenant: Gotham IAM Lab
-- License: Free License
-- Administrator role used: Global Admin
-- Date performed: October 6, 2026
+| Setting | Value |
+|---|---|
+| Lab environment | Gotham IAM Lab (foundational labs) |
+| Microsoft Entra tenant | `phillipmcquinngmail.onmicrosoft.com` |
+| License | Microsoft Entra ID Free |
+| Administrator role used | Global Administrator |
+| Date performed | October 6, 2026 |
+
+All employee names and department scenarios in this exercise are fictional.
 
 ## Group Design
 
-| Group name | Type | Membership type | Purpose |
+| Group name | Group type | Membership type | Intended purpose |
 |---|---|---|---|
-| SG-Executive-Employees | Security | Assigned | Executive department employees |
-| SG-IT-Employees | Security | Assigned | IT department employees |
-| SG-Procurement-Employees | Security | Assigned | Procurement department employees |
-| SG-Lab-Test-Users | Security | Assigned | Accounts used for lab testing |
+| `SG-Executive-Employees` | Security | Assigned | Executive department employees |
+| `SG-IT-Employees` | Security | Assigned | IT department employees |
+| `SG-Procurement-Employees` | Security | Assigned | Procurement department employees |
+| `SG-Lab-Test-Users` | Security | Assigned | Accounts used for lab testing |
 
-These groups organize users for potential access assignments.
-Membership alone does not grant access to an application.
+These groups organize users for potential access assignments. **Group membership alone does not establish access to an application or resource**; authorization requires a corresponding resource assignment or access control configuration.
 
-## Planned Department Memberships
+### Department membership plan
 
-| User | Department group |
+| Fictional employee | Department group |
 |---|---|
-| Bruce Wayne | SG-Executive-Employees |
-| Lucius Fox | SG-IT-Employees |
-| Dick Grayson | SG-IT-Employees |
-| Selina Kyle | SG-Procurement-Employees |
+| Bruce Wayne | `SG-Executive-Employees` |
+| Lucius Fox | `SG-IT-Employees` |
+| Dick Grayson | `SG-IT-Employees` |
+| Selina Kyle | `SG-Procurement-Employees` |
+
+The table records the planned department mapping. The included screenshots document selected group membership views; they are not presented as independent screenshots of every row above.
 
 ## Prerequisites
 
-- Fictional employee accounts already exist.
-- Administrator has permission to manage the selected groups.
-- Existing group memberships have been recorded.
+- Fictional employee accounts in the original Entra ID Free lab tenant.
+- Administrator permission to create security groups and modify their memberships.
+- Existing membership information for comparison before and after the transfer.
+- Access to Microsoft Entra ID group membership views and audit logs.
 
-## Part 1: Create Security Groups
+## Part 1: Create and Review Security Groups
 
-For each missing group:
+Created the required department security groups using **Security** group type and **Assigned** membership. Group names and descriptions identify their intended departments. Reviewed the resulting group listings.
 
-1. Create a security group.
-2. Enter its name and a description explaining its purpose.
-3. Select Assigned membership.
-4. Record the owner, if assigned.
-5. Verify the group appears in the directory.
+**Evidence:**
 
-Evidence:
+![Security group creation and listing](screenshots/01-Security-Groups-Create.png)
 
-![Procurement Department security groups](screenshots/01-Security-Groups-Create.png)
+## Part 2: Assign and Verify Group Members
 
-## Part 2: Add Members
+Added users to their intended department groups and checked membership using the group members view. The exercise also confirmed that membership could be reviewed from an individual user's profile.
 
-1. Add each employee to the department group listed above.
-2. Open each group's membership list.
-3. Confirm the intended employees appear.
-4. Check that unintended employees were not added.
+**Observed result:** The selected Procurement and Executive group membership lists displayed assigned users.
 
-Evidence:
+**Evidence:**
 
-![Procurement group membership](screenshots/02-Procurement-members.png)
+![Procurement group members](screenshots/02-Procurement-members.png)
 
-![Executive group membership](screenshots/03-executive-members.png)
+![Executive group members](screenshots/03-executive-members.png)
 
 ## Part 3: Simulate a Department Transfer
 
-Scenario:
-Dick Grayson transfers from IT to Procurement.
+**Scenario:** Dick Grayson moves from the IT department to Procurement.
 
-1. Record his original department and group memberships.
-2. Update his Department attribute to Procurement.
-3. Check whether the assigned group membership changed automatically.
-4. Remove him from SG-IT-Employees.
-5. Add him to SG-Procurement-Employees.
-6. Verify he belongs to Procurement and no longer belongs to IT.
+### 1. Review the original employee profile
 
-Expected behavior:
-Updating the Department attribute does not automatically change
-membership in these Assigned groups.
+Reviewed Dick Grayson's existing department information and group membership before changing his department.
 
-Evidence:
+**Evidence:**
 
-![User Profile](screenshots/04-User-Profile.png)
+![Employee profile before transfer](screenshots/04-User-Profile.png)
 
-![Updated department](screenshots/05-User-Profile-Update.png)
+### 2. Update the department attribute
 
-![Procurement membership](screenshots/06-procurement-members.png)
+Changed Dick's **Department** attribute to **Procurement**.
 
-![IT membership after transfer](screenshots/07-it-members-after-transfer.png)
+**Observed result:** Updating the department attribute did **not** automatically update membership in these **Assigned** security groups. Manual group membership changes were required.
 
-## Part 4: Review Audit Logs
+**Evidence:**
 
-Locate the available events for group creation and membership changes.
+![Employee profile after department update](screenshots/05-User-Profile-Update.png)
 
-Evidence:
+### 3. Remove old membership and add new membership
+
+Removed Dick from `SG-IT-Employees`, added him to `SG-Procurement-Employees`, and reviewed the resulting group membership lists.
+
+**Observed result:** Dick appeared in the Procurement group and no longer appeared in the IT group after the manual changes.
+
+**Evidence:**
+
+![Procurement group membership after transfer](screenshots/06-procurement-members.png)
+
+![IT group membership after transfer](screenshots/07-it-members-after-transfer.png)
+
+## Part 4: Review Group Administration Audit Logs
+
+Reviewed available Microsoft Entra ID audit events for group administration and membership changes.
+
+**Observed result:** Audit records showed individual group changes. These records provide a way to investigate the operation performed and associated audit details.
+
+**Evidence:**
 
 ![Group administration audit events](screenshots/08-group-audit.png)
 
-![Group Administration Audit events](screenshots/09-group-Change-Audit.png)
+![Group membership change audit events](screenshots/09-group-Change-Audit.png)
 
 ## Validation Results
 
-| Test | Expected result | Actual result |
+| Test | Observed result | Outcome |
 |---|---|---|
-| Group creation | Groups exist with the intended settings | Group creation and adding members/owners works as expected. |
-| Add members | Intended employees appear in their groups | Adding groups members display in the appropriate members section, they also show under the users profile group membership section. |
-| Change department | Assigned memberships remain unchanged until manually edited | When changing a users department in their profile settings, it does not automatically edit the group assignments. |
-| Remove IT membership | Dick no longer appears in the IT group | Removed user from the IT group. |
-| Add Procurement membership | Dick appears in the Procurement group | Manually added user to Procurement group. |
-| Audit review | Relevant group changes are recorded | Audit shows individual records of user group changes. |
+| Create security groups | Required groups were created and appeared in the directory | Passed |
+| Assign members | Users appeared in the applicable group membership views | Passed |
+| Change employee department | Assigned group memberships did not automatically change | Confirmed |
+| Remove IT group membership | Dick was removed from `SG-IT-Employees` | Passed |
+| Add Procurement membership | Dick was added to `SG-Procurement-Employees` | Passed |
+| Review audit events | Group administration and membership events were available for review | Passed |
+| Restore initial configuration | Dick's department and group memberships were returned to the original IT configuration | Reported complete |
 
-## Troubleshooting
+**Scope:** This lab verified group membership administration. It did **not** test downstream application permissions, dynamic group membership, or automatic HR-driven provisioning.
 
-No unexpected errors occurred during this lab.
+## Issues and Troubleshooting
+
+No unexpected errors were reported during the exercise. The primary behavior investigated was that changing a user's **Department** attribute did not automatically change memberships in security groups configured with **Assigned** membership.
+
+This behavior required manual removal from the former department group and manual addition to the new department group.
 
 ## Cleanup
 
-Restore Dick Grayson to his original lab configuration:
+After completing the transfer tests, restored Dick Grayson's original lab configuration:
 
-- Department: IT
-- Member of SG-IT-Employees
-- Removed from SG-Procurement-Employees
+- **Department:** IT
+- **Member of:** `SG-IT-Employees`
+- **Not a member of:** `SG-Procurement-Employees`
 
-Verify and document the restored state.
+The original lab notes report that this cleanup was completed. A separate post-cleanup screenshot was not listed among the nine evidence images in this README.
 
 ## Lessons Learned
 
-- How Assigned group membership is managed.
-Group membership is managed individually per user, not automatically after a department update in user profile.
-- Why a department change requires a membership update.
-Group memberships don't automatically update. If a user is transferred between departments, you must update users group enrollment to ensure they don't have access to incorrect department groups.
-- How to verify both added and removed memberships.
-you can validate user membership within audit logs "GroupManagement" log or see all groups a user belongs to within their profile "group membership".
-- How audit logs support investigation of administrative changes.
-Audit logs can show successful or failed changes. The logs will indicate who made the change, when it changed, and what changed.
+- **Assigned security groups require explicit membership administration.** Editing a user's department attribute does not automatically move that user between Assigned groups.
+- **Department transfers involve more than profile updates.** Old group membership should be removed and new membership assigned as appropriate to avoid retaining unnecessary entitlements.
+- **Membership should be validated from multiple views.** The group's member list and the user's group membership view help confirm changes.
+- **Audit logs support accountability and troubleshooting.** They can record changes, their status, timestamps, and actor information, depending on the audit event.
+- **Group membership and application authorization are not synonymous.** This exercise establishes directory group administration; separate resource tests are needed to demonstrate application access.
 
-Dick Grayson's account was reverted back to IT department, and correct group assignments were restored.
+---
+
+**Environment note:** Labs 01–05 use the original `phillipmcquinngmail.onmicrosoft.com` Entra ID Free tenant. Labs 06–08 use the separate GothamLabz Entra ID P2 tenant.
