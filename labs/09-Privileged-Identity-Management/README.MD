@@ -1,4 +1,4 @@
-# Lab 09: Privileged Identity Management — Just-in-Time Role Activation
+# Lab 09: Privileged Identity Management
 
 ## Objective
 
