@@ -21,17 +21,18 @@ This environment was used for introductory IAM administration exercises:
 - Lab 04: MFA Registration and Recovery
 - Lab 05: Sign-in Troubleshooting
 
-### Environment 2 — Microsoft Entra ID P2 (Labs 06–09)
+### Environment 2 — Microsoft Entra ID P2 (Labs 06–10)
 
 **Tenant:** `GothamLabz.onmicrosoft.com`  
 **License:** Microsoft Entra ID P2
 
-This environment was used for advanced IAM exercises requiring additional identity security and governance capabilities:
+This environment was used for advanced IAM security, governance, and application-integration exercises. P2 describes the environment; basic SAML SSO is not presented as a P2-only feature:
 
 - Lab 06: Joiner–Mover–Leaver Identity Lifecycle Management
 - Lab 07: Conditional Access and Identity Protection
 - Lab 08: Enterprise Application Integration and Troubleshooting
 - Lab 09: Privileged Identity Management
+- Lab 10: SAML 2.0 Single Sign-On
 
 Labs 06–08 recorded two administrator accounts and seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments. Lab 09 added a dedicated PIM test account with an Entra ID P2 license and Microsoft Authenticator registration. Its eligible Helpdesk Administrator assignment was removed during cleanup.
 
@@ -50,7 +51,7 @@ Configuration settings, licenses, user accounts, and test results should be inte
 | Authenticator | Microsoft Authenticator | Microsoft Authenticator; Windows Hello passkeys on administrator accounts |
 | Admin center | [Microsoft Entra admin center](https://entra.microsoft.com) | [Microsoft Entra admin center](https://entra.microsoft.com) |
 
-The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–09 use GothamLabz.
+The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–10 use GothamLabz.
 
 ## Administrator and Test Accounts
 
@@ -215,6 +216,29 @@ The local Flask app uses a private `.env` file for sensitive configuration. Comm
 - Passwords, recovery codes, authentication QR codes, access/refresh tokens, private keys, application secrets, and session cookies must not be published.
 - Review screenshots for personal account information and sensitive browser content before uploading.
 
+## SAML 2.0 Single Sign-On (Lab 10)
+
+**Gotham SAML Lab** uses the Microsoft Entra SAML Toolkit gallery integration and Dick Grayson as the fictional test user.
+
+| Setting | Final configuration |
+|---|---|
+| Application ID | `6cc23aab-ec11-40bb-a9ae-9a5a1c9be07d` |
+| Flow tested | SP-initiated SAML SSO |
+| Entity ID | `https://samltoolkit.azurewebsites.net` |
+| Reply URL / ACS | `https://samltoolkit.azurewebsites.net/SAML/Consume/22845` |
+| Sign on URL | `https://samltoolkit.azurewebsites.net/SAML/Login/22845` |
+| NameID | Email address format; `user.userprincipalname` |
+| Signing | Sign SAML assertion; SHA-256 |
+| Active application certificate expiry | October 29, 2029 |
+| Assignment required | Yes |
+| Final users and groups | No assignments |
+
+The first toolkit connection trusted a different certificate, and the service provider returned a processing error. Its edit page also failed, so a replacement connection was created with the downloaded application Certificate (Raw), and Entra endpoints were updated to match. SSO then succeeded on the toolkit and in the matching Entra sign-in log. The log recorded MFA satisfied by an existing token claim.
+
+Unassigned access was denied with AADSTS50105. After successful assigned-user testing, Dick's assignment was removed and a fresh sign-in was denied again. Existing application-session termination and SAML logout were not tested. Deletion of the original toolkit connection and local toolkit accounts was not confirmed.
+
+See [Lab 10](../labs/10-SAML-SSO/README.MD) for configuration, certificate troubleshooting, validation, and evidence.
+
 ## Maintenance Notes
 
-This is a snapshot of the environment documented through **October 29, 2026**, including Lab 09 PIM testing and cleanup. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+This is a snapshot of the environment documented through **October 29, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
