@@ -1,6 +1,6 @@
 # Microsoft Entra ID Administration & IAM Security Portfolio
 
-This repository documents my hands-on Identity and Access Management (IAM) training in personal Microsoft Entra ID lab environments. It focuses on practical administration, identity lifecycle operations, access control, multifactor authentication, Conditional Access, Privileged Identity Management (PIM), SAML single sign-on, and enterprise application troubleshooting.
+This repository documents my hands-on Identity and Access Management (IAM) training in personal Microsoft Entra ID lab environments. It focuses on practical administration, identity lifecycle operations, access control, multifactor authentication, Conditional Access, Privileged Identity Management (PIM), SAML and OpenID Connect single sign-on, and enterprise application troubleshooting.
 
 Each lab records the scenario, configuration steps, observed outcomes, troubleshooting, and available screenshot evidence. These exercises are **personal lab experience**, not work performed in a production enterprise tenant.
 
@@ -10,6 +10,7 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 |---|---|
 | Privileged access | Validated eligible Helpdesk Administrator activation, approval, manual deactivation, automatic expiry, and password-reset denial outside active privilege windows |
 | SAML federation | Configured SP-initiated SAML SSO, corrected a signing-certificate mismatch, and verified assignment removal blocks new sign-ins |
+| OIDC troubleshooting | Captured PKCE authorization parameters, resolved consent and redirect failures, compared cache clearing with Entra logout, and verified denial after assignment removal |
 | Identity lifecycle | Tested joiner, mover, leaver, role changes, access reviews, and access removal with a fictional employee account |
 | Conditional Access | Configured six policies; enabled four and retained two in Report-only mode |
 | Administrator security | Registered and tested Windows Hello passkeys and verified an enforced phishing-resistant MFA requirement |
@@ -32,9 +33,11 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | 09 | [Privileged Identity Management](labs/09-Privileged-Identity-Management/README.MD) | Eligible roles, MFA and justification requirements, approval-controlled activation, manual deactivation, automatic expiry, and audit correlation |
 | 10 | [SAML 2.0 Single Sign-On](labs/10-SAML-SSO/README.MD) | SAML endpoints, NameID, signing-certificate trust, SP-initiated SSO, and assignment-based access removal |
 
+| 11 | [OpenID Connect SSO with PKCE](labs/11-OIDC-SSO/README.MD) | Authorization Code with PKCE, claims, consent, redirect troubleshooting, cache/session behavior, and assignment removal |
+
 ## Lab Environments
 
-The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–10** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
+The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–11** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
 
 ### GothamLabz P2 environment
 
@@ -45,7 +48,7 @@ The portfolio uses two intentional lab environments: **Labs 01–05** were compl
 | Test identities | Fictional users and separate administrator accounts; Lab 09 added a dedicated PIM test account |
 | Authentication | Microsoft Authenticator and device-bound Windows Hello passkeys |
 | Access control | Assigned security groups, application roles, Conditional Access, and PIM eligible directory roles |
-| Test applications | Gotham Access Lab — local Python Flask/OIDC application; Gotham SAML Lab — hosted SAML Toolkit integration |
+| Test applications | Gotham Access Lab — local Python Flask/OIDC application; Gotham SAML Lab — hosted SAML Toolkit integration; Gotham OIDC Lab — local MSAL SPA |
 
 For historical setup details, see [Lab Setup](docs/lab-setup.md). The original setup documentation may describe an earlier tenant or licensing stage and should be read in that context.
 

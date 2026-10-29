@@ -21,7 +21,7 @@ This environment was used for introductory IAM administration exercises:
 - Lab 04: MFA Registration and Recovery
 - Lab 05: Sign-in Troubleshooting
 
-### Environment 2 — Microsoft Entra ID P2 (Labs 06–10)
+### Environment 2 — Microsoft Entra ID P2 (Labs 06–11)
 
 **Tenant:** `GothamLabz.onmicrosoft.com`  
 **License:** Microsoft Entra ID P2
@@ -33,6 +33,7 @@ This environment was used for advanced IAM security, governance, and application
 - Lab 08: Enterprise Application Integration and Troubleshooting
 - Lab 09: Privileged Identity Management
 - Lab 10: SAML 2.0 Single Sign-On
+- Lab 11: OpenID Connect SSO with Authorization Code and PKCE
 
 Labs 06–08 recorded two administrator accounts and seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments. Lab 09 added a dedicated PIM test account with an Entra ID P2 license and Microsoft Authenticator registration. Its eligible Helpdesk Administrator assignment was removed during cleanup.
 
@@ -51,7 +52,7 @@ Configuration settings, licenses, user accounts, and test results should be inte
 | Authenticator | Microsoft Authenticator | Microsoft Authenticator; Windows Hello passkeys on administrator accounts |
 | Admin center | [Microsoft Entra admin center](https://entra.microsoft.com) | [Microsoft Entra admin center](https://entra.microsoft.com) |
 
-The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–10 use GothamLabz.
+The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–11 use GothamLabz.
 
 ## Administrator and Test Accounts
 
@@ -239,6 +240,18 @@ Unassigned access was denied with AADSTS50105. After successful assigned-user te
 
 See [Lab 10](../labs/10-SAML-SSO/README.MD) for configuration, certificate troubleshooting, validation, and evidence.
 
+## OpenID Connect SSO with PKCE (Lab 11)
+
+Gotham OIDC Lab is a single-tenant browser SPA using MSAL Browser 5.27.0, served at `http://localhost:3000/lab.html` with a dedicated root redirect bridge at `http://localhost:3000/`. Client ID: `0ab52627-9b78-4bb9-b721-82916d824e69`. No client secret was used. Implicit grants remained unchecked and public client flows disabled. Admin consent was granted for delegated `openid`, `profile`, and `offline_access`.
+
+Captured authorization parameters included `response_type=code`, `code_challenge`, and `code_challenge_method=S256`. Five teaching claim comparisons passed; they are not independent signature validation. Assignment and consent failures were resolved, a deliberate AADSTS50011 redirect mismatch was recovered, and an app logout cleanup issue was corrected.
+
+Clearing the app cache allowed sign-in without new password/MFA prompts. After corrected Entra logout, the tester reported password and MFA prompts. The matching 20:19:32 UTC success log records MFA as previously satisfied; it does not independently prove a fresh challenge. App/log correlation ID: `01a18950-cc3f-71a4-9332-b70c8e9009ce`.
+
+Final state: Dick's assignment removed; new sign-in denied with AADSTS50105 after app-cache clearing; Phillip's assignment retained; Assignment required Yes; Visible to users No. Existing-token revocation was not tested. Registration and consent retained; tester confirmed server shutdown instruction completed.
+
+See [Lab 11](../labs/11-OIDC-SSO/README.MD) for results, source, and evidence.
+
 ## Maintenance Notes
 
-This is a snapshot of the environment documented through **October 29, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+This is a snapshot of the environment documented through **October 29, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, and Lab 11 OIDC/PKCE and session tests. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.

@@ -1,0 +1,1 @@
+{"name":"gotham-oidc-lab","version":"1.0.0","private":true,"type":"module","dependencies":{"@azure/msal-browser":"5.27.0"},"devDependencies":{"esbuild":"0.25.12"},"scripts":{"build":"esbuild src/app.js src/bridge.js --bundle --format=esm --outdir=assets --minify"}}
