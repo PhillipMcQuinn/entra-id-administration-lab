@@ -31,7 +31,7 @@ This environment was used for advanced IAM exercises requiring additional identi
 - Lab 06: Joiner–Mover–Leaver Identity Lifecycle Management
 - Lab 07: Conditional Access and Identity Protection
 - Lab 08: Enterprise Application Integration and Troubleshooting
-- Lab 09: Privileged Identity Management — Just-in-Time Role Activation
+- Lab 09: Privileged Identity Management
 
 Labs 06–08 recorded two administrator accounts and seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments. Lab 09 added a dedicated PIM test account with an Entra ID P2 license and Microsoft Authenticator registration. Its eligible Helpdesk Administrator assignment was removed during cleanup.
 
