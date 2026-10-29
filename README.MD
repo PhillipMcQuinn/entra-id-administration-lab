@@ -32,7 +32,6 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | 08 | [Enterprise Application Integration and Troubleshooting](labs/08-Enterprise%20Application%20Integration/README.MD) | OpenID Connect, app roles, My Apps visibility, consent, RBAC, and assignment-based access revocation |
 | 09 | [Privileged Identity Management](labs/09-Privileged-Identity-Management/README.MD) | Eligible roles, MFA and justification requirements, approval-controlled activation, manual deactivation, automatic expiry, and audit correlation |
 | 10 | [SAML 2.0 Single Sign-On](labs/10-SAML-SSO/README.MD) | SAML endpoints, NameID, signing-certificate trust, SP-initiated SSO, and assignment-based access removal |
-
 | 11 | [OpenID Connect SSO with PKCE](labs/11-OIDC-SSO/README.MD) | Authorization Code with PKCE, claims, consent, redirect troubleshooting, cache/session behavior, and assignment removal |
 
 ## Lab Environments
