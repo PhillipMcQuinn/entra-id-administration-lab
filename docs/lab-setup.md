@@ -21,12 +21,12 @@ This environment was used for introductory IAM administration exercises:
 - Lab 04: MFA Registration and Recovery
 - Lab 05: Sign-in Troubleshooting
 
-### Environment 2 — Microsoft Entra ID P2 (Labs 06–11)
+### Environment 2 — Microsoft Entra ID P2 (Labs 06–12)
 
 **Tenant:** `GothamLabz.onmicrosoft.com`  
 **License:** Microsoft Entra ID P2
 
-This environment was used for advanced IAM security, governance, and application-integration exercises. P2 describes the environment; basic SAML SSO is not presented as a P2-only feature:
+This environment was used for advanced IAM security, governance, and application-integration exercises. P2 describes the environment; SAML, OIDC, and OAuth API authorization are not presented as P2-only features:
 
 - Lab 06: Joiner–Mover–Leaver Identity Lifecycle Management
 - Lab 07: Conditional Access and Identity Protection
@@ -34,6 +34,7 @@ This environment was used for advanced IAM security, governance, and application
 - Lab 09: Privileged Identity Management
 - Lab 10: SAML 2.0 Single Sign-On
 - Lab 11: OpenID Connect SSO with Authorization Code and PKCE
+- Lab 12: OAuth 2.0 API Authorization with Delegated Scopes
 
 Labs 06–08 recorded two administrator accounts and seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments. Lab 09 added a dedicated PIM test account with an Entra ID P2 license and Microsoft Authenticator registration. Its eligible Helpdesk Administrator assignment was removed during cleanup.
 
@@ -52,7 +53,7 @@ Configuration settings, licenses, user accounts, and test results should be inte
 | Authenticator | Microsoft Authenticator | Microsoft Authenticator; Windows Hello passkeys on administrator accounts |
 | Admin center | [Microsoft Entra admin center](https://entra.microsoft.com) | [Microsoft Entra admin center](https://entra.microsoft.com) |
 
-The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–11 use GothamLabz.
+The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–12 use GothamLabz.
 
 ## Administrator and Test Accounts
 
@@ -252,6 +253,19 @@ Final state: Dick's assignment removed; new sign-in denied with AADSTS50105 afte
 
 See [Lab 11](../labs/11-OIDC-SSO/README.MD) for results, source, and evidence.
 
+## OAuth 2.0 API Authorization (Lab 12)
+
+Created separate single-tenant registrations for **Gotham OAuth API Lab** (API client ID `487fb7d7-495e-4291-bf03-e0eba9367167`) and **Gotham OAuth Client Lab** (SPA client ID `529b206d-0fd4-4d9e-a31e-19a9e6177158`). The API exposes admins-only delegated `Inventory.Read` and `Inventory.Write` scopes under `api://487fb7d7-495e-4291-bf03-e0eba9367167`, with requestedAccessTokenVersion set to 2. The client uses the SPA redirect `http://localhost:3000/`, implicit grants off, public client flows disabled, and no client secret.
+
+A local MSAL Browser 5.27.0 SPA and Python API run on the same loopback origin. The API uses PyJWT 2.15.1 and cryptography 50.0.2 to verify RS256 signatures with Entra public keys, issuer, API audience, lifetime, tenant, version, allowed client, and delegated scopes. The API is a teaching implementation using Python's development HTTP server.
+
+Dick Grayson acquired Inventory.Read. Live tests returned read **200**, missing-token **401**, tampered-signature **401**, client-ID-token **401**, and read-only write **403** with token validation passed and insufficient_scope. After Inventory.Write was added and admin consent granted, a newly acquired token contained both scopes and the write returned **200**, increasing the fictional quantity from 10 to 11. Six results were captured together in the test history. API request IDs are local identifiers, not Entra correlation IDs.
+
+The tester confirmed completion of the final instructions to sign out through Entra and stop the server. Both registrations and consent were retained. No Lab 12 Entra sign-in-log correlation, fresh-MFA proof, raw protocol capture, or live expired-token test was collected. Twenty offline regression tests used disposable fixture keys; they are separate from the six live results.
+
+See [Lab 12](../labs/12-OAuth2-API-Authorization/README.MD) for evidence, limitations, and runnable source.
+
 ## Maintenance Notes
 
-This is a snapshot of the environment documented through **October 29, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, and Lab 11 OIDC/PKCE and session tests. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+This is a snapshot of the environment documented through **October 29, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, Lab 11 OIDC/PKCE and session tests, and Lab 12 OAuth API token-validation and read/write authorization tests. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+
