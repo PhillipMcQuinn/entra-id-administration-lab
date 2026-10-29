@@ -21,7 +21,7 @@ This environment was used for introductory IAM administration exercises:
 - Lab 04: MFA Registration and Recovery
 - Lab 05: Sign-in Troubleshooting
 
-### Environment 2 — Microsoft Entra ID P2 (Labs 06–08)
+### Environment 2 — Microsoft Entra ID P2 (Labs 06–09)
 
 **Tenant:** `GothamLabz.onmicrosoft.com`  
 **License:** Microsoft Entra ID P2
@@ -31,16 +31,17 @@ This environment was used for advanced IAM exercises requiring additional identi
 - Lab 06: Joiner–Mover–Leaver Identity Lifecycle Management
 - Lab 07: Conditional Access and Identity Protection
 - Lab 08: Enterprise Application Integration and Troubleshooting
+- Lab 09: Privileged Identity Management — Just-in-Time Role Activation
 
-The environment includes two administrator accounts, seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments.
+Labs 06–08 recorded two administrator accounts and seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments. Lab 09 added a dedicated PIM test account with an Entra ID P2 license and Microsoft Authenticator registration. Its eligible Helpdesk Administrator assignment was removed during cleanup.
 
 ### Environment Separation
 
 Configuration settings, licenses, user accounts, and test results should be interpreted within their respective environments rather than assumed to apply across both tenants.
 
-| Setting | Original setup record (October 5, 2026) | Later GothamLabz lab configuration (October 8–10, 2026) |
+| Setting | Original setup record (October 5, 2026) | GothamLabz lab configuration (October 8–29, 2026) |
 |---|---|---|
-| Organization label | Gotham IAM Lab | Gotham IAM Lab / Gotham IT Labs (lab labels) |
+| Organization label | Gotham IAM Lab | Gotham IAM Lab / Gotham IT Labs; Gotham Labs in Lab 09 |
 | Tenant type | Workforce | Microsoft Entra workforce identity lab |
 | Recorded tenant domain | `phillipmcquinngmail.onmicrosoft.com` | `GothamLabz.onmicrosoft.com` |
 | Licensing | Microsoft Entra ID Free | Microsoft Entra ID P2 assigned for lab accounts |
@@ -49,7 +50,7 @@ Configuration settings, licenses, user accounts, and test results should be inte
 | Authenticator | Microsoft Authenticator | Microsoft Authenticator; Windows Hello passkeys on administrator accounts |
 | Admin center | [Microsoft Entra admin center](https://entra.microsoft.com) | [Microsoft Entra admin center](https://entra.microsoft.com) |
 
-**Documentation follow-up:** Verify which tenant domain was used for Labs 01–05 and, if needed, update those labs' tenant references individually. Do not interpret this table as evidence of a domain rename or migration.
+The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–09 use GothamLabz.
 
 ## Administrator and Test Accounts
 
@@ -62,7 +63,7 @@ The later GothamLabz exercises used two distinct administrator accounts: a regul
 | Regular administrator | Global Administrator | Configure and test tenant, enterprise application, and security controls |
 | Recovery administrator | Separate administrator account | Recovery access and verification of Conditional Access exclusions |
 
-The lab used **nine accounts in total: two administrators and seven standard test users**, with P2 license assignments and MFA registration checked during the later exercises. Do not infer the exact number of purchased licenses from the number assigned to accounts.
+Labs 06–08 recorded **nine accounts: two administrators and seven standard test users**, with P2 license assignments and MFA registration checked during those exercises. Lab 09 added **PIM Test Administrator** (`Pim-Test@GothamLabz.onmicrosoft.com`) as a dedicated, separately licensed test identity. This historical count is not a current tenant inventory. Do not infer the number of purchased licenses from assigned accounts.
 
 ### Fictional test users
 
@@ -148,9 +149,42 @@ The My Apps tile became visible after changing the visibility property, but the 
 
 See [Lab 08](../labs/08-Enterprise%20Application%20Integration/README.MD) for the detailed procedure, observations, and evidence.
 
+## Privileged Identity Management (Lab 09)
+
+Lab 09 used Microsoft Entra PIM for **directory roles**, with a dedicated test identity and separate requester and approver browser sessions.
+
+| Setting | Lab configuration |
+|---|---|
+| Test account | PIM Test Administrator (`Pim-Test@GothamLabz.onmicrosoft.com`) |
+| License and authentication | Entra ID P2 assigned; Microsoft Authenticator registered |
+| Role and scope | Helpdesk Administrator; Directory / Gotham Labs |
+| Assignment | Direct, eligible, time-limited; originally scheduled October 29–30, 2026 |
+| Maximum activation duration | 1 hour |
+| Activation requirements | Azure MFA and justification |
+| Approval | Off for the first activation; enabled for the second activation |
+| Approver | Main Global Administrator account, Phillip McQuinn |
+| Permission test | Password reset for fictional user Dick Grayson |
+| Audit evidence | Activation, manual deactivation, approval, and automatic expiry; second activation events correlated by ID |
+
+Password resets were blocked before activation, succeeded while the role was active, and were blocked after manual deactivation. The second request remained pending approval with password resets blocked; after approval and activation, the reset succeeded. The approved activation was left to expire automatically, and a subsequent reset was denied.
+
+**MFA evidence limitation:** MFA was configured as an activation requirement, but no fresh MFA prompt was observed during the first activation. Whether an existing MFA claim satisfied the requirement was not independently verified. Authenticator registration alone does not establish an MFA challenge at activation.
+
+The requester and approver were separate accounts operated by the lab owner. This demonstrates account separation and an approval workflow, not independent human review.
+
+### Final Lab 09 state
+
+- The eligible Helpdesk Administrator assignment was removed during cleanup.
+- No active administrator roles or pending requests remained for Pim-Test.
+- Dick Grayson signed in using the latest temporary password and completed the password change.
+- Deletion of the Pim-Test account was not reported.
+- The final Helpdesk Administrator role settings required MFA, justification, and approval with a 1-hour maximum. Restoration of the earlier settings was not reported.
+
+See [Lab 09](../labs/09-Privileged-Identity-Management/README.MD) for the complete findings and screenshot evidence. Audit timestamps reproduce the portal's displayed values; a timezone label was not captured.
+
 ## Tools and Local Workstation
 
-- Microsoft Entra admin center: users, groups, application registrations, enterprise applications, authentication, licensing, and Conditional Access.
+- Microsoft Entra admin center: users, groups, application registrations, enterprise applications, authentication, licensing, Conditional Access, and Privileged Identity Management.
 - Microsoft Authenticator: MFA registration and authentication.
 - Windows Hello: administrator passkey registration and testing.
 - Python and Flask: local Gotham Access Lab application used for sign-in and authorization tests.
@@ -170,6 +204,8 @@ The local Flask app uses a private `.env` file for sensitive configuration. Comm
 | Conditional Access | Four policies On, two Report-only; selected successful sign-in logs reviewed | [Lab 07](../labs/07-Conditional-Access/README.MD) |
 | Enterprise application RBAC | Procurement Allowed; IT Inventory Denied for Procurement Reader | [Lab 08](../labs/08-Enterprise%20Application%20Integration/README.MD) |
 | Assignment revocation | Fresh sign-in denied with AADSTS50105; existing-session access persisted until sign-out | [Lab 08](../labs/08-Enterprise%20Application%20Integration/README.MD) |
+| PIM activation and revocation | Password reset succeeded only while the role was active; denied before activation, after manual deactivation, and after automatic expiry | [Lab 09](../labs/09-Privileged-Identity-Management/README.MD) |
+| PIM approval and audit | Pending request did not grant password-reset access; approval, activation, and expiry audit evidence captured | [Lab 09](../labs/09-Privileged-Identity-Management/README.MD) |
 
 ## Evidence and Security Handling
 
@@ -181,4 +217,4 @@ The local Flask app uses a private `.env` file for sensitive configuration. Comm
 
 ## Maintenance Notes
 
-This is a snapshot of the environment documented through **October 10, 2026**. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+This is a snapshot of the environment documented through **October 29, 2026**, including Lab 09 PIM testing and cleanup. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
