@@ -28,7 +28,7 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | 06 | [Joiner–Mover–Leaver Identity Lifecycle](labs/06-Joiner-Mover-Leaver/README.MD) | Department transfer, group-based application access, access review, and offboarding |
 | 07 | [Conditional Access and Identity Protection](labs/07-Conditional-Access/README.MD) | MFA, phishing-resistant authentication, legacy-auth blocking policy, and risk simulations |
 | 08 | [Enterprise Application Integration and Troubleshooting](labs/08-Enterprise%20Application%20Integration/README.MD) | OpenID Connect, app roles, My Apps visibility, consent, RBAC, and assignment-based access revocation |
-| 09 | [Privileged Identity Management — Just-in-Time Role Activation](labs/09-Privileged-Identity-Management/README.MD) | Eligible roles, MFA and justification requirements, approval-controlled activation, manual deactivation, automatic expiry, and audit correlation |
+| 09 | [Privileged Identity Management](labs/09-Privileged-Identity-Management/README.MD) | Eligible roles, MFA and justification requirements, approval-controlled activation, manual deactivation, automatic expiry, and audit correlation |
 
 ## Lab Environments
 
