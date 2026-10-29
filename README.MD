@@ -1,6 +1,6 @@
 # Microsoft Entra ID Administration & IAM Security Portfolio
 
-This repository documents my hands-on Identity and Access Management (IAM) training in personal Microsoft Entra ID lab environments. It focuses on practical administration, identity lifecycle operations, access control, multifactor authentication, Conditional Access, and enterprise application troubleshooting.
+This repository documents my hands-on Identity and Access Management (IAM) training in personal Microsoft Entra ID lab environments. It focuses on practical administration, identity lifecycle operations, access control, multifactor authentication, Conditional Access, Privileged Identity Management (PIM), and enterprise application troubleshooting.
 
 Each lab records the scenario, configuration steps, observed outcomes, troubleshooting, and available screenshot evidence. These exercises are **personal lab experience**, not work performed in a production enterprise tenant.
 
@@ -8,6 +8,7 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 
 | Area | Hands-on result |
 |---|---|
+| Privileged access | Validated eligible Helpdesk Administrator activation, approval, manual deactivation, automatic expiry, and password-reset denial outside active privilege windows |
 | Identity lifecycle | Tested joiner, mover, leaver, role changes, access reviews, and access removal with a fictional employee account |
 | Conditional Access | Configured six policies; enabled four and retained two in Report-only mode |
 | Administrator security | Registered and tested Windows Hello passkeys and verified an enforced phishing-resistant MFA requirement |
@@ -28,9 +29,11 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | 07 | [Conditional Access and Identity Protection](labs/07-Conditional-Access/README.MD) | MFA, phishing-resistant authentication, legacy-auth blocking policy, and risk simulations |
 | 08 | [Enterprise Application Integration and Troubleshooting](labs/08-Enterprise%20Application%20Integration/README.MD) | OpenID Connect, app roles, My Apps visibility, consent, RBAC, and assignment-based access revocation |
 
+| 09 | [Privileged Identity Management — Just-in-Time Role Activation](labs/09-Privileged%20Identity%20Management/README.MD) | Eligible roles, MFA and justification requirements, approval-controlled activation, manual deactivation, automatic expiry, and audit correlation |
+
 ## Lab Environments
 
-The portfolio includes exercises performed during different stages of my Entra ID learning environment. Earlier labs documented a **Microsoft Entra ID Free** configuration. Subsequent GothamLabz exercises used **Microsoft Entra ID P2** features.
+The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–09** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
 
 ### GothamLabz P2 environment
 
@@ -38,9 +41,9 @@ The portfolio includes exercises performed during different stages of my Entra I
 |---|---|
 | Tenant domain | `GothamLabz.onmicrosoft.com` |
 | License | Microsoft Entra ID P2 |
-| Test identities | Nine accounts, including two administrator accounts |
+| Test identities | Fictional users and separate administrator accounts; Lab 09 added a dedicated PIM test account |
 | Authentication | Microsoft Authenticator and device-bound Windows Hello passkeys |
-| Access control | Assigned security groups, application roles, and Conditional Access |
+| Access control | Assigned security groups, application roles, Conditional Access, and PIM eligible directory roles |
 | Test application | Gotham Access Lab — locally hosted Python Flask web application integrated with Microsoft Entra ID |
 
 For historical setup details, see [Lab Setup](docs/lab-setup.md). The original setup documentation may describe an earlier tenant or licensing stage and should be read in that context.
@@ -49,6 +52,7 @@ For historical setup details, see [Lab Setup](docs/lab-setup.md). The original s
 
 - **Identity lifecycle:** account creation, attribute updates, group management, joiner–mover–leaver processes, and offboarding.
 - **Access control:** least privilege, role-based access control (RBAC), enterprise app assignments, and access reviews.
+- **Privileged Identity Management:** time-limited eligibility, just-in-time role activation, justification, approval, manual deactivation, automatic expiry, and correlated audit events.
 - **Authentication:** Microsoft Authenticator MFA, Windows Hello passkeys, and phishing-resistant authentication strengths.
 - **Conditional Access:** policy targeting and exclusions, Report-only evaluation, staged enforcement, and sign-in investigation.
 - **Identity Protection:** sign-in risk-based What If simulations using Entra ID P2.
@@ -60,6 +64,8 @@ For historical setup details, see [Lab Setup](docs/lab-setup.md). The original s
 Evidence is organized within each lab's `screenshots/` folder and linked from that lab's README. Results are explicitly differentiated:
 
 - **Verified configuration:** a setting or assignment shown in the Entra portal.
+- **Validated privileged operation:** password-reset success during active role windows, with denial before activation, while approval was pending, after deactivation, and after expiry.
+- **MFA observation in Lab 09:** MFA was configured as an activation requirement, but no fresh MFA prompt was observed during the first activation; existing-claim satisfaction was not independently verified.
 - **What If simulation:** a policy-matching test, not a real enforced authentication event.
 - **Enforced sign-in:** an observed authentication event with an applicable Conditional Access result.
 - **Observed without screenshot:** a result recorded during hands-on testing without a separate image.
