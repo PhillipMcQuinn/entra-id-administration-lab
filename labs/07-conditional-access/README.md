@@ -1,5 +1,7 @@
 # Lab 07: Conditional Access and Identity Protection
 
+**Lab dates:** October 8–9, 2026. **Licensing:** Microsoft Entra ID P2 free trial. Results reflect testing during the active trial.
+
 I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
 
 ## Objective
@@ -65,7 +67,7 @@ Evidence:
 
 ### 3. Review MFA registration
 
-I inspected the user registration report. The nine lab accounts appear as **MFA capable**. This is registration evidence, not evidence that Conditional Access has enforced MFA.
+I inspected the user registration report. The nine lab accounts appear as **MFA capable**. I treated this as registration evidence; I checked Conditional Access enforcement separately.
 
 Evidence:
 
@@ -162,7 +164,7 @@ What If does not generate a real Identity Protection risk detection or prove ris
 
 Security Defaults was **Enabled** before the transition. After testing administrator recovery access and passkeys, I disabled Security Defaults and enabled replacement policies. I confirmed the Disabled state during the exercise, but it is not shown in the selected minimal screenshot set.
 
-Retain a working recovery administrator session during policy changes. Avoid leaving Security Defaults disabled without appropriate enforced replacement controls.
+I prepared recovery access and replacement policies before disabling Security Defaults. A working recovery session should remain available during policy changes.
 
 ### 2. Verify enforced policy states
 

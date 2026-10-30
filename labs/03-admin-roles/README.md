@@ -1,5 +1,7 @@
 # Lab 03: Administrative Roles and Least Privilege
 
+**Lab date:** October 6, 2026.
+
 I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
 
 ## Objective

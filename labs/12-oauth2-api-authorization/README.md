@@ -1,5 +1,7 @@
 # Lab 12 — OAuth 2.0 API Authorization with Delegated Scopes
 
+**Lab date:** October 29, 2026. **Licensing:** Microsoft Entra ID P2 free trial. Results reflect testing during the active trial.
+
 I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
 
 I configured separate Microsoft Entra API and SPA client registrations, exposed read/write scopes, and validated access-token authentication and scope-based authorization in a local protected API. I demonstrated **401** for missing or invalid tokens, **403** for a valid token without write permission, and **200** after administrator consent and acquisition of a token containing the write scope.
@@ -171,4 +173,4 @@ See [app instructions](app/README.md) for setup, the consent sequence, security 
 - [Validate token claims](https://learn.microsoft.com/en-us/entra/identity-platform/claims-validation)
 - [PyJWT usage](https://pyjwt.readthedocs.io/en/stable/usage.html)
 
-[Return to portfolio](../../README.MD)
+[Return to portfolio](../../README.md)

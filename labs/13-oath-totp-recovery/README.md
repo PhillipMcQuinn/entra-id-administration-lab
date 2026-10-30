@@ -1,5 +1,7 @@
 # Lab 13 — Software OATH-TOTP Registration and Recovery
 
+**Lab date:** October 30, 2026. **Licensing:** Microsoft Entra ID P2 free trial. Results reflect testing during the active trial.
+
 I registered a separate software OATH time-based one-time password (TOTP) method for Selina Kyle, tested successful and unsuccessful verification codes, deleted the registration as an administrator, and verified that its old code was rejected. I then registered a replacement and successfully signed in with its new code while preserving the existing Microsoft Authenticator push registration.
 
 I performed all administration and testing myself, using my administrator account for configuration and Selina's fictional employee account for user sign-in tests.
@@ -108,4 +110,4 @@ I tested the replacement in a new sign-in session using **Use a verification cod
 - [Microsoft Learn: Microsoft Authenticator](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-authenticator-app)
 - [Microsoft Learn: Manage user authentication methods](https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-userdevicesettings)
 
-[Return to portfolio](../../README.MD)
+[Return to portfolio](../../README.md)

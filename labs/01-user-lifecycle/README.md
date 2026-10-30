@@ -1,5 +1,7 @@
 # Lab 01: Employee Onboarding and Offboarding
 
+**Lab date:** October 5, 2026 (date shown in the onboarding audit evidence).
+
 I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
 
 ## Objective
@@ -49,7 +51,7 @@ I configured employee details including job title, department, employee ID, and 
 
 **Evidence:**
 
-![Employee attributes configured](Screenshots/02-user-attributes.png)
+![Employee attributes configured](screenshots/02-user-attributes.png)
 
 ### 3. Assign IT department group membership
 
@@ -57,7 +59,7 @@ I added Barbara Gordon to `SG-IT-Employees` and reviewed the account's group mem
 
 **Evidence:**
 
-![IT department group membership](Screenshots/03-group-membership.png)
+![IT department group membership](screenshots/03-group-membership.png)
 
 ### 4. Verify interactive employee sign-in
 
@@ -76,7 +78,7 @@ I reviewed available Microsoft Entra audit information related to the onboarding
 
 **Evidence:**
 
-![Onboarding audit activity](Screenshots/04-onboarding-audit.png)
+![Onboarding audit activity](screenshots/04-onboarding-audit.png)
 
 ## Part 2: Leaver — Offboarding
 
@@ -90,7 +92,7 @@ I blocked sign-in for Barbara Gordon and reviewed the disabled account state in 
 
 **Evidence:**
 
-![Employee sign-in blocked](Screenshots/05-sign-in-blocked.png)
+![Employee sign-in blocked](screenshots/05-sign-in-blocked.png)
 
 ### 3. Revoke sign-in sessions and validate subsequent authentication
 
@@ -106,7 +108,7 @@ I removed Barbara Gordon from `SG-IT-Employees` during offboarding.
 
 **Evidence:**
 
-![IT group membership removed](Screenshots/06-membership-removed.png)
+![IT group membership removed](screenshots/06-membership-removed.png)
 
 ## Cleanup
 
@@ -114,7 +116,7 @@ I deleted the test employee account after the offboarding exercises. My original
 
 **Evidence:**
 
-![Test employee account deleted](Screenshots/07-account-deleted.png)
+![Test employee account deleted](screenshots/07-account-deleted.png)
 
 ## Issues and Troubleshooting
 

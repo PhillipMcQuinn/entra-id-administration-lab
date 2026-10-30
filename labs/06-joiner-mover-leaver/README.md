@@ -1,5 +1,7 @@
 # Lab 06: Joiner–Mover–Leaver Identity Lifecycle Management
 
+**Lab date:** October 8, 2026. **Licensing:** Microsoft Entra ID P2 free trial. Results reflect testing during the active trial.
+
 I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
 
 ## Objective

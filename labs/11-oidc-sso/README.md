@@ -1,5 +1,7 @@
 # Lab 11 — OpenID Connect SSO with Authorization Code and PKCE
 
+**Lab date:** October 29, 2026. **Licensing:** Microsoft Entra ID P2 free trial. Results reflect testing during the active trial.
+
 I configured a single-tenant Microsoft Entra ID sign-in integration for a local browser application. I validated ID-token claim comparisons, captured an authorization request using PKCE, resolved consent and redirect failures, compared local-cache clearing with Entra logout, and verified that removing an assignment blocks a new sign-in.
 
 **Environment:** personal GothamLabz Entra ID P2 tenant · **Test date:** October 29, 2026 · **Test identity:** fictional employee Dick Grayson. I performed all administration and testing myself, using my administrator account for configuration and Dick Grayson's account for user access tests. P2 describes the lab environment; OIDC and PKCE are not presented as P2-only features.
@@ -145,4 +147,4 @@ See [application instructions](app/README.md) for setup and diagnostic details. 
 - [MSAL redirect bridge](https://learn.microsoft.com/en-us/entra/msal/javascript/browser/redirect-bridge)
 - [MSAL resources and scopes](https://learn.microsoft.com/en-us/entra/msal/javascript/browser/resources-and-scopes)
 
-[Return to portfolio](../../README.MD)
+[Return to portfolio](../../README.md)

@@ -1,5 +1,7 @@
 # Lab 10: SAML 2.0 Single Sign-On
 
+**Lab date:** October 29, 2026. **Licensing:** Microsoft Entra ID P2 free trial. Results reflect testing during the active trial.
+
 I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
 
 ## Objective

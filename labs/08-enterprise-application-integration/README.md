@@ -1,5 +1,7 @@
 # Lab 08: Enterprise Application Integration and Troubleshooting
 
+**Lab dates:** October 8–10, 2026 (evidence includes a UTC timestamp). **Licensing:** Microsoft Entra ID P2 free trial. Results reflect testing during the active trial.
+
 I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
 
 ## Objective
@@ -12,7 +14,7 @@ I distinguish verified results from configuration settings, observed behaviors, 
 
 **Completed — hands-on authentication, authorization, visibility troubleshooting, and access-revocation tests.**
 
-Evidence captured October 8, 2026. I observed some outcomes during testing without capturing separate screenshots, as indicated below.
+The original notes recorded October 8, 2026; the application-launch screenshot also records October 10, 2026 at 02:23:15 UTC. I observed some outcomes during testing without capturing separate screenshots, as indicated below.
 
 ## Application Scenario
 

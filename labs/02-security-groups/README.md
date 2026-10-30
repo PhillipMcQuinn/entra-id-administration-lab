@@ -1,5 +1,7 @@
 # Lab 02: Security Group Administration
 
+**Lab date:** October 6, 2026.
+
 I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
 
 ## Objective
@@ -57,7 +59,7 @@ I created the required department security groups using **Security** group type 
 
 **Evidence:**
 
-![Security group creation and listing](screenshots/01-Security-Groups-Create.png)
+![Security group creation and listing](screenshots/01-security-groups-create.png)
 
 ## Part 2: Assign and Verify Group Members
 
@@ -67,7 +69,7 @@ I added users to their intended department groups and checked membership using t
 
 **Evidence:**
 
-![Procurement group members](screenshots/02-Procurement-members.png)
+![Procurement group members](screenshots/02-procurement-members.png)
 
 ![Executive group members](screenshots/03-executive-members.png)
 
@@ -81,7 +83,7 @@ I reviewed Dick Grayson's existing department information and group membership b
 
 **Evidence:**
 
-![Employee profile before transfer](screenshots/04-User-Profile.png)
+![Employee profile before transfer](screenshots/04-user-profile.png)
 
 ### 2. Update the department attribute
 
@@ -91,7 +93,7 @@ I changed Dick's **Department** attribute to **Procurement**.
 
 **Evidence:**
 
-![Employee profile after department update](screenshots/05-User-Profile-Update.png)
+![Employee profile after department update](screenshots/05-user-profile-update.png)
 
 ### 3. Remove old membership and add new membership
 
@@ -115,7 +117,7 @@ I reviewed available Microsoft Entra ID audit events for group administration an
 
 ![Group administration audit events](screenshots/08-group-audit.png)
 
-![Group membership change audit events](screenshots/09-group-Change-Audit.png)
+![Group membership change audit events](screenshots/09-group-change-audit.png)
 
 ## Validation Results
 

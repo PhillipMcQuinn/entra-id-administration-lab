@@ -24,23 +24,25 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 
 | Lab | Project | Focus |
 |---|---|---|
-| 01 | [Employee Onboarding and Offboarding](labs/01-User-Lifecycle/README.MD) | User creation, attributes, group membership, sign-in, and offboarding |
-| 02 | [Security Groups](labs/02-SecurityGroups/README.MD) | Group creation, assignment, and membership administration |
-| 03 | [Administrative Roles](labs/03-Admin-roles/README.MD) | Entra directory roles and administrative permissions |
-| 04 | [MFA Registration and Recovery](labs/04-MFA/README.MD) | Microsoft Authenticator, security information, and authentication methods |
-| 05 | [Sign-in Troubleshooting](labs/05-Troubleshooting/README.MD) | Diagnosing authentication failures through Entra sign-in logs |
-| 06 | [Joiner–Mover–Leaver Identity Lifecycle](labs/06-Joiner-Mover-Leaver/README.MD) | Department transfer, group-based application access, access review, and offboarding |
-| 07 | [Conditional Access and Identity Protection](labs/07-Conditional-Access/README.MD) | MFA, phishing-resistant authentication, legacy-auth blocking policy, and risk simulations |
-| 08 | [Enterprise Application Integration and Troubleshooting](labs/08-Enterprise%20Application%20Integration/README.MD) | OpenID Connect, app roles, My Apps visibility, consent, RBAC, and assignment-based access revocation |
-| 09 | [Privileged Identity Management](labs/09-Privileged-Identity-Management/README.MD) | Eligible roles, MFA and justification requirements, approval-controlled activation, manual deactivation, automatic expiry, and audit correlation |
-| 10 | [SAML 2.0 Single Sign-On](labs/10-SAML-SSO/README.MD) | SAML endpoints, NameID, signing-certificate trust, SP-initiated SSO, and assignment-based access removal |
-| 11 | [OpenID Connect SSO with PKCE](labs/11-OIDC-SSO/README.MD) | Authorization Code with PKCE, claims, consent, redirect troubleshooting, cache/session behavior, and assignment removal |
-| 12 | [OAuth 2.0 API Authorization](labs/12-OAuth2-API-Authorization/README.MD) | Access-token validation, delegated scopes, admin consent, 401 versus 403, and read/write authorization |
-| 13 | [Software OATH-TOTP Registration and Recovery](labs/13-OATH-TOTP-Recovery/README.MD) | TOTP enrollment, incorrect-code rejection, registration deletion, and replacement-code validation |
+| 01 | [Employee Onboarding and Offboarding](labs/01-user-lifecycle/README.md) | User creation, attributes, group membership, sign-in, and offboarding |
+| 02 | [Security Groups](labs/02-security-groups/README.md) | Group creation, assignment, and membership administration |
+| 03 | [Administrative Roles](labs/03-admin-roles/README.md) | Entra directory roles and administrative permissions |
+| 04 | [MFA Registration and Recovery](labs/04-mfa/README.md) | Microsoft Authenticator, security information, and authentication methods |
+| 05 | [Sign-in Troubleshooting](labs/05-troubleshooting/README.md) | Diagnosing authentication failures through Entra sign-in logs |
+| 06 | [Joiner–Mover–Leaver Identity Lifecycle](labs/06-joiner-mover-leaver/README.md) | Department transfer, group-based application access, access review, and offboarding |
+| 07 | [Conditional Access and Identity Protection](labs/07-conditional-access/README.md) | MFA, phishing-resistant authentication, legacy-auth blocking policy, and risk simulations |
+| 08 | [Enterprise Application Integration and Troubleshooting](labs/08-enterprise-application-integration/README.md) | OpenID Connect, app roles, My Apps visibility, consent, RBAC, and assignment-based access revocation |
+| 09 | [Privileged Identity Management](labs/09-privileged-identity-management/README.md) | Eligible roles, MFA and justification requirements, approval-controlled activation, manual deactivation, automatic expiry, and audit correlation |
+| 10 | [SAML 2.0 Single Sign-On](labs/10-saml-sso/README.md) | SAML endpoints, NameID, signing-certificate trust, SP-initiated SSO, and assignment-based access removal |
+| 11 | [OpenID Connect SSO with PKCE](labs/11-oidc-sso/README.md) | Authorization Code with PKCE, claims, consent, redirect troubleshooting, cache/session behavior, and assignment removal |
+| 12 | [OAuth 2.0 API Authorization](labs/12-oauth2-api-authorization/README.md) | Access-token validation, delegated scopes, admin consent, 401 versus 403, and read/write authorization |
+| 13 | [Software OATH-TOTP Registration and Recovery](labs/13-oath-totp-recovery/README.md) | TOTP enrollment, incorrect-code rejection, registration deletion, and replacement-code validation |
 
 ## Lab Environments
 
 The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–13** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
+
+**Trial licensing:** I used a Microsoft Entra ID P2 free trial for Labs 06–13. On October 30, 2026, I reported that the trial was due to expire that week. The exact expiry date and post-expiry feature availability have not been verified; these results describe tests performed while the trial was active.
 
 ### GothamLabz P2 environment
 
@@ -53,7 +55,7 @@ The portfolio uses two intentional lab environments: **Labs 01–05** were compl
 | Access control | Assigned security groups, application roles, Conditional Access, and PIM eligible directory roles |
 | Test applications | Gotham Access Lab — local Python Flask/OIDC application; Gotham SAML Lab — hosted SAML Toolkit integration; Gotham OIDC Lab — local MSAL SPA; Gotham OAuth API/Client Lab — local SPA and protected Python API |
 
-For historical setup details, see [Lab Setup](docs/lab-setup.md). The original setup documentation may describe an earlier tenant or licensing stage and should be read in that context.
+For the environment snapshot through October 30, 2026, including historical Free-tenant context, P2 trial licensing, and evidence limits, see [Lab Setup](docs/lab-setup.md).
 
 ## IAM Skills Practiced
 
@@ -78,6 +80,8 @@ Evidence is organized within each lab's `screenshots/` folder and linked from th
 - **Enforced sign-in:** an observed authentication event with an applicable Conditional Access result.
 - **Observed without screenshot:** a result recorded during hands-on testing without a separate image.
 - **Not tested:** a control without a corresponding real-world event, such as an actual legacy-client block or risky sign-in.
+
+For the screenshot screening performed on October 30, 2026, see [Evidence Review](docs/evidence-review.md).
 
 All employees, scenarios, and organization names in the labs are fictional. Secrets, passwords, authentication tokens, and local `.env` settings are not intended for publication.
 

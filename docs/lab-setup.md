@@ -1,5 +1,7 @@
 # Microsoft Entra ID Lab Setup
 
+> **Environment snapshot — October 30, 2026:** Labs 01–05 use the original Entra ID Free tenant. Labs 06–13 use the separate GothamLabz tenant with a **P2 free trial**. The October 5 setup values are retained below as historical context; the GothamLabz column and later lab sections record the subsequent environment. The exact trial expiry date and post-expiry feature availability have not been verified.
+
 ## Purpose and Scope
 
 This document describes the configuration used for personal, hands-on Microsoft Entra ID and Identity and Access Management (IAM) training. Employee identities, departments, and application resources are fictional. Tests were conducted in nonproduction lab environments. Screenshots and results for individual controls are maintained in their respective lab READMEs.
@@ -24,7 +26,7 @@ This environment was used for introductory IAM administration exercises:
 ### Environment 2 — Microsoft Entra ID P2 (Labs 06–13)
 
 **Tenant:** `GothamLabz.onmicrosoft.com`  
-**License:** Microsoft Entra ID P2
+**License:** Microsoft Entra ID P2 free trial
 
 This environment was used for advanced IAM security, governance, and application-integration exercises. P2 describes the environment; SAML, OIDC, and OAuth API authorization are not presented as P2-only features:
 
@@ -131,7 +133,7 @@ Group membership **does not automatically grant permissions to arbitrary applica
 | `CA-04-Lab-Recovery-MFA` | Report-only | Recovery-account related policy evaluation |
 | `CA-05-Lab-SignInRisk-MFA` | Report-only | Sign-in risk scenarios assessed using What If, **not** a generated real risky sign-in |
 
-The recovery administrator was excluded from enforced policies in the documented configuration. Four policies were **On** and two were **Report-only** at the time of Lab 07 testing. A report-only result or What If calculation is not the same as an enforced sign-in result. Consult [Lab 07](../labs/07-Conditional-Access/README.MD) for individual evidence.
+The recovery administrator was excluded from enforced policies in the documented configuration. Four policies were **On** and two were **Report-only** at the time of Lab 07 testing. A report-only result or What If calculation is not the same as an enforced sign-in result. Consult [Lab 07](../labs/07-conditional-access/README.md) for individual evidence.
 
 ## Enterprise Application Integration
 
@@ -152,7 +154,7 @@ In Lab 08, Tim Drake was allowed into the Procurement resource and denied access
 
 The My Apps tile became visible after changing the visibility property, but the tile launch initially failed. Successful authentication was subsequently demonstrated with the locally running Flask application; the original My Apps tile-launch issue was **not independently verified as resolved**.
 
-See [Lab 08](../labs/08-Enterprise%20Application%20Integration/README.MD) for the detailed procedure, observations, and evidence.
+See [Lab 08](../labs/08-enterprise-application-integration/README.md) for the detailed procedure, observations, and evidence.
 
 ## Privileged Identity Management (Lab 09)
 
@@ -185,7 +187,7 @@ The requester and approver were separate accounts operated by the lab owner. Thi
 - Deletion of the Pim-Test account was not reported.
 - The final Helpdesk Administrator role settings required MFA, justification, and approval with a 1-hour maximum. Restoration of the earlier settings was not reported.
 
-See [Lab 09](../labs/09-Privileged-Identity-Management/README.MD) for the complete findings and screenshot evidence. Audit timestamps reproduce the portal's displayed values; a timezone label was not captured.
+See [Lab 09](../labs/09-privileged-identity-management/README.md) for the complete findings and screenshot evidence. Audit timestamps reproduce the portal's displayed values; a timezone label was not captured.
 
 ## Tools and Local Workstation
 
@@ -204,13 +206,13 @@ The local Flask app uses a private `.env` file for sensitive configuration. Comm
 |---|---|---|
 | Fictional user and group administration | User attributes and group membership inspected | Labs 01–03 and 06 |
 | Test-user authentication | Successful sign-ins and selected failures investigated | Labs 04–05 |
-| Joiner–Mover–Leaver | Reader permissions changed and denied on removal; offboarding tests recorded | [Lab 06](../labs/06-Joiner-Mover-Leaver/README.MD) |
-| Entra ID P2 and MFA | Licensing and MFA registration checked for GothamLabz test accounts | [Lab 07](../labs/07-Conditional-Access/README.MD) |
-| Conditional Access | Four policies On, two Report-only; selected successful sign-in logs reviewed | [Lab 07](../labs/07-Conditional-Access/README.MD) |
-| Enterprise application RBAC | Procurement Allowed; IT Inventory Denied for Procurement Reader | [Lab 08](../labs/08-Enterprise%20Application%20Integration/README.MD) |
-| Assignment revocation | Fresh sign-in denied with AADSTS50105; existing-session access persisted until sign-out | [Lab 08](../labs/08-Enterprise%20Application%20Integration/README.MD) |
-| PIM activation and revocation | Password reset succeeded only while the role was active; denied before activation, after manual deactivation, and after automatic expiry | [Lab 09](../labs/09-Privileged-Identity-Management/README.MD) |
-| PIM approval and audit | Pending request did not grant password-reset access; approval, activation, and expiry audit evidence captured | [Lab 09](../labs/09-Privileged-Identity-Management/README.MD) |
+| Joiner–Mover–Leaver | Reader permissions changed and denied on removal; offboarding tests recorded | [Lab 06](../labs/06-joiner-mover-leaver/README.md) |
+| Entra ID P2 and MFA | Licensing and MFA registration checked for GothamLabz test accounts | [Lab 07](../labs/07-conditional-access/README.md) |
+| Conditional Access | Four policies On, two Report-only; selected successful sign-in logs reviewed | [Lab 07](../labs/07-conditional-access/README.md) |
+| Enterprise application RBAC | Procurement Allowed; IT Inventory Denied for Procurement Reader | [Lab 08](../labs/08-enterprise-application-integration/README.md) |
+| Assignment revocation | Fresh sign-in denied with AADSTS50105; existing-session access persisted until sign-out | [Lab 08](../labs/08-enterprise-application-integration/README.md) |
+| PIM activation and revocation | Password reset succeeded only while the role was active; denied before activation, after manual deactivation, and after automatic expiry | [Lab 09](../labs/09-privileged-identity-management/README.md) |
+| PIM approval and audit | Pending request did not grant password-reset access; approval, activation, and expiry audit evidence captured | [Lab 09](../labs/09-privileged-identity-management/README.md) |
 
 ## Evidence and Security Handling
 
@@ -241,7 +243,7 @@ The first toolkit connection trusted a different certificate, and the service pr
 
 Unassigned access was denied with AADSTS50105. After successful assigned-user testing, Dick's assignment was removed and a fresh sign-in was denied again. Existing application-session termination and SAML logout were not tested. Deletion of the original toolkit connection and local toolkit accounts was not confirmed.
 
-See [Lab 10](../labs/10-SAML-SSO/README.MD) for configuration, certificate troubleshooting, validation, and evidence.
+See [Lab 10](../labs/10-saml-sso/README.md) for configuration, certificate troubleshooting, validation, and evidence.
 
 ## OpenID Connect SSO with PKCE (Lab 11)
 
@@ -249,11 +251,11 @@ Gotham OIDC Lab is a single-tenant browser SPA using MSAL Browser 5.27.0, served
 
 Captured authorization parameters included `response_type=code`, `code_challenge`, and `code_challenge_method=S256`. Five teaching claim comparisons passed; they are not independent signature validation. Assignment and consent failures were resolved, a deliberate AADSTS50011 redirect mismatch was recovered, and an app logout cleanup issue was corrected.
 
-Clearing the app cache allowed sign-in without new password/MFA prompts. After corrected Entra logout, the tester reported password and MFA prompts. The matching 20:19:32 UTC success log records MFA as previously satisfied; it does not independently prove a fresh challenge. App/log correlation ID: `01a18950-cc3f-71a4-9332-b70c8e9009ce`.
+Clearing the app cache allowed sign-in without new password/MFA prompts. After corrected Entra logout, I observed password and MFA prompts. The matching 20:19:32 UTC success log records MFA as previously satisfied; it does not independently prove a fresh challenge. App/log correlation ID: `01a18950-cc3f-71a4-9332-b70c8e9009ce`.
 
-Final state: Dick's assignment removed; new sign-in denied with AADSTS50105 after app-cache clearing; Phillip's assignment retained; Assignment required Yes; Visible to users No. Existing-token revocation was not tested. Registration and consent retained; tester confirmed server shutdown instruction completed.
+Final state: Dick's assignment removed; new sign-in denied with AADSTS50105 after app-cache clearing; Phillip's assignment retained; Assignment required Yes; Visible to users No. Existing-token revocation was not tested. Registration and consent retained; I stopped the local server.
 
-See [Lab 11](../labs/11-OIDC-SSO/README.MD) for results, source, and evidence.
+See [Lab 11](../labs/11-oidc-sso/README.md) for results, source, and evidence.
 
 ## OAuth 2.0 API Authorization (Lab 12)
 
@@ -263,9 +265,9 @@ A local MSAL Browser 5.27.0 SPA and Python API run on the same loopback origin. 
 
 Dick Grayson acquired Inventory.Read. Live tests returned read **200**, missing-token **401**, tampered-signature **401**, client-ID-token **401**, and read-only write **403** with token validation passed and insufficient_scope. After Inventory.Write was added and admin consent granted, a newly acquired token contained both scopes and the write returned **200**, increasing the fictional quantity from 10 to 11. Six results were captured together in the test history. API request IDs are local identifiers, not Entra correlation IDs.
 
-The tester confirmed completion of the final instructions to sign out through Entra and stop the server. Both registrations and consent were retained. No Lab 12 Entra sign-in-log correlation, fresh-MFA proof, raw protocol capture, or live expired-token test was collected. Twenty offline regression tests used disposable fixture keys; they are separate from the six live results.
+I signed out through Entra and stopped the server. Both registrations and consent were retained. No Lab 12 Entra sign-in-log correlation, fresh-MFA proof, raw protocol capture, or live expired-token test was collected. Twenty offline regression tests used disposable fixture keys; they are separate from the six live results.
 
-See [Lab 12](../labs/12-OAuth2-API-Authorization/README.MD) for evidence, limitations, and runnable source.
+See [Lab 12](../labs/12-oauth2-api-authorization/README.md) for evidence, limitations, and runnable source.
 
 ## Software OATH-TOTP Registration and Recovery (Lab 13)
 
@@ -275,7 +277,11 @@ I successfully signed in with a valid code, captured rejection of an incorrect c
 
 The captured successful sign-in logs recorded MFA satisfied by an existing token claim / Previously satisfied. They do not independently prove a fresh OATH challenge; code-based success is my observed test result. Both methods were on one phone, so this was not a full lost-device recovery exercise. Old phone-entry deletion and final sign-out were recommended but not confirmed.
 
-See [Lab 13](../labs/13-OATH-TOTP-Recovery/README.MD) for the test matrix, evidence, final state, and limitations.
+See [Lab 13](../labs/13-oath-totp-recovery/README.md) for the test matrix, evidence, final state, and limitations.
+
+## Trial Status
+
+I used a P2 free trial for the GothamLabz exercises. As of October 30, 2026, I reported that it was due to expire that week; I have not recorded the exact subscription end date. The lab results are historical evidence of testing during the active trial. This document does not assert that P2 features remained available after expiry.
 
 ## Maintenance Notes
 
