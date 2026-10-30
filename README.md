@@ -13,6 +13,7 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | OIDC troubleshooting | Captured PKCE authorization parameters, resolved consent and redirect failures, compared cache clearing with Entra logout, and verified denial after assignment removal |
 | OAuth API authorization | Verified server token validation, 401 rejection of missing/tampered/ID tokens, 403 for insufficient scope, and 200 after write consent and a new token |
 | Authentication recovery | Registered software OATH-TOTP, rejected incorrect and deleted-registration codes, and validated a replacement while preserving Authenticator push |
+| Entitlement management | Verified self-service request, justified approval, one-hour application-role delivery, automatic expiry, and fresh-sign-in denial |
 | Identity lifecycle | Tested joiner, mover, leaver, role changes, access reviews, and access removal with a fictional employee account |
 | Conditional Access | Configured six policies; enabled four and retained two in Report-only mode |
 | Administrator security | Registered and tested Windows Hello passkeys and verified an enforced phishing-resistant MFA requirement |
@@ -37,12 +38,13 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | 11 | [OpenID Connect SSO with PKCE](labs/11-oidc-sso/README.md) | Authorization Code with PKCE, claims, consent, redirect troubleshooting, cache/session behavior, and assignment removal |
 | 12 | [OAuth 2.0 API Authorization](labs/12-oauth2-api-authorization/README.md) | Access-token validation, delegated scopes, admin consent, 401 versus 403, and read/write authorization |
 | 13 | [Software OATH-TOTP Registration and Recovery](labs/13-oath-totp-recovery/README.md) | TOTP enrollment, incorrect-code rejection, registration deletion, and replacement-code validation |
+| 14 | [Entitlement Management and Temporary Application Access](labs/14-entitlement-management/README.md) | Self-service requests, approval, app-role delivery, one-hour expiry, and access removal |
 
 ## Lab Environments
 
-The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–13** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
+The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–14** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
 
-**Trial licensing:** I used a Microsoft Entra ID P2 free trial for Labs 06–13. On October 30, 2026, I reported that the trial was due to expire that week. The exact expiry date and post-expiry feature availability have not been verified; these results describe tests performed while the trial was active.
+**Trial licensing:** I used a Microsoft Entra ID P2 free trial for Labs 06–14. On October 30, 2026, I verified an expiration date of **November 7, 2026** and disabled recurring renewal. The subscription was still Active. Post-expiry feature availability has not been tested.
 
 ### GothamLabz P2 environment
 
@@ -60,6 +62,7 @@ For the environment snapshot through October 30, 2026, including historical Free
 ## IAM Skills Practiced
 
 - **Identity lifecycle:** account creation, attribute updates, group management, joiner–mover–leaver processes, and offboarding.
+- **Entitlement management:** catalogs, access packages, scoped self-service requests, justified approval, application-role delivery, and automatic assignment expiry.
 - **Access control:** least privilege, role-based access control (RBAC), enterprise app assignments, and access reviews.
 - **Privileged Identity Management:** time-limited eligibility, just-in-time role activation, justification, approval, manual deactivation, automatic expiry, and correlated audit events.
 - **Authentication:** Microsoft Authenticator MFA, software OATH-TOTP registration and recovery, Windows Hello passkeys, and phishing-resistant authentication strengths.

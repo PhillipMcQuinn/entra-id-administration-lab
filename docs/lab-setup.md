@@ -1,6 +1,6 @@
 # Microsoft Entra ID Lab Setup
 
-> **Environment snapshot — October 30, 2026:** Labs 01–05 use the original Entra ID Free tenant. Labs 06–13 use the separate GothamLabz tenant with a **P2 free trial**. The October 5 setup values are retained below as historical context; the GothamLabz column and later lab sections record the subsequent environment. The exact trial expiry date and post-expiry feature availability have not been verified.
+> **Environment snapshot — October 30, 2026:** Labs 01–05 use the original Entra ID Free tenant. Labs 06–14 use the separate GothamLabz tenant with a **P2 free trial**. The October 5 setup values are retained below as historical context; the GothamLabz column and later lab sections record the subsequent environment. I verified the trial expiration date as November 7, 2026 and disabled recurring renewal. Post-expiry feature availability has not been tested.
 
 ## Purpose and Scope
 
@@ -23,7 +23,7 @@ This environment was used for introductory IAM administration exercises:
 - Lab 04: MFA Registration and Recovery
 - Lab 05: Sign-in Troubleshooting
 
-### Environment 2 — Microsoft Entra ID P2 (Labs 06–13)
+### Environment 2 — Microsoft Entra ID P2 (Labs 06–14)
 
 **Tenant:** `GothamLabz.onmicrosoft.com`  
 **License:** Microsoft Entra ID P2 free trial
@@ -38,6 +38,7 @@ This environment was used for advanced IAM security, governance, and application
 - Lab 11: OpenID Connect SSO with Authorization Code and PKCE
 - Lab 12: OAuth 2.0 API Authorization with Delegated Scopes
 - Lab 13: Software OATH-TOTP Registration and Recovery
+- Lab 14: Entitlement Management and Temporary Application Access
 
 Labs 06–08 recorded two administrator accounts and seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments. Lab 09 added a dedicated PIM test account with an Entra ID P2 license and Microsoft Authenticator registration. Its eligible Helpdesk Administrator assignment was removed during cleanup.
 
@@ -56,7 +57,7 @@ Configuration settings, licenses, user accounts, and test results should be inte
 | Authenticator | Microsoft Authenticator | Microsoft Authenticator; Windows Hello passkeys on administrator accounts |
 | Admin center | [Microsoft Entra admin center](https://entra.microsoft.com) | [Microsoft Entra admin center](https://entra.microsoft.com) |
 
-The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–13 use GothamLabz.
+The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–14 use GothamLabz.
 
 ## Administrator and Test Accounts
 
@@ -279,11 +280,23 @@ The captured successful sign-in logs recorded MFA satisfied by an existing token
 
 See [Lab 13](../labs/13-oath-totp-recovery/README.md) for the test matrix, evidence, final state, and limitations.
 
+## Entitlement Management (Lab 14)
+
+I created the internal-only **Gotham Application Access** catalog and added Gotham Access Lab as an application resource. I created **Gotham Procurement Reader - Temporary Access**, scoped requests to Tim Drake, required requestor and approver justification, selected my administrator account as approver, and configured one-hour assignment expiry with no extensions.
+
+I operated both accounts myself in separate browser sessions. Tim remained blocked with AADSTS50105 before approval and while pending. After approval, the package delivered a direct application assignment and his token displayed only Procurement.Reader. Procurement access succeeded and IT Inventory was forbidden. The assignment expired at its configured end time of October 30, 2026, 2:28:50 PM MDT; I observed roughly four minutes before Expired appeared. I confirmed automatic removal of Tim's direct application assignment and denial of a fresh sign-in. I stopped Flask after testing. Existing-session termination was not tested.
+
+See [Lab 14](../labs/14-entitlement-management/README.md) for configuration, results, screenshots, and evidence limits.
+
 ## Trial Status
 
-I used a P2 free trial for the GothamLabz exercises. As of October 30, 2026, I reported that it was due to expire that week; I have not recorded the exact subscription end date. The lab results are historical evidence of testing during the active trial. This document does not assert that P2 features remained available after expiry.
+On October 30, 2026, I verified that my P2 free trial was Active, with **10 of 25 licenses assigned** and an expiration date of **November 7, 2026**. I disabled recurring renewal; the portal then stated that the trial would expire and the subscription would be canceled. A separate recurring-billing field displayed November 8, so I used November 7 as my preparation deadline. I have not recorded the post-expiry subscription state or feature behavior.
+
+I exported all six Conditional Access policies and confirmed their current states: CA-00 through CA-03 On, CA-04 and CA-05 Report-only. I verified that my regular administrator and Lab Recovery Administrator had direct, permanently active Global Administrator assignments, and tested a fresh recovery-account passkey sign-in and access to the Conditional Access page.
+
+The planned transition to Security Defaults and the later post-expiry observations are not completed results. Security Defaults remained disabled during these P2 labs. Any future documentation will distinguish changes I make before expiry from effects I actually observe after licensing changes. The policy exports remain outside this public repository.
 
 ## Maintenance Notes
 
-This is a snapshot of the environment documented through **October 30, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, Lab 11 OIDC/PKCE and session tests, Lab 12 OAuth API token-validation and read/write authorization tests, and Lab 13 software OATH-TOTP registration, deletion, and replacement tests. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+This is a snapshot of the environment documented through **October 30, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, Lab 11 OIDC/PKCE and session tests, Lab 12 OAuth API token-validation and read/write authorization tests, Lab 13 software OATH-TOTP registration, deletion, and replacement tests, and Lab 14 entitlement-management request, approval, delivery, expiry, and fresh-sign-in denial tests. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
 
