@@ -12,6 +12,7 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | SAML federation | Configured SP-initiated SAML SSO, corrected a signing-certificate mismatch, and verified assignment removal blocks new sign-ins |
 | OIDC troubleshooting | Captured PKCE authorization parameters, resolved consent and redirect failures, compared cache clearing with Entra logout, and verified denial after assignment removal |
 | OAuth API authorization | Verified server token validation, 401 rejection of missing/tampered/ID tokens, 403 for insufficient scope, and 200 after write consent and a new token |
+| Authentication recovery | Registered software OATH-TOTP, rejected incorrect and deleted-registration codes, and validated a replacement while preserving Authenticator push |
 | Identity lifecycle | Tested joiner, mover, leaver, role changes, access reviews, and access removal with a fictional employee account |
 | Conditional Access | Configured six policies; enabled four and retained two in Report-only mode |
 | Administrator security | Registered and tested Windows Hello passkeys and verified an enforced phishing-resistant MFA requirement |
@@ -35,10 +36,11 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | 10 | [SAML 2.0 Single Sign-On](labs/10-SAML-SSO/README.MD) | SAML endpoints, NameID, signing-certificate trust, SP-initiated SSO, and assignment-based access removal |
 | 11 | [OpenID Connect SSO with PKCE](labs/11-OIDC-SSO/README.MD) | Authorization Code with PKCE, claims, consent, redirect troubleshooting, cache/session behavior, and assignment removal |
 | 12 | [OAuth 2.0 API Authorization](labs/12-OAuth2-API-Authorization/README.MD) | Access-token validation, delegated scopes, admin consent, 401 versus 403, and read/write authorization |
+| 13 | [Software OATH-TOTP Registration and Recovery](labs/13-OATH-TOTP-Recovery/README.MD) | TOTP enrollment, incorrect-code rejection, registration deletion, and replacement-code validation |
 
 ## Lab Environments
 
-The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–12** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
+The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–13** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
 
 ### GothamLabz P2 environment
 
@@ -47,7 +49,7 @@ The portfolio uses two intentional lab environments: **Labs 01–05** were compl
 | Tenant domain | `GothamLabz.onmicrosoft.com` |
 | License | Microsoft Entra ID P2 |
 | Test identities | Fictional users and separate administrator accounts; Lab 09 added a dedicated PIM test account |
-| Authentication | Microsoft Authenticator and device-bound Windows Hello passkeys |
+| Authentication | Microsoft Authenticator push, software OATH-TOTP, and device-bound Windows Hello passkeys |
 | Access control | Assigned security groups, application roles, Conditional Access, and PIM eligible directory roles |
 | Test applications | Gotham Access Lab — local Python Flask/OIDC application; Gotham SAML Lab — hosted SAML Toolkit integration; Gotham OIDC Lab — local MSAL SPA; Gotham OAuth API/Client Lab — local SPA and protected Python API |
 
@@ -58,7 +60,7 @@ For historical setup details, see [Lab Setup](docs/lab-setup.md). The original s
 - **Identity lifecycle:** account creation, attribute updates, group management, joiner–mover–leaver processes, and offboarding.
 - **Access control:** least privilege, role-based access control (RBAC), enterprise app assignments, and access reviews.
 - **Privileged Identity Management:** time-limited eligibility, just-in-time role activation, justification, approval, manual deactivation, automatic expiry, and correlated audit events.
-- **Authentication:** Microsoft Authenticator MFA, Windows Hello passkeys, and phishing-resistant authentication strengths.
+- **Authentication:** Microsoft Authenticator MFA, software OATH-TOTP registration and recovery, Windows Hello passkeys, and phishing-resistant authentication strengths.
 - **Conditional Access:** policy targeting and exclusions, Report-only evaluation, staged enforcement, and sign-in investigation.
 - **Identity Protection:** sign-in risk-based What If simulations using Entra ID P2.
 - **Enterprise applications:** application roles, delegated Microsoft Graph permissions, administrator consent, OpenID Connect integration, SAML 2.0 federation and certificate trust, and sign-in failures such as `AADSTS50105`.

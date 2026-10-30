@@ -21,7 +21,7 @@ This environment was used for introductory IAM administration exercises:
 - Lab 04: MFA Registration and Recovery
 - Lab 05: Sign-in Troubleshooting
 
-### Environment 2 — Microsoft Entra ID P2 (Labs 06–12)
+### Environment 2 — Microsoft Entra ID P2 (Labs 06–13)
 
 **Tenant:** `GothamLabz.onmicrosoft.com`  
 **License:** Microsoft Entra ID P2
@@ -35,6 +35,7 @@ This environment was used for advanced IAM security, governance, and application
 - Lab 10: SAML 2.0 Single Sign-On
 - Lab 11: OpenID Connect SSO with Authorization Code and PKCE
 - Lab 12: OAuth 2.0 API Authorization with Delegated Scopes
+- Lab 13: Software OATH-TOTP Registration and Recovery
 
 Labs 06–08 recorded two administrator accounts and seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments. Lab 09 added a dedicated PIM test account with an Entra ID P2 license and Microsoft Authenticator registration. Its eligible Helpdesk Administrator assignment was removed during cleanup.
 
@@ -42,7 +43,7 @@ Labs 06–08 recorded two administrator accounts and seven standard user account
 
 Configuration settings, licenses, user accounts, and test results should be interpreted within their respective environments rather than assumed to apply across both tenants.
 
-| Setting | Original setup record (October 5, 2026) | GothamLabz lab configuration (October 8–29, 2026) |
+| Setting | Original setup record (October 5, 2026) | GothamLabz lab configuration (October 8–30, 2026) |
 |---|---|---|
 | Organization label | Gotham IAM Lab | Gotham IAM Lab / Gotham IT Labs; Gotham Labs in Lab 09 |
 | Tenant type | Workforce | Microsoft Entra workforce identity lab |
@@ -53,7 +54,7 @@ Configuration settings, licenses, user accounts, and test results should be inte
 | Authenticator | Microsoft Authenticator | Microsoft Authenticator; Windows Hello passkeys on administrator accounts |
 | Admin center | [Microsoft Entra admin center](https://entra.microsoft.com) | [Microsoft Entra admin center](https://entra.microsoft.com) |
 
-The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–12 use GothamLabz.
+The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–13 use GothamLabz.
 
 ## Administrator and Test Accounts
 
@@ -112,6 +113,7 @@ Group membership **does not automatically grant permissions to arbitrary applica
 ### Authentication methods
 
 - Microsoft Authenticator registration was checked for the GothamLabz accounts.
+- Lab 13 added a separate software OATH-TOTP method for Selina Kyle, tested deletion and replacement, and retained her existing Authenticator push registration.
 - Windows Hello passkeys were registered and tested for the regular and recovery administrator accounts.
 - No FIDO2 hardware security key was used in the documented exercises.
 - The passkey results demonstrate the tested administrator authentication flows; they should not be read as proof that all users or all sign-ins used phishing-resistant authentication.
@@ -265,7 +267,17 @@ The tester confirmed completion of the final instructions to sign out through En
 
 See [Lab 12](../labs/12-OAuth2-API-Authorization/README.MD) for evidence, limitations, and runnable source.
 
+## Software OATH-TOTP Registration and Recovery (Lab 13)
+
+I inspected the Software OATH policy: enabled for All users, Registration Optional. I left that policy unchanged. Using Selina Kyle's fictional account, I registered a separate TOTP entry in Microsoft Authenticator while preserving the existing push registration on Pixel 10 Pro XL.
+
+I successfully signed in with a valid code, captured rejection of an incorrect code, and successfully retried with the correct code. I then deleted only the Software OATH registration as administrator and captured rejection of a code from the old phone entry. I registered a replacement and successfully logged in with its new code. The final Security info screenshot shows TOTP and push registrations together.
+
+The captured successful sign-in logs recorded MFA satisfied by an existing token claim / Previously satisfied. They do not independently prove a fresh OATH challenge; code-based success is my observed test result. Both methods were on one phone, so this was not a full lost-device recovery exercise. Old phone-entry deletion and final sign-out were recommended but not confirmed.
+
+See [Lab 13](../labs/13-OATH-TOTP-Recovery/README.MD) for the test matrix, evidence, final state, and limitations.
+
 ## Maintenance Notes
 
-This is a snapshot of the environment documented through **October 29, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, Lab 11 OIDC/PKCE and session tests, and Lab 12 OAuth API token-validation and read/write authorization tests. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+This is a snapshot of the environment documented through **October 30, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, Lab 11 OIDC/PKCE and session tests, Lab 12 OAuth API token-validation and read/write authorization tests, and Lab 13 software OATH-TOTP registration, deletion, and replacement tests. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
 
