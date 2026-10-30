@@ -1,8 +1,10 @@
 # Lab 03: Administrative Roles and Least Privilege
 
+I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
+
 ## Objective
 
-Demonstrate Microsoft Entra ID role-based administrative access by temporarily assigning the **Helpdesk Administrator** role to a dedicated test account, testing a permitted password reset and a restricted administrator-role assignment, reviewing audit events, and verifying that administrative permissions are removed when the role is revoked.
+I tested Microsoft Entra ID role-based administrative access by temporarily assigning the **Helpdesk Administrator** role to a dedicated test account, testing a permitted password reset and a restricted administrator-role assignment, reviewing audit events, and verifying that administrative permissions are removed when the role is revoked.
 
 ## Status
 
@@ -25,7 +27,7 @@ All user identities and the organization scenario are fictional. This lab was pe
 
 ## Scenario
 
-A help desk employee needs sufficient privileges to reset a standard user's password, without receiving broad tenant administration rights. A dedicated `helpdesk-test` account was temporarily assigned **Helpdesk Administrator** instead of **Global Administrator**. The lab tests both authorized and unauthorized actions, then removes the role and retests access.
+A help desk employee needs sufficient privileges to reset a standard user's password, without receiving broad tenant administration rights. I temporarily assigned **Helpdesk Administrator** to a dedicated `helpdesk-test` account. I tested both authorized and unauthorized actions, then removed the role and retested access.
 
 ## Prerequisites
 
@@ -36,7 +38,7 @@ A help desk employee needs sufficient privileges to reset a standard user's pass
 
 ## Part 1: Select a Least-Privilege Administrator Role
 
-The **Helpdesk Administrator** role was selected for the password-reset scenario because it supports help desk tasks for applicable non-administrative accounts without giving the test account full tenant control.
+I selected **Helpdesk Administrator** for the password-reset scenario because it supports help desk tasks for applicable non-administrative accounts without giving the test account full tenant control.
 
 The role is **not** equivalent to Global Administrator and does not permit assignment of Microsoft Entra administrator roles. Password-reset privileges are subject to Microsoft's target-role and permission restrictions; the successful test in this lab was performed against a **standard user**. This lab did not test password resets against privileged administrator accounts or members of role-assignable groups.
 
@@ -44,7 +46,7 @@ The role is **not** equivalent to Global Administrator and does not permit assig
 
 ## Part 2: Assign Helpdesk Administrator
 
-Using the role-assignment administrator, the **Helpdesk Administrator** role was assigned to `helpdesk-test` at tenant scope. The assignment appeared in the test account's **Assigned roles** view and within the role's **Assignments** list.
+Using my role-assignment administrator account, I assigned **Helpdesk Administrator** to `helpdesk-test` at tenant scope. The assignment appeared in the test account's **Assigned roles** view and within the role's **Assignments** list.
 
 **Evidence:**
 
@@ -52,9 +54,9 @@ Using the role-assignment administrator, the **Helpdesk Administrator** role was
 
 ## Part 3: Validate an Allowed Action — Password Reset
 
-Signed in as `helpdesk-test` in a separate browser session and successfully reset Dick Grayson's password. The generated temporary password was not included in the repository.
+I signed in as `helpdesk-test` in a separate browser session and successfully reset Dick Grayson's password. The generated temporary password was not included in the repository.
 
-A separate sign-in as Dick Grayson confirmed that the temporary password worked. The user was prompted to change the password during sign-in, consistent with the observed password-reset workflow.
+I signed in separately as Dick Grayson and confirmed that the temporary password worked. I was prompted to change it during sign-in, consistent with the observed password-reset workflow.
 
 **Observed result:** A Helpdesk Administrator could reset the password of the tested standard user.
 
@@ -64,7 +66,7 @@ A separate sign-in as Dick Grayson confirmed that the temporary password worked.
 
 ## Part 4: Validate a Restricted Action — Administrator Role Assignment
 
-While signed in as `helpdesk-test`, attempted to access the administrator role-assignment action for another test account. The **Add assignments** control was grayed out, so the test administrator could not perform the action.
+While signed in as `helpdesk-test`, I attempted to access the administrator role-assignment action for another test account. The **Add assignments** control was grayed out, so I could not perform the action while signed in as the test administrator.
 
 **Observed result:** The test account did not have permission to assign Microsoft Entra administrator roles. This was a disabled user-interface control, not an API-level permission-denied response.
 
@@ -74,7 +76,7 @@ While signed in as `helpdesk-test`, attempted to access the administrator role-a
 
 ## Part 5: Review Administrative Audit Events
 
-Reviewed the available Microsoft Entra audit events using the main lab administrator. The records showed the temporary role being added and removed and the password-reset activity involving Dick Grayson's account.
+I reviewed the available Microsoft Entra audit events using my main lab administrator account. The records showed the temporary role being added and removed and the password-reset activity involving Dick Grayson's account.
 
 The lab documentation records the presence of these audit events, but does not enumerate individual event timestamps or request IDs; no additional values are asserted here.
 
@@ -84,7 +86,7 @@ The lab documentation records the presence of these audit events, but does not e
 
 ## Part 6: Remove the Role and Retest
 
-Removed **Helpdesk Administrator** from `helpdesk-test` and confirmed that the account showed **zero assigned administrator roles**.
+I removed **Helpdesk Administrator** from `helpdesk-test` and confirmed that the account showed **zero assigned administrator roles**.
 
 After the role was removed, the test account could no longer perform the password-reset task: the corresponding administrative action was unavailable in the interface.
 
@@ -110,14 +112,14 @@ After the role was removed, the test account could no longer perform the passwor
 
 ## Issues and Troubleshooting
 
-**No unexpected errors were observed.** The restricted administrator role assignment and post-removal password-reset restriction were anticipated outcomes of the least-privilege tests, not failures requiring remediation.
+**I did not observe unexpected errors.** The restricted administrator role assignment and post-removal password-reset restriction were anticipated outcomes of the least-privilege tests, not failures requiring remediation.
 
 ## Cleanup
 
-- Removed the temporary Helpdesk Administrator role from `helpdesk-test`.
-- Verified that the account had zero administrator roles after removal.
-- Deleted the dedicated `helpdesk-test` account upon completion of the lab.
-- The source notes do not independently document Dick Grayson's final password or restoration state; this README does not claim a particular final credential configuration.
+- I removed the temporary Helpdesk Administrator role from `helpdesk-test`.
+- I verified that the account had zero administrator roles after removal.
+- I deleted the dedicated `helpdesk-test` account upon completion of the lab.
+- My notes do not independently document Dick Grayson's final password or restoration state, so I do not claim a particular final credential configuration.
 - Screenshots document configuration and behavior without including temporary passwords.
 
 ## Lessons Learned

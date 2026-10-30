@@ -1,6 +1,8 @@
 # Lab 12 — OAuth 2.0 API Authorization with Delegated Scopes
 
-Configured separate Microsoft Entra API and SPA client registrations, exposed read/write scopes, and validated access-token authentication and scope-based authorization in a local protected API. Demonstrated **401** for missing or invalid tokens, **403** for a valid token without write permission, and **200** after administrator consent and acquisition of a token containing the write scope.
+I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
+
+I configured separate Microsoft Entra API and SPA client registrations, exposed read/write scopes, and validated access-token authentication and scope-based authorization in a local protected API. I demonstrated **401** for missing or invalid tokens, **403** for a valid token without write permission, and **200** after administrator consent and acquisition of a token containing the write scope.
 
 **Environment:** personal GothamLabz Entra ID P2 tenant · **Test date:** October 29, 2026 · **Test user:** fictional employee Dick Grayson. P2 describes the environment; these OAuth features are not presented as P2-only functionality. This is independent hands-on lab work, not a production deployment.
 
@@ -38,7 +40,7 @@ The root URL hosts the MSAL v5 redirect bridge; the interactive page is `lab.htm
 
 ## Live Test Results
 
-All six API outcomes below were captured during the live Entra-backed exercise. The timestamp column reproduces the API response in UTC; the browser history displays local Mountain Daylight Time (UTC−6).
+I captured all six API outcomes below during the live Entra-backed exercise. The timestamp column reproduces the API response in UTC; the browser history displays local Mountain Daylight Time (UTC−6).
 
 | Test | HTTP | Observed result | UTC time |
 |---|---|---|---|
@@ -53,7 +55,7 @@ All six API outcomes below were captured during the live Entra-backed exercise. 
 
 ## Establish Read-Only Access
 
-The client initially had administrator consent for **Inventory.Read only**. The application acquired that scope for Dick Grayson and reported `fromCache: false`. That value describes MSAL token acquisition; it does not prove a fresh password or MFA challenge.
+I began with administrator consent for **Inventory.Read only** on the client. I acquired that scope through the application while signed in as Dick Grayson and reported `fromCache: false`. That value describes MSAL token acquisition; it does not prove a fresh password or MFA challenge.
 
 The read endpoint returned HTTP 200 with token validation passed. Server-verified claims included version 2.0, the tenant v2 issuer, the API's client ID as `aud`, the SPA's client ID as `azp`, the expected tenant, and `scp: Inventory.Read`. The returned fictional inventory started at quantity 10 with zero updates.
 
@@ -63,10 +65,10 @@ The read endpoint returned HTTP 200 with token validation passed. Server-verifie
 
 ## Reject Missing and Invalid Tokens — 401
 
-Three negative requests were rejected:
+I tested three negative requests, all of which were rejected:
 
 - **Missing token:** the request omitted the Authorization bearer header. The API returned 401 with a bearer-token-required message.
-- **Tampered signature:** the test button changed a character in a copy of the access token's signature. The API returned 401; the valid token retained by the application was not modified.
+- **Tampered signature:** the test button changed a character in a copy of the access token's signature. The API returned 401; the application retained the unmodified valid token.
 - **Client ID token:** the test sent the SPA's ID token to the API. The API returned 401. The client ID token targets the SPA, while the API expects its own audience and access-token claims. The public error intentionally combines validation failures rather than identifying a single failed check.
 
 These are authentication failures at the API. An ID token cannot substitute for the API's access token.
@@ -77,7 +79,7 @@ These are authentication failures at the API. An ID token cannot substitute for 
 
 ## Enforce Least Privilege — 403
 
-The write test sent the same current access token without requesting another permission. Its signature and required token claims passed validation, but `scp` contained only Inventory.Read. The API required Inventory.Write and returned **403 insufficient_scope**.
+I ran the write test with the same current access token without requesting another permission. Its signature and required token claims passed validation, but `scp` contained only Inventory.Read. The API required Inventory.Write and returned **403 insufficient_scope**.
 
 The response explicitly showed **tokenValidation: passed**. This separates a valid token with insufficient authorization from the invalid-token 401 cases. The denied operation did not increment inventory; the subsequent first allowed update produced quantity 11 and updates 1.
 
@@ -85,11 +87,11 @@ The response explicitly showed **tokenValidation: passed**. This separates a val
 
 ## Grant Write Consent and Verify Recovery — 200
 
-Added the API's delegated Inventory.Write permission to the client registration and granted administrator consent. Both Inventory.Read and Inventory.Write then showed **Granted for Gotham Labs**. The consent dialog offered to retain other existing grants; the tester kept them. The published API screenshot establishes the two custom API permissions and does not inventory any rows outside the captured view.
+I added the API's delegated Inventory.Write permission to the client registration and granted administrator consent. Both Inventory.Read and Inventory.Write then showed **Granted for Gotham Labs**. The consent dialog offered to retain other existing grants; I kept them. The published API screenshot establishes the two custom API permissions and does not inventory any rows outside the captured view.
 
-Granting consent did not rewrite the token already held by the app. The app's **Request read + write token** action acquired a token for both scopes. A repeated write returned HTTP 200 with `scp: Inventory.Read Inventory.Write`, quantity **11**, and updates **1**.
+Granting consent did not rewrite the token already held by the app. I used the app's **Request read + write token** action to acquire a token for both scopes. A repeated write returned HTTP 200 with `scp: Inventory.Read Inventory.Write`, quantity **11**, and updates **1**.
 
-An intermediate screenshot still showed the original 22:28:24 response and identical request ID; it was recognized as the earlier result, not treated as a new failed write after consent. The final response has a new timestamp and request ID.
+An intermediate screenshot still showed the original 22:28:24 response and identical request ID; I recognized it as the earlier result and did not treat it as a new failed write after consent. The final response has a new timestamp and request ID.
 
 ![Read and write consent granted](screenshots/14-read-write-consent.png)
 ![Write allowed with both scopes](screenshots/15-write-200.png)
@@ -121,16 +123,16 @@ The write action increments only fictional in-memory data. Restarting the server
 | Read-only write 403 | `5f84c217-e7f7-46a0-ae8c-2c68a25c62e3` |
 | Authorized write 200 | `2dec56f6-bfd2-4906-8199-00515d8f8b5b` |
 
-These IDs correlate this application's API responses with its test history. They are not Entra sign-in correlation IDs. The initial token-acquisition operation had MSAL correlation ID `01a189c0-a636-7de9-93b2-f70eabfb66ba`; a matching Entra sign-in-log event was not collected in Lab 12.
+These IDs correlate this application's API responses with its test history. They are not Entra sign-in correlation IDs. The initial token-acquisition operation had MSAL correlation ID `01a189c0-a636-7de9-93b2-f70eabfb66ba`; I did not collect a matching Entra sign-in-log event in Lab 12.
 
 ## Evidence Limits and Final State
 
 - The six HTTP outcomes are live results backed by the screenshots above.
 - Twenty offline regression tests passed using disposable fixture RSA keys. They cover validation and authorization branches, including expired tokens and wrong issuer/tenant/client. These are implementation checks, separate from live tenant evidence.
-- The MSAL implementation uses Authorization Code with PKCE. A separate Lab 12 network capture of the challenge or token exchange was not collected; the Lab 11 protocol capture is not presented as Lab 12 evidence.
-- No fresh MFA challenge, live expired-token rejection, consent revocation, or immediate invalidation of previously issued tokens was verified in Lab 12.
-- The tester confirmed completing the final instructions to sign out through Entra and stop the local server. No separate logout screenshot or sign-in-after-logout test was collected for this lab.
-- Both app registrations and the consent configuration were retained for reproducibility. No registration deletion or permission cleanup was reported.
+- The MSAL implementation uses Authorization Code with PKCE. I did not collect a separate Lab 12 network capture of the challenge or token exchange; the Lab 11 protocol capture is not presented as Lab 12 evidence.
+- I did not verify a fresh MFA challenge, live expired-token rejection, consent revocation, or immediate invalidation of previously issued tokens in Lab 12.
+- I signed out through Entra and stopped the local server. I did not collect a separate logout screenshot or sign-in-after-logout test for this lab.
+- I retained both app registrations and the consent configuration for reproducibility. I did not report registration deletion or permission cleanup.
 
 ## Run the Application
 

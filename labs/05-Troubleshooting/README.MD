@@ -1,8 +1,10 @@
 # Lab 05: Microsoft Entra ID Sign-In Troubleshooting
 
+I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
+
 ## Objective
 
-Investigate Microsoft Entra ID sign-in failures by correlating user-reported errors with sign-in logs and account settings. Apply an appropriate correction and confirm recovery through a successful fresh sign-in.
+I investigated Microsoft Entra ID sign-in failures by comparing the errors I reproduced with sign-in logs and account settings. I applied a targeted correction for each scenario and confirmed recovery through a successful fresh sign-in.
 
 ## Status
 
@@ -31,15 +33,15 @@ This exercise used the original Free-license tenant for Labs 01–05, not the se
 
 ## Investigation Method
 
-For each scenario, a failed sign-in was reproduced, the reported error was compared with the corresponding sign-in event, and the account configuration was reviewed before applying a correction. The outcome was verified with another sign-in attempt.
+For each scenario, I reproduced a failed sign-in, compared the error with the corresponding sign-in event, and reviewed the account configuration before applying a correction. I verified the outcome with another sign-in attempt.
 
-Sign-in logs can have a short reporting delay, so the event timestamp, user identity, and failure reason were used together to identify the relevant record. A failure was not assumed to be MFA-related without supporting evidence.
+Sign-in logs can have a short reporting delay, so I used the event timestamp, user identity, and failure reason together to identify the relevant record. I did not assume an MFA cause without supporting evidence.
 
 ## Part 1: Incorrect Password
 
 ### 1. Reproduce the authentication failure
 
-Attempted to sign in as Dick Grayson using an intentionally incorrect password. The sign-in page reported:
+I attempted to sign in as Dick Grayson using an intentionally incorrect password. The sign-in page reported:
 
 > Your account or password is incorrect.
 
@@ -51,7 +53,7 @@ Only a controlled test attempt was required; repeated invalid-password attempts 
 
 ### 2. Investigate the sign-in event
 
-Located the corresponding failure in Microsoft Entra ID sign-in logs.
+I located the corresponding failure in Microsoft Entra ID sign-in logs.
 
 | Field | Recorded observation |
 |---|---|
@@ -61,7 +63,7 @@ Located the corresponding failure in Microsoft Entra ID sign-in logs.
 | Error code | **50126** |
 | Failure reason | Error validating credentials due to an invalid username or password |
 
-The event identifier is retained as recorded in the original lab notes; its precise log-field type was not specified.
+The event identifier is retained as recorded in my original lab notes; its precise log-field type was not specified.
 
 **Evidence:**
 
@@ -69,11 +71,11 @@ The event identifier is retained as recorded in the original lab notes; its prec
 
 ### 3. Diagnosis and resolution
 
-The failed sign-in and error **50126** were consistent with the deliberately incorrect password. No account-setting change was needed. The test user retried authentication using the known correct password.
+The failed sign-in and error **50126** were consistent with the deliberately incorrect password. No account-setting change was needed. I retried authentication as Dick using the known correct password.
 
 ### 4. Verify recovery
 
-A subsequent sign-in succeeded after the correct password was entered.
+I signed in successfully after entering the correct password.
 
 **Evidence:**
 
@@ -83,7 +85,7 @@ A subsequent sign-in succeeded after the correct password was entered.
 
 ### 1. Reproduce blocked sign-in
 
-An authorized administrator blocked sign-in for Dick Grayson's test account. The test user then attempted a fresh sign-in in a separate browser session.
+I blocked sign-in for Dick Grayson's test account using my administrator account, then attempted a fresh sign-in as Dick in a separate browser session.
 
 **Evidence:**
 
@@ -101,7 +103,7 @@ The failed sign-in record reported **50057** and identified the user account as 
 | Failure reason | User account is disabled |
 | Account setting | Sign-in blocked |
 
-The event identifier is preserved from the lab notes without assuming its precise field type. A timestamp for this specific event was not supplied.
+The event identifier is preserved from the lab notes without assuming its precise field type. I did not record a timestamp for this specific event.
 
 **Evidence:**
 
@@ -109,13 +111,13 @@ The event identifier is preserved from the lab notes without assuming its precis
 
 ### 3. Diagnosis and resolution
 
-The account's disabled state explained why the test user could not sign in. Because this was an explicitly authorized lab scenario, the administrator restored the account to an enabled state.
+The account's disabled state explained why the test user could not sign in. Because this was my controlled lab scenario, I restored the account to an enabled state.
 
 In an operational environment, restoring an offboarded employee's account would require appropriate authorization and identity verification before access was reinstated.
 
 ### 4. Verify recovery
 
-Dick Grayson completed a successful fresh sign-in after the account was re-enabled. This confirmed the observed issue was resolved in the lab.
+I completed a successful fresh sign-in as Dick Grayson after re-enabling the account. This confirmed the observed issue was resolved in the lab.
 
 **Evidence:**
 
@@ -138,7 +140,7 @@ Dick Grayson completed a successful fresh sign-in after the account was re-enabl
 
 ## Cleanup
 
-Dick Grayson's account was returned to an **enabled** state after the disabled-account test. The original notes do not independently confirm session sign-out, other configuration restoration, or screenshot redaction as separate completed cleanup actions, so those are not claimed as verified results.
+I returned Dick Grayson's account to an **enabled** state after the disabled-account test. My original notes do not independently confirm session sign-out, other configuration restoration, or screenshot redaction as separate completed cleanup actions, so those are not claimed as verified results.
 
 ## Lessons Learned
 

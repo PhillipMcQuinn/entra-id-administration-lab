@@ -1,8 +1,10 @@
 # Lab 01: Employee Onboarding and Offboarding
 
+I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
+
 ## Objective
 
-Practice foundational Microsoft Entra ID user lifecycle administration by creating a fictional employee account, updating employee attributes, assigning department group membership, verifying interactive sign-in, blocking sign-in, revoking sessions, removing group membership, and deleting the account after testing.
+I practiced foundational Microsoft Entra ID user lifecycle administration by creating a fictional employee account, updating employee attributes, assigning department group membership, verifying interactive sign-in, blocking sign-in, revoking sessions, removing group membership, and deleting the account after testing.
 
 ## Status
 
@@ -10,7 +12,7 @@ Practice foundational Microsoft Entra ID user lifecycle administration by creati
 
 ## Employee Scenario
 
-Barbara Gordon joins Gotham IAM Lab as a System Administrator in the IT department. This lab documents her onboarding, access verification, and subsequent offboarding.
+Barbara Gordon joins Gotham IAM Lab as a System Administrator in the IT department. I used her account to test onboarding, access verification, and subsequent offboarding.
 
 | Attribute | Value |
 |---|---|
@@ -39,11 +41,11 @@ The employee and organization details are fictional and used exclusively for per
 
 ### 1. Create the employee account
 
-Created Barbara Gordon's user account through **Microsoft Entra admin center → Users → All users → New user**.
+I created Barbara Gordon's user account through **Microsoft Entra admin center → Users → All users → New user**.
 
 ### 2. Populate employee attributes
 
-Configured employee details including job title, department, employee ID, and manager. The hire date is included in the scenario; the published notes do not independently confirm that it was saved as an Entra ID attribute.
+I configured employee details including job title, department, employee ID, and manager. The hire date is included in the scenario; the published notes do not independently confirm that it was saved as an Entra ID attribute.
 
 **Evidence:**
 
@@ -51,7 +53,7 @@ Configured employee details including job title, department, employee ID, and ma
 
 ### 3. Assign IT department group membership
 
-Added Barbara Gordon to `SG-IT-Employees` and reviewed the account's group membership.
+I added Barbara Gordon to `SG-IT-Employees` and reviewed the account's group membership.
 
 **Evidence:**
 
@@ -59,18 +61,18 @@ Added Barbara Gordon to `SG-IT-Employees` and reviewed the account's group membe
 
 ### 4. Verify interactive employee sign-in
 
-Opened a separate private browser session and signed in with Barbara Gordon's test account.
+I opened a separate private browser session and signed in with Barbara Gordon's test account.
 
 **Observed results:**
-- The user was prompted to change the initial password.
-- The user was prompted to register Microsoft Authenticator.
-- After completing the prompts, interactive sign-in succeeded.
+- I was prompted to change the initial password when signing in as Barbara.
+- I was prompted to register Microsoft Authenticator for Barbara.
+- After I completed the prompts, interactive sign-in succeeded.
 
 These observations verify onboarding sign-in behavior. They do not by themselves establish that any specific application role or resource entitlement was granted.
 
 ### 5. Review onboarding audit evidence
 
-Reviewed available Microsoft Entra audit information related to the onboarding activities.
+I reviewed available Microsoft Entra audit information related to the onboarding activities.
 
 **Evidence:**
 
@@ -80,11 +82,11 @@ Reviewed available Microsoft Entra audit information related to the onboarding a
 
 ### 1. Review the account before offboarding
 
-Confirmed the employee account was available for the offboarding exercise and reviewed its IT group membership.
+I confirmed the employee account was available for the offboarding exercise and reviewed its IT group membership.
 
 ### 2. Block employee sign-in
 
-Blocked sign-in for Barbara Gordon and reviewed the disabled account state in Microsoft Entra ID.
+I blocked sign-in for Barbara Gordon and reviewed the disabled account state in Microsoft Entra ID.
 
 **Evidence:**
 
@@ -92,15 +94,15 @@ Blocked sign-in for Barbara Gordon and reviewed the disabled account state in Mi
 
 ### 3. Revoke sign-in sessions and validate subsequent authentication
 
-Performed the session-revocation step as documented in the original exercise.
+I performed the session-revocation step as documented in the original exercise.
 
-After the sign-in block was removed for testing, Barbara Gordon could sign in again using her username, password, and MFA. This showed that the account could authenticate after being re-enabled; it does **not** prove that every previously established application session was immediately terminated by the revocation action.
+After I removed the sign-in block for testing, I signed in again as Barbara Gordon using her username, password, and MFA. This showed that the account could authenticate after being re-enabled; it does **not** prove that every previously established application session was immediately terminated by the revocation action.
 
-The original documentation does not include a separate screenshot or timestamp proving the session-revocation operation completed, so no more specific enforcement claim is made here.
+I did not retain a separate screenshot or timestamp proving completion of the session-revocation operation, so I do not make a more specific enforcement claim.
 
 ### 4. Remove IT group membership
 
-Removed Barbara Gordon from `SG-IT-Employees` during offboarding.
+I removed Barbara Gordon from `SG-IT-Employees` during offboarding.
 
 **Evidence:**
 
@@ -108,7 +110,7 @@ Removed Barbara Gordon from `SG-IT-Employees` during offboarding.
 
 ## Cleanup
 
-The test employee account was deleted after the offboarding exercises. The original notes also record session revocation as part of cleanup. Deleting the test account was the final documented state; it was **not** left disabled or retained for another lab.
+I deleted the test employee account after the offboarding exercises. My original notes also record session revocation as part of cleanup. Deleting the test account was the final documented state; it was **not** left disabled or retained for another lab.
 
 **Evidence:**
 
@@ -116,9 +118,9 @@ The test employee account was deleted after the offboarding exercises. The origi
 
 ## Issues and Troubleshooting
 
-No significant issues were recorded during user creation, account changes, sign-in verification, or offboarding.
+I did not record significant issues during user creation, account changes, sign-in verification, or offboarding.
 
-During verification, a new sign-in was possible after the sign-in block was removed. This helped distinguish an account-level sign-in block from session revocation: re-enabling an account permits new authentication, while revoking sessions generally requires renewed authentication but is not equivalent to disabling the account.
+During verification, I could sign in again after removing the sign-in block. This helped distinguish an account-level sign-in block from session revocation: re-enabling an account permits new authentication, while revoking sessions generally requires renewed authentication but is not equivalent to disabling the account.
 
 ## Lessons Learned
 

@@ -1,12 +1,14 @@
 # Lab 02: Security Group Administration
 
+I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
+
 ## Objective
 
-Practice administering Microsoft Entra ID **Assigned** security groups for fictional departments. Verify group creation and membership, simulate an employee transfer between departments, and use group membership views and audit logs to confirm changes.
+I administered Microsoft Entra ID **Assigned** security groups for fictional departments. I verified group creation and membership, simulated an employee transfer between departments, and used group membership views and audit logs to confirm changes.
 
 ## Status
 
-**Completed — October 6, 2026.** The exercise included a department transfer and subsequent restoration of the test user's original department and group memberships.
+**Completed — October 6, 2026.** I completed a department transfer and then restored the test user's original department and group memberships.
 
 ## Environment
 
@@ -51,7 +53,7 @@ The table records the planned department mapping. The included screenshots docum
 
 ## Part 1: Create and Review Security Groups
 
-Created the required department security groups using **Security** group type and **Assigned** membership. Group names and descriptions identify their intended departments. Reviewed the resulting group listings.
+I created the required department security groups using **Security** group type and **Assigned** membership. Group names and descriptions identify their intended departments. I reviewed the resulting group listings.
 
 **Evidence:**
 
@@ -59,7 +61,7 @@ Created the required department security groups using **Security** group type an
 
 ## Part 2: Assign and Verify Group Members
 
-Added users to their intended department groups and checked membership using the group members view. The exercise also confirmed that membership could be reviewed from an individual user's profile.
+I added users to their intended department groups and checked membership using the group members view. The exercise also confirmed that membership could be reviewed from an individual user's profile.
 
 **Observed result:** The selected Procurement and Executive group membership lists displayed assigned users.
 
@@ -75,7 +77,7 @@ Added users to their intended department groups and checked membership using the
 
 ### 1. Review the original employee profile
 
-Reviewed Dick Grayson's existing department information and group membership before changing his department.
+I reviewed Dick Grayson's existing department information and group membership before changing his department.
 
 **Evidence:**
 
@@ -83,7 +85,7 @@ Reviewed Dick Grayson's existing department information and group membership bef
 
 ### 2. Update the department attribute
 
-Changed Dick's **Department** attribute to **Procurement**.
+I changed Dick's **Department** attribute to **Procurement**.
 
 **Observed result:** Updating the department attribute did **not** automatically update membership in these **Assigned** security groups. Manual group membership changes were required.
 
@@ -93,7 +95,7 @@ Changed Dick's **Department** attribute to **Procurement**.
 
 ### 3. Remove old membership and add new membership
 
-Removed Dick from `SG-IT-Employees`, added him to `SG-Procurement-Employees`, and reviewed the resulting group membership lists.
+I removed Dick from `SG-IT-Employees`, added him to `SG-Procurement-Employees`, and reviewed the resulting group membership lists.
 
 **Observed result:** Dick appeared in the Procurement group and no longer appeared in the IT group after the manual changes.
 
@@ -105,7 +107,7 @@ Removed Dick from `SG-IT-Employees`, added him to `SG-Procurement-Employees`, an
 
 ## Part 4: Review Group Administration Audit Logs
 
-Reviewed available Microsoft Entra ID audit events for group administration and membership changes.
+I reviewed available Microsoft Entra ID audit events for group administration and membership changes.
 
 **Observed result:** Audit records showed individual group changes. These records provide a way to investigate the operation performed and associated audit details.
 
@@ -131,19 +133,19 @@ Reviewed available Microsoft Entra ID audit events for group administration and 
 
 ## Issues and Troubleshooting
 
-No unexpected errors were reported during the exercise. The primary behavior investigated was that changing a user's **Department** attribute did not automatically change memberships in security groups configured with **Assigned** membership.
+I did not encounter unexpected errors during the exercise. The primary behavior investigated was that changing a user's **Department** attribute did not automatically change memberships in security groups configured with **Assigned** membership.
 
 This behavior required manual removal from the former department group and manual addition to the new department group.
 
 ## Cleanup
 
-After completing the transfer tests, restored Dick Grayson's original lab configuration:
+After completing the transfer tests, I restored Dick Grayson's original lab configuration:
 
 - **Department:** IT
 - **Member of:** `SG-IT-Employees`
 - **Not a member of:** `SG-Procurement-Employees`
 
-The original lab notes report that this cleanup was completed. A separate post-cleanup screenshot was not listed among the nine evidence images in this README.
+I recorded this cleanup as completed in my lab notes. A separate post-cleanup screenshot was not listed among the nine evidence images in this README.
 
 ## Lessons Learned
 

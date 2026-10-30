@@ -1,12 +1,14 @@
 # Lab 04: MFA Registration and Recovery
 
+I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
+
 ## Objective
 
-Practice Microsoft Authenticator enrollment and recovery for a standard Microsoft Entra ID user. Review how Security Defaults affects sign-in, inspect authentication details, require MFA re-registration to simulate replacing a phone, and validate that the user can authenticate again.
+I practiced Microsoft Authenticator enrollment and recovery using a standard Microsoft Entra ID account. I reviewed Security Defaults, inspected authentication details, required MFA re-registration to simulate replacing a phone, and verified that I could authenticate again as the test user.
 
 ## Status
 
-**Completed — October 6, 2026.** Registration, re-registration, and successful post-recovery MFA sign-in were reported and documented. The original notes do not identify the exact error code from the interim failed sign-in.
+**Completed — October 6, 2026.** I completed and documented registration, re-registration, and a successful post-recovery MFA sign-in. My original notes do not identify the exact error code from the interim failed sign-in.
 
 ## Environment
 
@@ -37,7 +39,7 @@ The scenario uses a personal lab account and a test device; it does not involve 
 
 ## Part 1: Review MFA Configuration
 
-Reviewed the tenant's MFA configuration and identified **Security Defaults** as the mechanism applicable to this exercise. The original notes state that the setting was already configured at tenant creation and no changes were needed.
+I reviewed the tenant's MFA configuration and identified **Security Defaults** as the mechanism applicable to this exercise. My original notes state that the setting was already configured at tenant creation and no changes were needed.
 
 **Evidence:**
 
@@ -47,9 +49,9 @@ Reviewed the tenant's MFA configuration and identified **Security Defaults** as 
 
 ## Part 2: Register Microsoft Authenticator
 
-Signed in using Selina's standard account and completed the registration process for Microsoft Authenticator. Confirmed that the authentication method appeared in the user's account information.
+I signed in using Selina's standard account and completed the registration process for Microsoft Authenticator. I confirmed that the authentication method appeared in the user's account information.
 
-**Observed result:** The method was successfully registered. The original notes also describe a password change during the initial account sign-in; this was an onboarding sign-in step, not proof that changing a password resets MFA.
+**Observed result:** I successfully registered the method. My original notes also describe a password change during the initial account sign-in; this was an onboarding sign-in step, not proof that changing a password resets MFA.
 
 **Evidence:**
 
@@ -59,9 +61,9 @@ For security, registration QR codes, setup secrets, recovery codes, and password
 
 ## Part 3: Review Sign-In Authentication Details
 
-Reviewed Selina's sign-in records and their authentication details to correlate the recorded event with the sign-in test.
+I reviewed Selina's sign-in records and their authentication details to correlate the recorded event with the sign-in test.
 
-**Observed result:** The original lab recorded a successful sign-in with authentication details available for review. The supplied notes do not specify the precise sequence of authentication methods or whether a particular event used a fresh Microsoft Authenticator challenge versus a previously satisfied MFA claim. Those distinctions should be taken from the screenshot or full log rather than assumed.
+**Observed result:** I recorded a successful sign-in with authentication details available for review. My notes do not specify the precise sequence of authentication methods or whether a particular event used a fresh Microsoft Authenticator challenge versus a previously satisfied MFA claim. Those distinctions should be taken from the screenshot or full log rather than assumed.
 
 **Evidence:**
 
@@ -69,16 +71,16 @@ Reviewed Selina's sign-in records and their authentication details to correlate 
 
 ## Part 4: Simulate Phone Replacement and Re-Registration
 
-From the administrator session, used **Require re-register multifactor authentication** for Selina's account to simulate the need to enroll a replacement device.
+From my administrator session, I used **Require re-register multifactor authentication** for Selina's account to simulate the need to enroll a replacement device.
 
 **Observed sequence:**
 
-1. The administrator initiated the MFA re-registration action.
-2. During the subsequent sign-in attempt, the user encountered an MFA-related error, as reported in the original lab's validation table.
-3. Selina completed Microsoft Authenticator setup on the intended mobile device.
+1. I initiated the MFA re-registration action from my administrator account.
+2. During the subsequent sign-in attempt as Selina, I encountered an MFA-related error, which I recorded in my validation table.
+3. I completed Microsoft Authenticator setup for Selina on the intended mobile device.
 4. The new registration succeeded.
 
-The reported interim error was not recorded with an error code or detailed failure reason. It should not be attributed to a particular Entra policy or service condition without the corresponding sign-in details.
+I did not record an error code or detailed failure reason for the interim error. It should not be attributed to a particular Entra policy or service condition without the corresponding sign-in details.
 
 **Evidence:**
 
@@ -88,9 +90,9 @@ The reported interim error was not recorded with an error code or detailed failu
 
 ## Part 5: Verify Recovery
 
-Repeated the sign-in test after completing re-registration.
+I repeated the sign-in test after completing re-registration.
 
-**Observed result:** Selina successfully signed in and completed the required MFA authentication. This confirms the recovery flow returned the lab account to a usable state.
+**Observed result:** I successfully signed in as Selina and completed the required MFA authentication. This confirms the recovery flow returned the lab account to a usable state.
 
 **Evidence:**
 
@@ -109,21 +111,21 @@ Repeated the sign-in test after completing re-registration.
 
 ## Issues and Troubleshooting
 
-**Observed issue:** An MFA-related error occurred on a sign-in attempt after the administrator required re-registration.
+**Observed issue:** I encountered an MFA-related error while signing in as Selina after requiring re-registration from my administrator account.
 
-**Action taken:** Completed Microsoft Authenticator registration again on the intended mobile device.
+**Action taken:** I completed Microsoft Authenticator registration again on the intended mobile device.
 
-**Result:** A later sign-in succeeded with MFA.
+**Result:** I signed in successfully with MFA on a later attempt.
 
-**Evidence limitation:** The original written results do not include the interim error code, exact on-screen wording, or a confirmed underlying cause. No specific failure diagnosis is claimed.
+**Evidence limitation:** My original written results do not include the interim error code, exact on-screen wording, or a confirmed underlying cause. No specific failure diagnosis is claimed.
 
-No other unexpected issues were documented.
+I did not document other unexpected issues.
 
 ## Cleanup
 
 Selina's lab account remained available after successful MFA recovery. The final documented outcome was a usable account with Microsoft Authenticator re-registered.
 
-The original cleanup checklist recommended confirming primary administrator access and ensuring no secrets were visible in screenshots; it does not independently record screenshots or separate results for those checks. No temporary administrator role assignment was described for the test user.
+My original cleanup checklist recommended confirming primary administrator access and ensuring no secrets were visible in screenshots; it does not independently record screenshots or separate results for those checks. No temporary administrator role assignment was described for the test user.
 
 ## Lessons Learned
 

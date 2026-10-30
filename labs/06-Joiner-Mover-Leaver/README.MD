@@ -1,12 +1,14 @@
 # Lab 06: Joiner–Mover–Leaver Identity Lifecycle Management
 
+I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
+
 ## Objective
 
-Practice managing an employee account through onboarding (Joiner), department transfer (Mover), periodic access review, and offboarding (Leaver). Verify group-based application access and document observed sign-in results without confusing application assignment failures with disabled-account enforcement.
+I practiced managing an employee account through onboarding (Joiner), department transfer (Mover), periodic access review, and offboarding (Leaver). I verified group-based application access and documented the observed sign-in results, distinguishing application assignment failures from disabled-account enforcement.
 
 ## Status
 
-Completed for the actions documented in screenshots; additional verification items are identified below. Evidence captured October 8, 2026.
+I completed the actions documented in the screenshots; I identify additional verification items below. Evidence captured October 8, 2026.
 
 ## Employee Scenario
 
@@ -43,7 +45,7 @@ Administrative environment used:
 
 ### 1. Record baseline application access
 
-Before provisioning, attempt access to the fictional IT and Procurement resources. Both pages returned **Unauthorized**. These screenshots document the starting behavior, not the underlying cause of denial.
+Before provisioning, I attempted access to the fictional IT and Procurement resources. Both pages returned **Unauthorized**. These screenshots document the starting behavior, not the underlying cause of denial.
 
 Evidence:
 
@@ -53,7 +55,7 @@ Evidence:
 
 ### 2. Verify the employee account
 
-Open Tim Drake in Entra ID. The screenshot shows the user principal name and account creation date. It does not independently show an account creation operation.
+I opened Tim Drake's account in Entra ID. The screenshot shows the user principal name and account creation date. It does not independently show an account creation operation.
 
 Evidence:
 
@@ -61,7 +63,7 @@ Evidence:
 
 ### 3. Assign and verify licensing
 
-Verify Tim's Microsoft Entra ID P2 license assignment.
+I verified Tim's Microsoft Entra ID P2 license assignment.
 
 Evidence:
 
@@ -69,7 +71,7 @@ Evidence:
 
 ### 4. Assign IT Reader group membership
 
-Verify Tim's direct membership in `SG-GothamApp-IT-Readers`.
+I verified Tim's direct membership in `SG-GothamApp-IT-Readers`.
 
 Evidence:
 
@@ -77,7 +79,7 @@ Evidence:
 
 ### 5. Verify application role and access
 
-Inspect the claims/identity page for the IT Reader role. Test the fictional IT inventory and Procurement endpoints from the employee session.
+I inspected the claims/identity page for the IT Reader role. Test the fictional IT inventory and Procurement endpoints from the employee session.
 
 **Observed:** The IT inventory returned **IT Reader access allowed**; Procurement returned **Forbidden**.
 
@@ -93,7 +95,7 @@ Evidence:
 
 ### 1. Update employee department attributes
 
-Verify Tim's job information now shows:
+I verified Tim's job information now shows:
 
 - **Department:** Procurement
 - **Company:** Gotham IT Labs
@@ -107,7 +109,7 @@ Evidence:
 
 ### 2. Change reader-group membership
 
-Verify Tim's membership in `SG-GothamApp-Procurement-Readers`.
+I verified Tim's membership in `SG-GothamApp-Procurement-Readers`.
 
 Evidence:
 
@@ -115,7 +117,7 @@ Evidence:
 
 ### 3. Verify new access and old access removal
 
-In a separate application session, test Procurement and IT resources. **Procurement Reader access was allowed**; IT returned **Forbidden**.
+In a separate application session, I tested Procurement and IT resources. **Procurement Reader access was allowed**; IT returned **Forbidden**.
 
 Evidence:
 
@@ -127,7 +129,7 @@ Evidence:
 
 ### 1. Configure the access review
 
-Inspect the review configuration for temporary Procurement application access.
+I inspected the review configuration for temporary Procurement application access.
 
 Evidence:
 
@@ -135,7 +137,7 @@ Evidence:
 
 ### 2. Record the reviewer decision
 
-The lab reviewer denied Tim Drake's continued temporary Procurement access with the reason: *Simulated temporary Procurement assignment ended; remove application access.*
+I denied Tim Drake's continued temporary Procurement access with the reason: *Simulated temporary Procurement assignment ended; remove application access.*
 
 Evidence:
 
@@ -143,7 +145,7 @@ Evidence:
 
 ### 3. Inspect review results and removal
 
-Examine the review/audit activity, verify that no direct members remain in the Procurement Readers group, and test the application again.
+I examined the review/audit activity, verified that no direct members remained in the Procurement Readers group, and tested the application again.
 
 The follow-up sign-in displays **AADSTS50105**: access requires assignment, and the user lacks a direct or group assignment. This demonstrates application-assignment denial, not disabled-account enforcement.
 
@@ -159,7 +161,7 @@ Evidence:
 
 ### 1. Block employee sign-in
 
-Disable Tim Drake's account and verify its **Disabled** status in Entra ID.
+I disabled Tim Drake's account and verified its **Disabled** status in Entra ID.
 
 Evidence:
 
@@ -167,7 +169,7 @@ Evidence:
 
 ### 2. Revoke active sessions
 
-Open the **Revoke sessions** control. The screenshot captures the confirmation dialog; it does not independently prove revocation completed.
+I opened the **Revoke sessions** control. The screenshot captures the confirmation dialog; it does not independently prove revocation completed.
 
 Evidence:
 
@@ -175,7 +177,7 @@ Evidence:
 
 ### 3. Test a fresh sign-in
 
-The employee sign-in page displays: **“Your account has been locked. Contact your support person to unlock it, then try again.”**
+When I attempted a fresh sign-in as Tim, the employee sign-in page displayed: **“Your account has been locked. Contact your support person to unlock it, then try again.”**
 
 Evidence:
 
@@ -185,13 +187,13 @@ The separately observed **AADSTS50105** application-assignment failure should no
 
 ## Cleanup
 
-Tim Drake's account was restored to the Procurement department and re-enabled for a future lab.
+I restored Tim Drake's account to the Procurement department and re-enabled it for a future lab.
 
 ## Issues and Troubleshooting
 
 **Symptom:** Extensive delays before login and audit events appeared in the tenant.
 
-**Investigation:** Refreshed the browser cache and started a new session.
+**Investigation:** I refreshed the browser cache and started a new session.
 
 **Result:** Neither action produced a noticeable improvement. The delay remained unresolved during this exercise.
 

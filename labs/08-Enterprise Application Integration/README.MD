@@ -1,16 +1,18 @@
 # Lab 08: Enterprise Application Integration and Troubleshooting
 
+I performed all administration and testing myself, using my administrator account for configuration and the relevant test accounts for sign-in and permission checks.
+
 ## Objective
 
-Practice integrating a locally hosted application with Microsoft Entra ID, configuring application roles and group-based enterprise application assignments, investigating administrator consent and application launch problems, and testing how removing a security group membership affects existing and fresh sessions.
+I integrated a locally hosted application with Microsoft Entra ID, configured application roles and group-based enterprise application assignments, investigated administrator consent and application launch problems, and tested how removing a security group membership affected existing and fresh sessions.
 
-Verify real results separately from configuration settings, observed behaviors, and troubleshooting hypotheses.
+I distinguish verified results from configuration settings, observed behaviors, and troubleshooting hypotheses.
 
 ## Status
 
 **Completed — hands-on authentication, authorization, visibility troubleshooting, and access-revocation tests.**
 
-Evidence captured October 8, 2026. Some outcomes were observed and reported during testing without separate screenshots, as indicated below.
+Evidence captured October 8, 2026. I observed some outcomes during testing without capturing separate screenshots, as indicated below.
 
 ## Application Scenario
 
@@ -49,7 +51,7 @@ Administrator role used: Global Administrator.
 
 ### 1. Verify application registration
 
-Inspect the existing Gotham Access Lab app registration and associated enterprise application. Reuse the existing application rather than creating a duplicate.
+I inspected the existing Gotham Access Lab app registration and associated enterprise application. I reused the existing application.
 
 Evidence:
 
@@ -57,7 +59,7 @@ Evidence:
 
 ### 2. Review application roles
 
-Verify the application defines the IT Reader and Procurement Reader roles.
+I verified the application defines the IT Reader and Procurement Reader roles.
 
 Evidence:
 
@@ -65,7 +67,7 @@ Evidence:
 
 ### 3. Review enterprise application assignments
 
-Verify the reader security groups are assigned to the intended application roles and that the enterprise application requires assignment.
+I verified the reader security groups are assigned to the intended application roles and that the enterprise application requires assignment.
 
 Evidence:
 
@@ -118,7 +120,7 @@ Gotham Access Lab did not initially appear in Tim's My Apps portal. The enterpri
 - **Assignment required?** Yes
 - **Visible to users?** No
 
-Changed **Visible to users?** to **Yes**. Tim subsequently confirmed the application tile appeared in My Apps. That outcome was observed but no separate My Apps tile screenshot was provided.
+I changed **Visible to users?** to **Yes**, then confirmed that the application tile appeared while signed in as Tim. I did not capture a separate My Apps tile screenshot.
 
 Evidence:
 
@@ -128,7 +130,7 @@ Evidence:
 
 Launching the newly visible tile resulted in **App launch failed**, with the application's ID and a correlation ID. This was distinct from authorization through the locally hosted Flask app.
 
-The lab's local application was not installed on the workstation at the time of this test. A replacement local Flask application was prepared and configured using the existing Entra registration, redirect URI, and a valid client secret.
+The lab's local application was not installed on the workstation at the time of this test. I used a replacement local Flask application configured with the existing Entra registration, redirect URI, and a valid client secret.
 
 Evidence:
 
@@ -136,7 +138,7 @@ Evidence:
 
 ### 4. Test the local application
 
-Started the local Flask application and successfully authenticated Tim Drake through Microsoft Entra ID.
+I started the local Flask application and successfully authenticated Tim Drake through Microsoft Entra ID.
 
 Observed role claims:
 - `Procurement.Reader`: Yes
@@ -146,19 +148,19 @@ Observed authorization:
 - Procurement: Allowed
 - IT Inventory: Denied
 
-These application outcomes were reported during the live exercise, **without separate screenshots provided in this evidence package**.
+I observed these application outcomes during the live exercise, **without capturing separate screenshots for this evidence package**.
 
 ## Part 4: Assignment Revocation and Session Behavior
 
 ### 1. Remove Procurement Readers membership
 
-Remove Tim Drake from `SG-GothamApp-Procurement-Readers`, leaving his account enabled. Tim had no IT Reader group membership.
+I removed Tim Drake from `SG-GothamApp-Procurement-Readers`, leaving his account enabled. Tim had no IT Reader group membership.
 
-The group membership removal was confirmed during the exercise, but no post-removal membership screenshot was supplied here.
+I confirmed the group membership removal during the exercise but did not capture a post-removal membership screenshot.
 
 ### 2. Compare existing and fresh sessions
 
-After group removal, Tim reported that the **already authenticated local Flask session still permitted Procurement access**. This observation is documented as a reported result, not independently illustrated by an included image.
+After group removal, I observed that the **already authenticated local Flask session still permitted Procurement access** while signed in as Tim. I did not capture a separate image of this result.
 
 After signing out and attempting a fresh sign-in, Microsoft Entra returned **AADSTS50105**, stating the user was not directly assigned and was no longer a member of an assigned group.
 
@@ -176,7 +178,7 @@ Evidence:
 
 ## Cleanup
 
-Tim Drake was intentionally **left removed** from the Procurement Readers group, and was not added to the IT Readers group. His user account remained enabled.
+I intentionally **left Tim Drake removed** from the Procurement Readers group and did not add him to the IT Readers group. His user account remained enabled.
 
 The enterprise application remained configured to require assignment, and visibility remained enabled. The four enforced Conditional Access policies and two Report-only policies from Lab 07 were not changed during this exercise.
 
