@@ -212,7 +212,7 @@ After enforcement, I signed in as the Lab Recovery Administrator using Windows H
 
 I verified Windows Hello passkey authentication and access to the Conditional Access page for the separate Lab Recovery Administrator. The October 30 administrator check also recorded its direct, permanently active Global Administrator assignment. These are the documented controls supporting recovery while the account is excluded from the enforced policy scopes and P2 Security Defaults is disabled.
 
-On October 31, I confirmed that my passwords are stored on an encrypted storage device. Whether that device stays disconnected when unused, physical separation, and recovery testing were not verified. The Diagnostic settings page required an Azure subscription, so I did not configure or test Azure Monitor recovery-account sign-in alerts. The user-at-risk email observed for Tim in Lab 17 is not evidence of recovery-administrator sign-in monitoring. I treat those missing verifications as remaining hardening work, rather than claiming controls that I did not demonstrate.
+On October 31, I confirmed that my passwords are stored on an encrypted storage device that I disconnect and store separately when it is not in use. Encrypted offline storage and physical separation are operator-confirmed; a recovery test using the stored credentials was not recorded. The Diagnostic settings page required an Azure subscription, so I did not configure or test Azure Monitor recovery-account sign-in alerts. The user-at-risk email observed for Tim in Lab 17 is not evidence of recovery-administrator sign-in monitoring. I treat those missing verifications as remaining hardening work, rather than claiming controls that I did not demonstrate.
 
 Microsoft's [emergency-access guidance](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access) recommends multiple emergency accounts, resilient phishing-resistant authentication, protected credential storage, and alerts on account use. My single-recovery-account training configuration is a limited lab design, not a complete production implementation of that guidance.
 
@@ -296,7 +296,7 @@ Evidence:
 
 - The administrator event recorded Previously satisfied authentication. Passkey registration and my observed sign-ins are separate from method-specific fresh-challenge log proof.
 
-- Encrypted-device password storage is operator-confirmed; offline separation/recovery testing and recovery sign-in alerting remain unverified; see [recovery-account hardening](#recovery-account-controls-and-remaining-hardening). Browser switching resolved enrollment without isolating the original failure cause.
+- Encrypted offline password storage and physical separation are operator-confirmed; recovery testing using the stored credentials and recovery sign-in alerting remain unverified; see [recovery-account hardening](#recovery-account-controls-and-remaining-hardening). Browser switching resolved enrollment without isolating the original failure cause.
 
 ## References
 
