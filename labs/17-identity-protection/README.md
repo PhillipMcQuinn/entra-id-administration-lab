@@ -2,7 +2,7 @@
 
 I marked a fictional test account as compromised, verified High user risk through Microsoft Graph, and completed a required password change during a new sign-in. Graph subsequently recorded the account as **remediated**, with **riskLevel: none** and **riskDetail: userPerformedSecuredPasswordChange**. A later fresh application sign-in succeeded and retained the expected Procurement Reader access.
 
-I also investigated delayed sign-in visibility and distinguished intermediate authentication events from completed sign-ins. **The captured sign-in records do not directly show CA-06 enforcing remediation:** every captured CA-06 result was Not Applied. I therefore document the verified risk transition and observed password-change experience without claiming a captured CA-06 enforcement success.
+I also investigated delayed log visibility. **Graph verified remediation; direct CA-06 enforcement was not correlated in the captured sign-in records.** The Limitations section summarizes that boundary.
 
 ## Environment and scope
 
@@ -74,7 +74,7 @@ These were policy-matching simulations, not actual risky authentication events. 
 
 My initial October 31 Tim sign-ins did not immediately appear in the administrator log views. I checked interactive and non-interactive tabs, the preview experience, date/user filters, and Tim's My Sign-ins page. Signing out of my administrator account and back in did not immediately change the results.
 
-I performed another sign-in at approximately 10:21 AM. Records later became visible during the investigation. I did not measure the exact ingestion delay or establish its cause, so I do not describe the gap as a confirmed service outage.
+I performed another sign-in at approximately 10:21 AM. Records later became visible during the investigation. I recorded the delayed visibility and eventual appearance of the events.
 
 The eventual **10:21:32 AM** record showed Interrupted: the cloud password succeeded, while the mobile app notification was still Authentication in progress. CA-01 showed Failure for that event, and CA-06 was Not Applied. This record captures an incomplete MFA stage, not proof that I denied the notification or that the overall browser flow permanently failed. It also preceded the later confirmed High user-risk state.
 
@@ -82,7 +82,7 @@ The eventual **10:21:32 AM** record showed Interrupted: the cloud password succe
 
 ## 5. Set and verify High user risk through Graph
 
-The empty Risky users list did not let me select Tim for the portal's Confirm compromised action. I used Graph Explorer instead, with the delegated `IdentityRiskyUser.ReadWrite.All` permission required for the action. I did not capture a separate permission-consent screenshot.
+The empty Risky users list did not let me select Tim for the portal's Confirm compromised action. I used Graph Explorer instead, with the delegated `IdentityRiskyUser.ReadWrite.All` permission required for the action.
 
 My first POST using the unqualified `/confirmCompromised` action returned 405 Method Not Allowed. The following qualified action returned **204 No Content** with Tim's object ID in the body:
 
@@ -99,7 +99,7 @@ Content-Type: application/json
 }
 ```
 
-I record the endpoint that actually succeeded; I did not isolate the cause of the earlier 405. Graph Explorer displayed a possible URL warning even though the request succeeded.
+The qualified endpoint succeeded despite Graph Explorer's possible-URL warning.
 
 ![Compromise action succeeded](screenshots/10-confirm-compromised-204.png)
 
@@ -123,7 +123,7 @@ I left the GET request body empty. During troubleshooting I initially put the GE
 
 ## 6. Complete remediation and verify access
 
-During a new sign-in as Tim, I was required to change the password. I also received a user-at-risk email. These are my observations; I did not capture separate images of the password-change prompt or email.
+During a new sign-in as Tim, I was required to change the password. I also received a user-at-risk email. These were my observations during the flow.
 
 After completing the change, I reached the application and verified the risk record again. Graph returned **200 OK** with:
 
@@ -139,7 +139,7 @@ I did not manually dismiss risk or perform an administrator password reset. The 
 
 ![Remediation verified through Graph](screenshots/12-remediated-json.png)
 
-I closed the test Incognito windows and signed in again with the new password. This time I observed MFA without another required password change. The application still displayed only Procurement.Reader and allowed Procurement access. I did not repeat the IT Inventory denial test in this lab.
+I closed the test Incognito windows and signed in again with the new password. This time I observed MFA without another required password change. The application still displayed only Procurement.Reader and allowed Procurement access.
 
 ![Fresh identity after remediation](screenshots/13-final-identity.png)
 
@@ -163,19 +163,25 @@ The 10:48 and 10:51 Authentication Details tabs showed Previously satisfied. The
 
 ![Previously satisfied MFA](screenshots/18-post-remediation-auth.png)
 
-**Evidence boundary:** I verified the enabled policy configuration, the High-risk API state, the required password-change experience, the API's secured-password-change remediation result, and subsequent application access. I did not find a distinct captured sign-in record directly attributing remediation to CA-06. I therefore do not claim a CA-06 Success log, independently correlated enforcement, or measured existing-session revocation. The baseline and post-remediation Not Applied results alone do not demonstrate that remediation failed.
-
 ## Cleanup and final state
 
 I restored CA-06 to **Report-only**; the saved summary shows modification at **11:10:17 AM MDT**. I retained the policy for future evaluation, left the other policies unchanged, and kept Tim's restored Procurement access and new password. Graph had already confirmed riskLevel none and riskState remediated.
 
 ![Final Report-only policy](screenshots/19-final-report-only.png)
 
-I stopped Flask, closed the test Incognito windows, and signed out of Graph Explorer. I did not verify removal of Graph Explorer's delegated consent. Security Defaults remained disabled; I did not perform the planned licensing-transition exercise in this lab.
+I stopped Flask, closed the test Incognito windows, and signed out of Graph Explorer. Security Defaults remained disabled.
 
 ## What I learned
 
 I practiced scoped risk-policy configuration, High-versus-Low What If comparisons, Graph action and request troubleshooting, controlled user-risk creation, and API verification of self-remediation. I also learned to separate user risk from sign-in risk, incomplete authentication stages from completed sign-ins, and a verified remediation result from direct evidence of a particular policy's enforcement.
+
+## Limitations
+
+- Graph proves the High-to-remediated transition and secured password change. Every captured CA-06 row was Not Applied; direct policy enforcement was not correlated.
+
+- Risk was administrator-generated, not an organic compromise or risky-sign-in detection. Password-change/email observations lack separate images, and captured logs show Previously satisfied MFA.
+
+- Log-ingestion delay and the initial 405 cause were not isolated. Graph consent removal, a repeated IT-denial test, existing-session revocation, and the licensing transition were not verified or tested.
 
 ## References
 
@@ -187,3 +193,5 @@ I practiced scoped risk-policy configuration, High-versus-Low What If comparison
 The [October 31 security review](../../docs/evidence-review.md#screenshot-rescreening) rescreened all 19 published Lab 17 images and found no public-IP or credential-pattern candidates. It also confirmed that the two omitted IP-bearing source images are not present as exact blobs in reachable Git history.
 
 I selected screenshots without passwords, tokens, application secrets, or public IP addresses. Identifiers shown belong to my lab identities and resources. The sign-in list images containing my public IP are omitted.
+
+[Return to portfolio](../../README.md)

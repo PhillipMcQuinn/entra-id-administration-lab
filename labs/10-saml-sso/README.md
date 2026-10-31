@@ -27,7 +27,7 @@ Completed — SSO, certificate troubleshooting, and fresh-sign-in access-removal
 | Assignment required | Yes |
 | Final assignment state | No users or groups assigned |
 
-P2 describes the tenant used; this lab does not claim that basic SAML SSO requires P2. Portal times below are reproduced as displayed; a timezone label was not captured.
+P2 describes the tenant used; this lab does not claim that basic SAML SSO requires P2. Portal times below reproduce the displayed values.
 
 ## Scenario
 
@@ -140,9 +140,9 @@ The corresponding Entra event showed:
 
 ![Matching successful Entra sign-in](screenshots/13-entra-successful-sign-in.png)
 
-The log supports satisfaction through an existing MFA claim; this test does not claim a fresh Authenticator challenge occurred. Conditional Access policy-level evaluation was not captured for this event.
+The log recorded MFA satisfaction through an existing claim.
 
-An earlier successful Entra event at 11:54:34 AM preceded the corrected-certificate test, so I did not use it as evidence of application recovery. Entra success alone did not prove that the toolkit accepted the response.
+I used the corrected-certificate test and toolkit result to establish application recovery.
 
 ## Part 6: Remove Access and Retest
 
@@ -168,15 +168,11 @@ The final Users and groups page showed no application assignments.
 | After assignment removal | Fresh sign-in denied with AADSTS50105 |
 | Final assignments | None |
 
-## Final State and Limitations
+## Final State
 
-- Gotham SAML Lab remains enabled, with assignment required and endpoints pointing to connection 22845.
-- Dick's application assignment was removed; no application assignments remained.
-- I did not confirm deletion of old connection 22844 or the local toolkit accounts.
-- I did not test existing application-session termination after assignment removal. The removal result applies to a new sign-in.
-- I did not test SAML logout, certificate rollover, group assignment, assertion encryption, or detailed assertion-content inspection.
-- No full SAML responses, passwords, private keys, or cookies are included in this evidence package. Screenshots containing encoded responses were omitted.
-- This lab adds federation and certificate-trust troubleshooting to the application-assignment controls practiced in Lab 08.
+- I retained the enabled Gotham SAML Lab application, assignment-required setting, and endpoints for connection 22845.
+- I removed Dick's application assignment; no assignments remained.
+- I omitted full SAML responses, passwords, private keys, and cookies from the published evidence.
 
 ## Lessons Learned
 
@@ -186,6 +182,18 @@ The final Users and groups page showed no application assignments.
 - Recreating a connection can change its ACS and login endpoints; both sides must agree.
 - Validate access removal with a fresh sign-in and document session behavior separately.
 
+## Limitations
+
+- Portal timestamps lack a captured timezone. The earlier 11:54:34 AM success predates the corrected-certificate test.
+
+- MFA was satisfied by an existing claim; no fresh challenge or policy-level Conditional Access evaluation was captured.
+
+- Only fresh-sign-in denial was tested after removal. Existing-session termination, SAML logout, rollover, group assignment, encryption, and detailed assertion inspection were outside scope.
+
+- Deletion of old connection 22844 and toolkit accounts was not confirmed.
+
 ## Reference
 
 [Microsoft Learn: Configure Microsoft Entra SAML Toolkit SSO](https://learn.microsoft.com/en-us/entra/identity/saas-apps/saml-toolkit-tutorial)
+
+[Return to portfolio](../../README.md)

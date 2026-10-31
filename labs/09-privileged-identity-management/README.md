@@ -82,7 +82,7 @@ I submitted an activation request as Pim-Test for the password-reset exercise. T
 
 ![Helpdesk Administrator activated](screenshots/04-helpdesk-role-activated.png)
 
-**MFA observation:** I did not receive a fresh MFA prompt during this activation. Microsoft Authenticator had already been registered during account setup. I confirmed that MFA was configured as an activation requirement, but my captured evidence does not establish whether an existing MFA claim satisfied it. Registration alone is not evidence of an MFA challenge at activation.
+**MFA observation:** MFA was configured as an activation requirement; I observed no fresh prompt during the first activation.
 
 ## Part 4: Validate Access and Manual Deactivation
 
@@ -173,15 +173,13 @@ I then retried Dick Grayson's password reset as Pim-Test. Entra denied the opera
 | Automatic expiry | Successful system-initiated role-removal audit event |
 | After automatic expiry | Password reset blocked |
 | Audit correlation | Approval, second activation, and expiry shared a correlation ID |
-| Fresh MFA challenge on first activation | No new prompt observed; existing-claim explanation not independently verified |
+| Fresh MFA challenge on first activation | No new prompt observed |
 
-## Troubleshooting and Evidence Limitations
+## Troubleshooting
 
-- **Visible Reset password button:** The control was available before activation, but the operation was blocked. Permission testing relied on the operation's result rather than button appearance.
-- **Audit-history account context:** The main administrator's My audit history initially showed assignment and settings changes. Switching to Pim-Test's history exposed the activation event. The observed issue was resolved by checking the relevant account's history; a log-ingestion delay was not established.
-- **MFA prompt behavior:** A new MFA prompt was not observed during the first activation. Microsoft documents that prior MFA or strong authentication in the session can satisfy the requirement. That is a possible explanation here, not a verified finding from sign-in Authentication Details.
-- **Pending banner after activation:** The active-role screenshot retained a pending banner. Approval and activation audit details were used to verify the request outcome.
-- **Test scope:** The lab tested password resets against one fictional user. It did not test every Helpdesk Administrator permission, password resets against privileged administrators, approval rejection, or fresh authentication enforcement through Conditional Access authentication context.
+- **Visible Reset password button:** I tested the operation and received a permission denial before activation.
+- **Audit-history context:** Switching from the main administrator's history to Pim-Test's history exposed the activation event.
+- **Pending banner after activation:** I used the approval and completed-activation audit events to establish request status.
 
 ## Cleanup
 
@@ -191,7 +189,7 @@ I completed the following cleanup:
 - I confirmed no active administrator roles or pending requests remained for Pim-Test.
 - I signed in as Dick Grayson with the latest temporary password and completed the password change to leave his account usable.
 
-**Retention rationale:** I retained the dedicated PIM test account and its trial P2 license for optional repeat testing, rather than using my normal administrator as the test identity. Its eligible assignment was removed and no active administrator roles or pending requests remained at the documented cleanup. I did not re-query the live directory or license allocation during this repository review. I will remove the account or reclaim its license when repeat testing is finished; neither deletion nor license removal is a completed result.
+**Retention rationale:** I retained the dedicated PIM test account and its trial P2 license for optional repeat testing, rather than using my normal administrator as the test identity. Its eligible assignment was removed and no active administrator roles or pending requests remained at the documented cleanup. I will remove the account or reclaim its license when repeat testing is finished; neither deletion nor license removal is a completed result.
 
 I did not delete the account as part of the confirmed cleanup. The final Helpdesk Administrator activation configuration required MFA, justification, and approval with a 1-hour maximum; I did not report restoring the earlier role settings.
 
@@ -203,9 +201,18 @@ I did not delete the account as part of the confirmed cleanup. The final Helpdes
 - **Audit evidence connects the access lifecycle.** Actor, role, result, justification, expiry, and correlation ID linked the approved activation to its removal.
 - **MFA configuration and observed prompts must be documented separately.** Requiring MFA does not by itself demonstrate a new challenge at each activation.
 
+## Limitations
+
+- No fresh MFA prompt was observed during the first activation; existing-claim satisfaction was not established.
+
+- Permission tests covered one standard user. Privileged targets, approval rejection, every role permission, and authentication-context enforcement were outside scope.
+
+- The audit timestamp comparison is not a permission-removal latency guarantee. Final settings restoration and a fresh directory/license inventory were not recorded.
+
 ## References
 
 - [Configure Microsoft Entra role settings in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)
 - [Assign Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-add-role-to-user)
 - [Activate Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role)
 
+[Return to portfolio](../../README.md)

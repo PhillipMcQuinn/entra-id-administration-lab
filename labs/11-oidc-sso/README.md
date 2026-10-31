@@ -51,7 +51,7 @@ The root page is a dedicated MSAL redirect bridge; the interactive lab page is `
 
 The browser application uses MSAL's public-client popup APIs without a client secret. It displays selected ID-token claims and masks `sub`, `oid`, and `nonce`. It does not display raw tokens.
 
-The five PASS checks compare `aud` with the client ID, `iss` with the tenant v2 issuer, `tid` with the configured tenant, `exp` with the current clock, and confirm that `sub` is present. These are **teaching comparisons, not independent cryptographic signature validation**. I found no application roles in the inspected token and did not test custom app-role authorization in this lab. The application makes no Microsoft Graph API call.
+The five PASS checks compare `aud` with the client ID, `iss` with the tenant v2 issuer, `tid` with the configured tenant, `exp` with the current clock, and confirm that `sub` is present. These are **teaching comparisons, not independent cryptographic signature validation**. I found no application roles in the inspected token. The application makes no Microsoft Graph API call.
 
 ![Successful sign-in and claim comparisons](screenshots/07-sign-in-claims.png)
 
@@ -59,7 +59,7 @@ The five PASS checks compare `aud` with the client ID, `iss` with the tenant v2 
 
 ### Assignment and consent are separate controls
 
-My initial sign-in attempt as the unassigned Dick Grayson account failed with AADSTS50105. After I assigned the account, the next attempt reached an administrator-approval requirement. I reviewed the API permissions, which initially showed delegated `User.Read`, then configured the three OIDC scopes and granted consent for my Gotham IAM Lab tenant. I signed in successfully after this change. This sequence does not establish that `User.Read` inherently requires administrator consent in every tenant.
+My initial sign-in attempt as the unassigned Dick Grayson account failed with AADSTS50105. After I assigned the account, the next attempt reached an administrator-approval requirement. I reviewed the API permissions, which initially showed delegated `User.Read`, then configured the three OIDC scopes and granted consent for my Gotham IAM Lab tenant. I signed in successfully after this change.
 
 ![Initial assignment denial](screenshots/04-initial-unassigned-denial.png)
 ![Administrator approval required](screenshots/05-admin-approval-required.png)
@@ -86,7 +86,7 @@ After the app update, I completed sign-in successfully. I retested logout and en
 
 Clearing this application's MSAL cache does not itself request server logout. During my cache test, I signed in again without a password or MFA prompt. After Entra logout through the corrected app, I entered my password and completed MFA.
 
-**Evidence distinction:** the matching successful Entra event at **20:19:32 UTC** records MFA as **Previously satisfied / MFA requirement satisfied by claim in the token**. Its correlation ID matches the application's Latest operation: `01a18950-cc3f-71a4-9332-b70c8e9009ce`. I observed the password and MFA prompts directly, but this log does not independently establish a fresh MFA challenge for that event. The earlier 20:04:41 UTC event also recorded previously satisfied factors.
+**Evidence distinction:** the matching successful Entra event at **20:19:32 UTC** records MFA as **Previously satisfied / MFA requirement satisfied by claim in the token**. Its correlation ID matches the application's Latest operation: `01a18950-cc3f-71a4-9332-b70c8e9009ce`. The earlier 20:04:41 UTC event also recorded previously satisfied factors; see Limitations for the distinction from my observed prompts.
 
 ![Local cache cleared](screenshots/10-app-cache-cleared.png)
 ![Successful sign-in after cache clearing](screenshots/11-cache-sign-in.png)
@@ -96,7 +96,7 @@ Clearing this application's MSAL cache does not itself request server logout. Du
 
 ## Protocol Evidence
 
-I inspected the Microsoft sign-in popup's Network panel and reloaded the account-picker page to capture the authorization request. Its parameters show the configured client, tenant endpoint, root redirect, OIDC scopes, `response_type=code`, a PKCE challenge, and `S256`. This confirms that the captured authorization request requested Authorization Code with PKCE. I did not independently capture the token exchange or verifier comparison.
+I inspected the Microsoft sign-in popup's Network panel and reloaded the account-picker page to capture the authorization request. Its parameters show the configured client, tenant endpoint, root redirect, OIDC scopes, `response_type=code`, a PKCE challenge, and `S256`. This confirms that the captured authorization request requested Authorization Code with PKCE.
 
 ![Authorization request with PKCE](screenshots/18-pkce-authorization-request.png)
 
@@ -111,7 +111,7 @@ I captured the assigned-user list, removed Dick's assignment, cleared the app ca
 ![New sign-in denied after removal](screenshots/21-post-removal-denial.png)
 ![Final properties](screenshots/22-final-properties.png)
 
-This validates denial of a **new authorization attempt** after removal. I did not test immediate revocation of previously issued tokens or termination of an existing application session. After testing, I closed the popup and stopped the local server. I retained the app registration and administrator consent.
+The **new authorization attempt** was denied. I then closed the popup and stopped the local server, retaining the app registration and administrator consent.
 
 ## Reproduce the Local Application
 
@@ -140,6 +140,16 @@ See [application instructions](app/README.md) for setup and diagnostic details. 
 - Correlate application diagnostics with Entra logs and document evidence limits.
 - Validate new-sign-in denial after access removal.
 
+## Limitations
+
+- The five claim checks are teaching comparisons, not independent signature validation; custom app-role authorization was outside scope.
+
+- The protocol capture covers the authorization request, not the token exchange or PKCE verifier comparison.
+
+- I observed prompts, while the correlated log recorded Previously satisfied MFA. The consent sequence does not establish a universal User.Read admin-consent requirement.
+
+- Removal testing covered a new authorization attempt, not immediate token revocation or existing-session termination.
+
 ## References
 
 - [MSAL Browser sign-in and popup recovery](https://learn.microsoft.com/en-us/entra/msal/javascript/browser/login-user)
@@ -148,4 +158,3 @@ See [application instructions](app/README.md) for setup and diagnostic details. 
 - [MSAL resources and scopes](https://learn.microsoft.com/en-us/entra/msal/javascript/browser/resources-and-scopes)
 
 [Return to portfolio](../../README.md)
-

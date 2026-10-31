@@ -44,7 +44,7 @@ These groups organize users for potential access assignments. **Group membership
 | Dick Grayson | `SG-IT-Employees` |
 | Selina Kyle | `SG-Procurement-Employees` |
 
-The table records the planned department mapping. The included screenshots document selected group membership views; they are not presented as independent screenshots of every row above.
+The table records the planned department mapping; the screenshots show selected memberships.
 
 ## Prerequisites
 
@@ -134,7 +134,7 @@ I reviewed available Microsoft Entra ID audit events for group administration an
 | Review audit events | Group administration and membership events were available for review | Passed |
 | Restore initial configuration | Dick's department and group memberships were returned to the original IT configuration | Reported complete |
 
-**Scope:** This lab verified group membership administration. It did **not** test downstream application permissions, dynamic group membership, or automatic HR-driven provisioning.
+**Scope:** Assigned group membership administration.
 
 ## Issues and Troubleshooting
 
@@ -152,7 +152,7 @@ After completing the transfer tests, I restored Dick Grayson's original lab conf
 
 - **Not a member of:** `SG-Procurement-Employees`
 
-I recorded this cleanup as completed in my lab notes. A separate post-cleanup screenshot was not listed among the nine evidence images in this README.
+I recorded the restoration as completed in my lab notes.
 
 **Environment note:** Labs 01–05 use the original `<free-lab-tenant>.onmicrosoft.com` Entra ID Free tenant. Labs 06–08 use the separate GothamLabz Entra ID P2 tenant.
 
@@ -166,7 +166,7 @@ I recorded this cleanup as completed in my lab notes. A separate post-cleanup sc
 
 - **Audit investigation:** I reviewed group administration and membership-change events.
 
-- **Configuration restoration:** I restored the original IT department and memberships after testing; the cleanup is recorded in my notes without a separate screenshot.
+- **Configuration restoration:** I restored the original IT department and memberships after testing.
 
 ## Lessons Learned
 
@@ -179,6 +179,12 @@ I recorded this cleanup as completed in my lab notes. A separate post-cleanup sc
 - **Audit logs support accountability and troubleshooting.** They can record changes, their status, timestamps, and actor information, depending on the audit event.
 
 - **Group membership and application authorization are not synonymous.** This exercise establishes directory group administration; separate resource tests are needed to demonstrate application access.
+
+## Limitations
+
+- The tests cover Assigned membership, not dynamic groups, HR provisioning, or downstream application authorization.
+
+- Screenshots show selected department mappings; restoration to IT is recorded in my notes without a separate cleanup image.
 
 ## References
 

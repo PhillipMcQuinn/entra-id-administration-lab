@@ -10,7 +10,7 @@
 
 I used PIM for Groups to grant temporary Procurement Reader application access through an approval-controlled group membership. Tim could not sign in before activation or while approval was pending. After approval, his active group membership delivered only `Procurement.Reader`: Procurement allowed access and IT Inventory remained forbidden. When the one-hour activation expired, his membership disappeared and a fresh application sign-in failed with `AADSTS50105`.
 
-I performed all administration, requesting, approving, and testing myself, using my administrator account and Tim's fictional account in separate browser sessions. This demonstrated the approval workflow with separate identities; it did not demonstrate review by an independent person.
+I performed all administration, requesting, approving, and testing myself, using my administrator account and Tim's fictional account in separate browser sessions. I used separate requester and approver identities for the workflow.
 
 ## Scenario and Prerequisites
 
@@ -70,7 +70,7 @@ At **8:11:55 PM**, I requested a one-hour Member activation as Tim with the reas
 
 > Temporary Procurement Reader access to review procurement records for Lab 16.
 
-The request appeared as **Member add — Pending approval**. I observed **no fresh MFA prompt** when submitting the request, despite Azure MFA being configured as an activation requirement. I did not collect a matching authentication log to establish why no new challenge appeared.
+The request appeared as **Member add — Pending approval**. I observed **no fresh MFA prompt** when submitting the request, despite Azure MFA being configured as an activation requirement. The request continued to the approval gate.
 
 ![Member activation request pending approval](screenshots/08-request-pending-approval.png)
 
@@ -104,7 +104,7 @@ I signed in to the application in a fresh Incognito session. The identity page d
 
 ## 6. I tested automatic expiry
 
-I waited beyond the scheduled **9:18:53 PM** end time without manually deactivating or removing Tim's active membership. When I loaded his Groups page after expiry, the PIM membership was already absent; only `SG-CA-Lab-Users` remained. I did not measure the exact removal latency.
+I waited beyond the scheduled **9:18:53 PM** end time without manually deactivating or removing Tim's active membership. When I loaded his Groups page after expiry, the PIM membership was already absent; only `SG-CA-Lab-Users` remained.
 
 ![PIM group absent when the page loaded after expiry](screenshots/16-expired-group-membership.png)
 
@@ -112,7 +112,7 @@ I also checked PIM Active assignments. Tim was no longer listed, while my perman
 
 ![Active assignments retain only the Owner after Tim expires](screenshots/17-no-active-tim-assignment.png)
 
-A fresh application sign-in then failed with **AADSTS50105**. This verified denial of a new sign-in after expiry; I did not test termination of the application session established while membership was active.
+A fresh application sign-in then failed with **AADSTS50105**. This verified denial of a new sign-in after expiry.
 
 ![Fresh sign-in denied after automatic membership expiry](screenshots/18-post-expiry-sign-in-denied.png)
 
@@ -137,17 +137,21 @@ I restored Tim's Department to **Procurement** and confirmed that `DG-GothamApp-
 
 ![Final dynamic Procurement membership restored with CA group retained](screenshots/21-dynamic-membership-restored.png)
 
-I stopped Flask and closed the test Incognito windows. I retained the PIM group, its saved settings, its Procurement Reader application assignment, and my permanent Owner assignment. I retained the earlier assigned and dynamic reader groups and application assignments. I did not repeat application authorization tests after restoring Department during cleanup.
+I stopped Flask and closed the test Incognito windows. I retained the PIM group, its saved settings, its Procurement Reader application assignment, and my permanent Owner assignment. I retained the earlier assigned and dynamic reader groups and application assignments.
 
-## Evidence Limits and Lessons
-
-- I verified saved policy, eligibility, pending approval, active membership, application-role display, allowed/forbidden pages, automatic expiry, and fresh-sign-in denial. I did not collect correlated PIM audit exports or Entra sign-in logs for these events.
-- Azure MFA was configured, but no fresh prompt was observed. I did not independently verify existing-claim satisfaction or infer that the MFA requirement failed.
-- The department membership change was observed within one minute. Post-expiry membership was already absent when the page loaded. Neither observation establishes exact backend processing times or a service guarantee.
-- I did not test rejection, manual deactivation, extension, previously issued token revocation, or immediate termination of an existing Flask session in this lab.
-- I kept local secrets and `.env` configuration private. The displayed claims were application output, not an independent raw-token signature-validation exercise.
+## Lessons Learned
 
 I learned to separate **eligibility**, **approved active membership**, **application-role assignment**, and **the claims held by a session**. Isolating the existing department-based access path made it possible to show that PIM activation granted temporary access and that expiry removed that access path.
+
+## Limitations
+
+- MFA was configured, but no fresh prompt or matching authentication log established how it was satisfied. One operator used both accounts.
+
+- Observed membership timing is approximate; exact expiry-removal latency was not measured.
+
+- No correlated PIM audit/sign-in export or independent raw-token validation was collected. Rejection, manual deactivation, extensions, existing-session termination, and token revocation were outside scope.
+
+- Cleanup membership was verified; application authorization was not retested after Department restoration.
 
 ## References
 

@@ -57,7 +57,7 @@ I captured all six API outcomes below during the live Entra-backed exercise. The
 
 ## Establish Read-Only Access
 
-I began with administrator consent for **Inventory.Read only** on the client. I acquired that scope through the application while signed in as Dick Grayson and reported `fromCache: false`. That value describes MSAL token acquisition; it does not prove a fresh password or MFA challenge.
+I began with administrator consent for **Inventory.Read only** on the client. I acquired that scope through the application while signed in as Dick Grayson and reported `fromCache: false`. That value describes MSAL token acquisition.
 
 The read endpoint returned HTTP 200 with token validation passed. Server-verified claims included version 2.0, the tenant v2 issuer, the API's client ID as `aud`, the SPA's client ID as `azp`, the expected tenant, and `scp: Inventory.Read`. The returned fictional inventory started at quantity 10 with zero updates.
 
@@ -125,16 +125,13 @@ The write action increments only fictional in-memory data. Restarting the server
 | Read-only write 403 | `5f84c217-e7f7-46a0-ae8c-2c68a25c62e3` |
 | Authorized write 200 | `2dec56f6-bfd2-4906-8199-00515d8f8b5b` |
 
-These IDs correlate this application's API responses with its test history. They are not Entra sign-in correlation IDs. The initial token-acquisition operation had MSAL correlation ID `01a189c0-a636-7de9-93b2-f70eabfb66ba`; I did not collect a matching Entra sign-in-log event in Lab 12.
+These IDs correlate this application's API responses with its test history. They are not Entra sign-in correlation IDs. The initial token-acquisition operation had MSAL correlation ID `01a189c0-a636-7de9-93b2-f70eabfb66ba`;
 
-## Evidence Limits and Final State
+## Validation and Final State
 
-- The six HTTP outcomes are live results backed by the screenshots above.
-- Twenty offline regression tests passed using disposable fixture RSA keys. They cover validation and authorization branches, including expired tokens and wrong issuer/tenant/client. These are implementation checks, separate from live tenant evidence.
-- The MSAL implementation uses Authorization Code with PKCE. I did not collect a separate Lab 12 network capture of the challenge or token exchange; the Lab 11 protocol capture is not presented as Lab 12 evidence.
-- I did not verify a fresh MFA challenge, live expired-token rejection, consent revocation, or immediate invalidation of previously issued tokens in Lab 12.
-- I signed out through Entra and stopped the local server. I did not collect a separate logout screenshot or sign-in-after-logout test for this lab.
-- I retained both app registrations and the consent configuration for reproducibility. I did not report registration deletion or permission cleanup.
+I captured the six live HTTP results above and passed 20 offline regression tests using disposable RSA fixture keys. The offline tests covered additional validation branches, including expiry and wrong issuer, tenant, and client.
+
+I signed out through Entra and stopped the local server. I retained both app registrations and their consent configuration for reproducibility.
 
 ## Run the Application
 
@@ -166,6 +163,14 @@ See [app instructions](app/README.md) for setup, the consent sequence, security 
 - Verify access changes using a newly acquired token and compare before/after API results.
 - Document evidence boundaries, request identifiers, cleanup, and retained configuration.
 
+## Limitations
+
+- The six HTTP outcomes are live; the 20 fixture-key tests, including expiry checks, are offline implementation checks.
+
+- There was no separate Lab 12 protocol capture, fresh-MFA verification, live expired-token test, consent-revocation test, or immediate token-invalidation test.
+
+- API request IDs are local identifiers. No matching Entra sign-in event or separate logout/re-sign-in evidence was collected. Registrations and consent were retained.
+
 ## References
 
 - [Configure access to web APIs](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis)
@@ -174,4 +179,3 @@ See [app instructions](app/README.md) for setup, the consent sequence, security 
 - [PyJWT usage](https://pyjwt.readthedocs.io/en/stable/usage.html)
 
 [Return to portfolio](../../README.md)
-

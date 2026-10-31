@@ -49,7 +49,7 @@ For the negative test, I entered one deliberately incorrect code. Entra displaye
 
 I reviewed Selina's interactive sign-in logs. The captured My Apps event at **09:12:32 local time** showed **Success**, and the list also included successful Azure Portal and Microsoft Account Controls V2 events. The detail pages recorded **MFA requirement satisfied by claim in the token**; the captured Authentication Details row showed **Previously satisfied**.
 
-These logs establish successful sign-in records and existing-claim satisfaction for the captured events. They do not independently identify a fresh software OATH challenge. I observed successful access after entering TOTP codes during testing, but I did not obtain a log entry explicitly showing the software OATH method for those challenges.
+The captured events recorded successful sign-ins with existing-claim MFA satisfaction. I separately observed successful access after entering TOTP codes; the method-specific evidence boundary is summarized in Limitations.
 
 ![Successful interactive sign-in records](screenshots/07-sign-in-log-list.png)
 ![My Apps success with MFA satisfied by an existing claim](screenshots/08-myapps-sign-in-details.png)
@@ -69,7 +69,7 @@ I temporarily retained the old TOTP entry on my phone. In a new sign-in attempt,
 
 I returned to Selina's Security info and registered a replacement TOTP method through the different-authenticator-app flow. The resulting list again showed both the separate **Authenticator app (TOTP)** and the existing **Microsoft Authenticator push** method.
 
-I tested the replacement in a new sign-in session using **Use a verification code**. The new TOTP code worked, and I successfully logged in. This final sign-in outcome is my recorded observation; I did not capture a separate success page or fresh OATH-specific Authentication Details row.
+I tested the replacement in a new sign-in session using **Use a verification code**. The new TOTP code worked, and I successfully logged in. This final sign-in outcome was my recorded observation.
 
 ![Replacement TOTP registered alongside preserved push](screenshots/13-replacement-totp-registered.png)
 
@@ -78,7 +78,7 @@ I tested the replacement in a new sign-in session using **Use a verification cod
 | Test | Outcome | Evidence |
 |---|---|---|
 | Register separate software OATH method | Completed; TOTP and push listed separately | User and administrator screenshots |
-| Sign in with original valid TOTP | My Apps access succeeded | My observed result; captured logs do not independently identify the code challenge |
+| Sign in with original valid TOTP | My Apps access succeeded | My observed result |
 | Enter incorrect code | Rejected | Error screenshot |
 | Retry with correct code | Sign-in succeeded | My observed result |
 | Delete Software OATH registration | Removed; push retained | Administrator screenshots |
@@ -86,14 +86,11 @@ I tested the replacement in a new sign-in session using **Use a verification cod
 | Register replacement TOTP | Completed; push retained | Final Security info screenshot |
 | Sign in with replacement code | Successful | My observed result |
 
-## Final State and Evidence Limits
+## Final State
 
-- I retained the replacement TOTP registration and Microsoft Authenticator push. The Software OATH policy remained enabled for All users with registration Optional.
-- My last confirmed test was successful sign-in using the replacement code. Removal of the old phone entry and final test-session sign-out were recommended but are not recorded as completed.
-- I did not capture the replacement registration ID or registration/deletion audit events.
-- This exercise tested registration removal against a subsequent code challenge. I did not test revocation of existing application sessions or previously issued access tokens.
-- Both methods used the same phone. This demonstrates recovery while another registered method remains available; it does not demonstrate recovery after losing that phone or every authentication method.
-- I excluded QR codes, setup secrets, passwords, and verification-code values from the published evidence.
+I retained the replacement TOTP registration and Microsoft Authenticator push on the same phone. The Software OATH policy remained enabled for All users with registration Optional. My last confirmed test was a successful sign-in using the replacement code.
+
+I excluded QR codes, setup secrets, passwords, and verification-code values from the published evidence.
 
 ## Skills Practiced
 
@@ -103,6 +100,14 @@ I tested the replacement in a new sign-in session using **Use a verification cod
 - Remove a specific authentication method while preserving another usable method.
 - Register and validate a replacement method.
 - Separate observed sign-in behavior from what the captured logs independently prove.
+
+## Limitations
+
+- The captured logs show Previously satisfied MFA, not an OATH-specific fresh challenge. Replacement-code success was observed without a separate success image.
+
+- Both methods used one phone; complete device loss was not tested. Old phone-entry deletion and final sign-out remain unconfirmed.
+
+- Replacement registration ID, registration/deletion audit events, and existing-session/token revocation were not captured or tested.
 
 ## References
 

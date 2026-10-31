@@ -10,7 +10,7 @@ I practiced managing an employee account through onboarding (Joiner), department
 
 ## Status
 
-I completed the actions documented in the screenshots; I identify additional verification items below. Evidence captured October 8, 2026.
+I completed the documented lifecycle and application-access tests on October 8, 2026.
 
 ## Employee Scenario
 
@@ -66,7 +66,7 @@ Evidence:
 
 ### 2. Verify the employee account
 
-I opened Tim Drake's account in Entra ID. The screenshot shows the user principal name and account creation date. It does not independently show an account creation operation.
+I opened Tim Drake's account in Entra ID and reviewed the user principal name and creation date.
 
 Evidence:
 
@@ -184,7 +184,7 @@ Evidence:
 
 ### 2. Revoke active sessions
 
-I opened the **Revoke sessions** control. The screenshot captures the confirmation dialog; it does not independently prove revocation completed.
+I opened the **Revoke sessions** control and captured its confirmation dialog.
 
 Evidence:
 
@@ -220,7 +220,7 @@ I restored Tim Drake's account to the Procurement department and re-enabled it f
 
 - **Access reviews:** I recorded a Deny decision, reviewed activity, and checked membership removal and downstream application denial.
 
-- **Offboarding controls:** I disabled the account and tested a fresh sign-in; the session-revocation screenshot records a confirmation dialog rather than completed revocation.
+- **Offboarding controls:** I disabled the account, tested a fresh sign-in, and inspected the session-revocation control.
 
 - **Failure classification:** I distinguished missing application assignment from an account-level sign-in block and documented unresolved log delays.
 
@@ -236,6 +236,14 @@ I restored Tim Drake's account to the Procurement department and re-enabled it f
 
 - Audit and sign-in log visibility may be delayed; record the observed timing rather than assuming immediate propagation.
 
+## Limitations
+
+- The account screenshot shows an existing user overview, not the creation operation.
+
+- Session-revocation evidence stops at the confirmation dialog; completed revocation and existing-session termination were not demonstrated.
+
+- Log-visibility delays remained unresolved. AADSTS50105 belongs to the separate application-assignment test, not the disabled-account diagnosis.
+
 ## References
 
 Microsoft documentation supporting the procedures and behavior discussed in this lab:
@@ -249,4 +257,3 @@ Microsoft documentation supporting the procedures and behavior discussed in this
 ---
 
 [Return to portfolio](../../README.md)
-

@@ -8,7 +8,7 @@ I performed all administration and testing myself, using my administrator accoun
 
 I configured Microsoft Entra Conditional Access policies for user MFA, administrator phishing-resistant MFA, legacy authentication blocking, and risk-based access. I checked group and role targeting with What If simulations, transitioned from Security Defaults to enforced policies, and validated selected results in actual sign-in logs.
 
-I distinguish policy configuration, simulated evaluation, and real enforcement. I did not observe an actual blocked legacy sign-in or risky sign-in, so I do not claim those as enforcement successes.
+I documented configured policies, simulated evaluations, and actual enforcement separately.
 
 ## Status
 
@@ -59,7 +59,7 @@ Administrative environment used:
 
 ### 1. Verify regular-user group membership
 
-I confirmed seven direct members of `SG-CA-Lab-Users`. Membership establishes policy targeting; it does not by itself prove successful MFA or application access.
+I confirmed seven direct members of `SG-CA-Lab-Users`. The membership established the regular-user policy scope.
 
 Evidence:
 
@@ -83,7 +83,7 @@ Evidence:
 
 ### 4. Verify Windows Hello passkeys
 
-I verified the Lab Recovery Administrator and regular administrator each have a registered **device-bound Windows Hello passkey**. I also successfully tested Windows Hello sign-ins during the exercise, although the selected screenshots show registration rather than method-specific sign-in log proof.
+I verified a registered **device-bound Windows Hello passkey** for each administrator and successfully tested Windows Hello sign-ins.
 
 Evidence:
 
@@ -124,7 +124,7 @@ Evidence:
 
 ### 3. Verify legacy authentication blocking conditions
 
-I simulated a legacy client using **Other clients** and verified that `CA-03-Lab-Block-Legacy` was evaluated with **Block**. I did not treat this as a real blocked protocol sign-in.
+I simulated a legacy client using **Other clients** and verified that `CA-03-Lab-Block-Legacy` was evaluated with **Block**.
 
 Evidence:
 
@@ -166,7 +166,7 @@ Evidence:
 
 ### 3. Record the limit of the simulations
 
-What If does not generate a real Identity Protection risk detection or prove risk-policy enforcement. `CA-05` remains Report-only. No real risky-sign-in enforcement event was documented.
+`CA-05` remained Report-only. The Medium and High scenarios were What If simulations; see Limitations for the enforcement boundary.
 
 ## Part 4: Security Defaults Transition and Policy Enforcement
 
@@ -196,7 +196,7 @@ Evidence:
 
 I performed a real administrator sign-in and inspected the sign-in event. `CA-00-Lab-Admin-MFA` and `CA-02-Admins-PhishingResistant` show **Success**.
 
-The Authentication details page identifies a **phishing-resistant** requirement as satisfied, but shows **Previously satisfied**. That event does not, by itself, prove a new Windows Hello gesture occurred during this particular sign-in. Windows Hello capability was separately tested earlier.
+Authentication Details recorded the **phishing-resistant** requirement as **Previously satisfied**. I had separately tested Windows Hello capability.
 
 Evidence:
 
@@ -206,7 +206,7 @@ Evidence:
 
 ### 5. Confirm emergency administrative access
 
-After enforcement, I signed in as the Lab Recovery Administrator using Windows Hello and accessed the Conditional Access policies page. I observed this directly during the exercise; the minimal screenshots document passkey registration but not a dedicated method-specific sign-in log for this test.
+After enforcement, I signed in as the Lab Recovery Administrator using Windows Hello and accessed the Conditional Access policies page.
 
 ### Recovery-account controls and remaining hardening
 
@@ -228,9 +228,7 @@ Evidence:
 
 ### 2. Document the enforcement-test limitation
 
-The policy is configured and On, and its What If targeting was successful. However, no actual legacy client sign-in was captured with `CA-03` showing a blocked result.
-
-**Actual blocked legacy sign-in: Not tested — no matching event available.**
+`CA-03` remained On after its successful What If targeting check. The filtered logs contained no actual legacy-client event.
 
 ## Cleanup
 
@@ -262,7 +260,7 @@ The policy is configured and On, and its What If targeting was successful. Howev
 ### Sign-in evidence
 
 - **Some logs reported previously satisfied MFA.** I recorded that result without claiming a fresh prompt for the specific event.
-- **No actual legacy-client event appeared in the filtered logs.** I recorded the protocol block as not tested rather than claiming a demonstrated denial.
+- **Legacy-client search:** The filtered logs contained no matching event.
 
 ## Skills Practiced
 
@@ -292,6 +290,14 @@ The policy is configured and On, and its What If targeting was successful. Howev
 
 - P2 Identity Protection simulations can validate risk-policy scope without creating risk detections.
 
+## Limitations
+
+- Legacy-client blocking and sign-in risk were simulated; no real legacy block or risky sign-in enforcement event was captured.
+
+- The administrator event recorded Previously satisfied authentication. Passkey registration and my observed sign-ins are separate from method-specific fresh-challenge log proof.
+
+- Recovery sign-in alerting and offline credential storage remain unverified; see [recovery-account hardening](#recovery-account-controls-and-remaining-hardening). Browser switching resolved enrollment without isolating the original failure cause.
+
 ## References
 
 Microsoft documentation supporting the procedures and behavior discussed in this lab:
@@ -305,4 +311,3 @@ Microsoft documentation supporting the procedures and behavior discussed in this
 ---
 
 [Return to portfolio](../../README.md)
-

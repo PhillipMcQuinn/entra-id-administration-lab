@@ -47,7 +47,7 @@ I created Barbara Gordon's user account through **Microsoft Entra admin center â
 
 ### 2. Populate employee attributes
 
-I configured employee details including job title, department, employee ID, and manager. The hire date is included in the scenario; the published notes do not independently confirm that it was saved as an Entra ID attribute.
+I configured the employee details, including job title, department, employee ID, and manager.
 
 **Evidence:**
 
@@ -73,7 +73,7 @@ I opened a separate private browser session and signed in with Barbara Gordon's 
 
 - After I completed the prompts, interactive sign-in succeeded.
 
-These observations verify onboarding sign-in behavior. They do not by themselves establish that any specific application role or resource entitlement was granted.
+These observations verified the onboarding sign-in flow.
 
 ### 5. Review onboarding audit evidence
 
@@ -101,9 +101,9 @@ I blocked sign-in for Barbara Gordon and reviewed the disabled account state in 
 
 I performed the session-revocation step as documented in the original exercise.
 
-After I removed the sign-in block for testing, I signed in again as Barbara Gordon using her username, password, and MFA. This showed that the account could authenticate after being re-enabled; it does **not** prove that every previously established application session was immediately terminated by the revocation action.
+After I removed the sign-in block for testing, I signed in again as Barbara Gordon using her username, password, and MFA. Authentication succeeded after re-enablement.
 
-I did not retain a separate screenshot or timestamp proving completion of the session-revocation operation, so I do not make a more specific enforcement claim.
+The session-revocation action is recorded in my original notes; see Limitations for its evidence boundary.
 
 ### 4. Remove IT group membership
 
@@ -137,7 +137,7 @@ During verification, I could sign in again after removing the sign-in block. Thi
 
 - **Authentication verification:** I used a separate private session to verify initial password-change, Authenticator-registration, and successful sign-in behavior.
 
-- **Account and session controls:** I practiced blocking sign-in and the documented session-revocation workflow while recording the limits of the retained evidence.
+- **Account and session controls:** I practiced blocking sign-in and the documented session-revocation workflow.
 
 - **Audit review:** I reviewed onboarding audit activity and documented cleanup.
 
@@ -152,6 +152,14 @@ During verification, I could sign in again after removing the sign-in block. Thi
 - **Audit logs support accountability.** Microsoft Entra audit records can help identify which changes occurred and which administrator performed them; the available evidence should be interpreted according to what the logs actually show.
 
 - **Cleanup matters in a lab.** Deleting test accounts after completing an exercise keeps the training environment organized and avoids leaving unnecessary identities active.
+
+## Limitations
+
+- The hire date is scenario data; its saved directory value was not established.
+
+- Onboarding verified authentication, not downstream application entitlements.
+
+- Session revocation is recorded in my notes without a completion screenshot or timestamp; immediate termination of existing application sessions was not demonstrated.
 
 ## References
 

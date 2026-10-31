@@ -14,7 +14,7 @@ I distinguish verified results from configuration settings, observed behaviors, 
 
 **Completed — hands-on authentication, authorization, visibility troubleshooting, and access-revocation tests.**
 
-The original notes recorded October 8, 2026; the application-launch screenshot also records October 10, 2026 at 02:23:15 UTC. I observed some outcomes during testing without capturing separate screenshots, as indicated below.
+The original notes recorded October 8, 2026; the application-launch screenshot also records October 10, 2026 at 02:23:15 UTC.
 
 ## Application Scenario
 
@@ -92,7 +92,7 @@ Evidence:
 
 ### 1. Capture the original approval problem
 
-An earlier Tim Drake sign-in displayed an administrator-approval requirement. This screenshot documents the symptom; by itself it does not establish the exact cause or the date consent changed.
+An earlier Tim Drake sign-in displayed an administrator-approval requirement. I used that symptom to investigate consent.
 
 Evidence:
 
@@ -134,7 +134,7 @@ Gotham Access Lab did not initially appear in Tim's My Apps portal. The enterpri
 
 - **Visible to users?** No
 
-I changed **Visible to users?** to **Yes**, then confirmed that the application tile appeared while signed in as Tim. I did not capture a separate My Apps tile screenshot.
+I changed **Visible to users?** to **Yes** and observed the application tile appear while signed in as Tim.
 
 Evidence:
 
@@ -166,7 +166,7 @@ Observed authorization:
 
 - IT Inventory: Denied
 
-I observed these application outcomes during the live exercise, **without capturing separate screenshots for this evidence package**.
+These application outcomes were my live observations.
 
 ## Part 4: Assignment Revocation and Session Behavior
 
@@ -174,11 +174,11 @@ I observed these application outcomes during the live exercise, **without captur
 
 I removed Tim Drake from `SG-GothamApp-Procurement-Readers`, leaving his account enabled. Tim had no IT Reader group membership.
 
-I confirmed the group membership removal during the exercise but did not capture a post-removal membership screenshot.
+I confirmed the group membership removal during the exercise.
 
 ### 2. Compare existing and fresh sessions
 
-After group removal, I observed that the **already authenticated local Flask session still permitted Procurement access** while signed in as Tim. I did not capture a separate image of this result.
+After group removal, I observed that the **already authenticated local Flask session still permitted Procurement access** while signed in as Tim.
 
 After signing out and attempting a fresh sign-in, Microsoft Entra returned **AADSTS50105**, stating the user was not directly assigned and was no longer a member of an assigned group.
 
@@ -188,7 +188,7 @@ Evidence:
 
 ### 3. Verify the sign-in failure in Entra logs
 
-The sign-in activity screenshot independently showed a **Failure** with error code **50105**. The clipped log screenshot does not show the application name, so it should be read together with the explicit on-screen 50105 error above.
+I paired the sign-in log's **Failure / 50105** result with the explicit on-screen assignment error above.
 
 Evidence:
 
@@ -237,6 +237,14 @@ The restored local application's `.env` file and client secret must remain priva
 - **AADSTS50105 demonstrates missing application assignment.** It is not, by itself, evidence that a user account has been disabled or that Conditional Access blocked authentication.
 
 - **Evidence should distinguish screenshots from observed results.** Tests without independent screenshots remain explicitly documented as observations.
+
+## Limitations
+
+- My Apps tile appearance, app role/page outcomes, group removal, and retained existing-session access were observations without separate screenshots.
+
+- The My Apps launch failure was not verified as repaired; the historical approval prompt's cause and consent-change time remain unresolved.
+
+- The clipped 50105 log omits the application name; I paired it with the explicit assignment-error screenshot.
 
 ## References
 

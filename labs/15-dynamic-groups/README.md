@@ -38,7 +38,7 @@ With Tim still in Procurement, I used **Validate Rules** against his account. Th
 
 The Procurement group initially showed **0 members** and processing **Not started**, even though the rule matched Tim. I verified his directly assigned Entra ID P2 license was Active. I left processing enabled and waited for the initial population. I later confirmed his Procurement dynamic membership on the user Groups page.
 
-The group was created at **3:11 PM MDT** and I captured Tim's membership at approximately **5:03 PM MDT**. I did not continuously monitor initial processing, so these observations do not establish its exact completion time. The later department changes were much faster.
+The group was created at **3:11 PM MDT** and I captured Tim's membership at approximately **5:03 PM MDT**. The later department changes were much faster; initial completion timing is qualified in Limitations.
 
 ![Initial Procurement group overview shows zero members and processing Not started](screenshots/04-initial-processing-not-started.png)
 
@@ -118,7 +118,9 @@ I closed all Incognito windows and attempted a fresh application sign-in. Entra 
 | Procurement, saved 5:17 PM MDT | Procurement dynamic group only | Procurement.Reader only | Forbidden | Allowed |
 | Lab-NoAccess, saved 5:21 PM MDT | Neither dynamic reader group | Sign-in blocked with AADSTS50105 | Application sign-in blocked | Application sign-in blocked |
 
-I observed each of the three test membership changes within one minute of saving the department. These are manually observed portal intervals, not exact backend timestamps or a service guarantee. I did not continuously probe the application during processing or establish whether any transient overlap occurred.
+I observed each of the three test membership changes within one minute of saving the department. These were manually observed portal intervals.
+
+I left the account-enabled state and Conditional Access policies unchanged throughout the transfer tests.
 
 ## Cleanup and Final State
 
@@ -126,15 +128,17 @@ I restored Department **Procurement** and observed the Procurement dynamic group
 
 ![Final restored Procurement dynamic membership with CA lab group retained](screenshots/22-restored-procurement-membership.png)
 
-## Evidence Limits and Lessons
-
-- I verified actual memberships, displayed role claims, allowed and forbidden application pages, and a fresh-sign-in failure. I did not independently inspect or validate raw token signatures in this exercise.
-- I collected audit properties for the group-to-application-role assignments. I did not collect correlated audit events for every Department edit and automatic membership change, or a correlated sign-in-log export for the final denial.
-- I used fresh application sessions after membership changes. I did not test termination of an existing Flask session or revocation of previously issued tokens. The membership timing therefore does not measure existing-session access removal.
-- I restored final membership but did not repeat application authorization tests after the cleanup restoration; the reverse-transfer tests had already verified Procurement authorization.
-- I kept the local `.env`, session secret, and client secret private. I did not modify account enabled state or Conditional Access policies to produce the denial.
+## Lessons Learned
 
 I learned to distinguish rule validation from completed membership processing, group membership from application-role assignment, and directory changes from the roles held by an existing session. The Department attribute became an access-control input, so controlling who can edit that attribute matters as much as configuring the rules correctly.
+
+## Limitations
+
+- Initial processing was not continuously monitored. Later within-one-minute observations are approximate; exact backend timing and transient access overlap were not measured.
+
+- Fresh sessions were used. Existing-session termination, token revocation, and raw-token signature validation were outside scope.
+
+- Audit evidence covers role assignments, not every Department/membership change or the final sign-in denial. Authorization was not retested after cleanup restoration.
 
 ## References
 
@@ -144,4 +148,3 @@ I learned to distinguish rule validation from completed membership processing, g
 - [Manage dynamic group processing](https://learn.microsoft.com/en-us/entra/identity/users/manage-dynamic-group)
 
 [Back to portfolio](../../README.md)
-

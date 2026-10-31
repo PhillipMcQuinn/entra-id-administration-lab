@@ -40,7 +40,7 @@ This exercise used the original Free-license tenant for Labs 01–05, not the se
 
 For each scenario, I reproduced a failed sign-in, compared the error with the corresponding sign-in event, and reviewed the account configuration before applying a correction. I verified the outcome with another sign-in attempt.
 
-Sign-in logs can have a short reporting delay, so I used the event timestamp, user identity, and failure reason together to identify the relevant record. I did not assume an MFA cause without supporting evidence.
+Sign-in logs can have a short reporting delay, so I used the event timestamp, user identity, and failure reason together to identify the relevant record.
 
 ## Part 1: Incorrect Password
 
@@ -68,7 +68,7 @@ I located the corresponding failure in Microsoft Entra ID sign-in logs.
 | Error code | **50126** |
 | Failure reason | Error validating credentials due to an invalid username or password |
 
-The event identifier is retained as recorded in my original lab notes; its precise log-field type was not specified.
+I retained the event identifier from my original notes.
 
 **Evidence:**
 
@@ -108,7 +108,7 @@ The failed sign-in record reported **50057** and identified the user account as 
 | Failure reason | User account is disabled |
 | Account setting | Sign-in blocked |
 
-The event identifier is preserved from the lab notes without assuming its precise field type. I did not record a timestamp for this specific event.
+I retained the event identifier from my original notes.
 
 **Evidence:**
 
@@ -149,7 +149,7 @@ I completed a successful fresh sign-in as Dick Grayson after re-enabling the acc
 
 ## Cleanup
 
-I returned Dick Grayson's account to an **enabled** state after the disabled-account test. My original notes do not independently confirm session sign-out, other configuration restoration, or screenshot redaction as separate completed cleanup actions, so those are not claimed as verified results.
+I returned Dick Grayson's account to an **enabled** state after the disabled-account test.
 
 **Scope note:** This lab documents basic troubleshooting in a personal Microsoft Entra ID Free environment. It does not claim production incident response or advanced P2 sign-in risk testing.
 
@@ -178,6 +178,14 @@ I returned Dick Grayson's account to an **enabled** state after the disabled-acc
 - **Verify a fix with a fresh test.** A successful sign-in after remediation demonstrated recovery for both scenarios. If the retest had failed, further investigation would have been necessary.
 
 - **Account for log delays.** Sign-in activity may not appear instantaneously in the admin center, so recorded event times and careful matching improve troubleshooting accuracy.
+
+## Limitations
+
+- The recorded event identifiers lack a specified log-field type; the disabled-account event also lacks a recorded timestamp.
+
+- The confirmed final state is an enabled account. Session sign-out and additional restoration checks were not recorded.
+
+- The live failure scenarios were limited to incorrect credentials and a disabled account.
 
 ## References
 

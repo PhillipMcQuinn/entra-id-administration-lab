@@ -9,7 +9,7 @@
 
 I created an access package that let Tim Drake request one hour of Procurement Reader access to Gotham Access Lab. I verified that submitting a request did not grant access, approved the request through my administrator account, and validated the resulting application role and authorization. After the assignment expired, I confirmed that the direct application assignment disappeared and a fresh sign-in was denied with `AADSTS50105`.
 
-I performed all configuration and testing myself. I used Tim's fictional account as the requester and my Phillip McQuinn administrator account as the approver in separate browser sessions. This demonstrated the configured approval workflow; it did not involve an independent human reviewer.
+I performed all configuration and testing myself. I used Tim's fictional account as the requester and my Phillip McQuinn administrator account as the approver in separate browser sessions. I used separate requester and approver identities for the workflow.
 
 ## Scenario
 
@@ -98,11 +98,11 @@ In my separate administrator session, I opened My Access approvals, selected **A
 
 ![Request row showing Approved](screenshots/15-request-approved.png)
 
-The access package assignment then showed **Delivered**, with an end time of **October 30, 2026, 2:28:50 PM** in my local MDT portal view. The captured assignment list did not display a start time, so I did not treat a calculated start time as separately verified evidence.
+The access package assignment then showed **Delivered**, with an end time of **October 30, 2026, 2:28:50 PM** in my local MDT portal view. The list displayed the scheduled end time.
 
 ![Delivered assignment with end time 2:28:50 PM](screenshots/16-assignment-delivered.png)
 
-I refreshed the enterprise application's Users and groups page and confirmed that Tim now appeared as a direct user assignment. That screenshot did not show the role column; I verified the delivered role through the application's token-claim display and authorization tests next.
+I refreshed the enterprise application's Users and groups page and confirmed that Tim now appeared as a direct user assignment. I verified the delivered role through the application's token-claim display and authorization tests next.
 
 ![Tim direct application assignment after delivery](screenshots/17-direct-application-assignment.png)
 
@@ -118,7 +118,7 @@ I signed in as Tim and inspected the application's identity page. It displayed o
 
 ## 7. I verified automatic expiration and fresh-sign-in denial
 
-I left the assignment unchanged and allowed its one-hour duration to expire. I observed roughly **four minutes before the Expired status appeared** after the scheduled end time. This was my observed portal-status delay; I did not measure the exact backend removal time or continuously test access during that interval.
+I left the assignment unchanged and allowed its one-hour duration to expire. I observed roughly **four minutes before the Expired status appeared** after the scheduled end time. This was the observed portal-status delay.
 
 ![Access package assignment showing Expired](screenshots/21-assignment-expired.png)
 
@@ -147,18 +147,21 @@ I closed the Incognito windows, opened a fresh one, and attempted another sign-i
 | Application assignment after expiry | Tim no longer listed |
 | Fresh sign-in after expiry | AADSTS50105 — denied |
 
-## Final State and Evidence Limits
+## Final State
 
-- I left the catalog and access package in place. Tim's temporary assignment expired and his direct application assignment was removed automatically.
-- I did not add Tim to either application reader group or manually remove his package assignment to simulate expiry.
-- I stopped the local Flask server after testing. The local `.env`, session secret, and client secret are private; deletion of the newly configured app credential was not recorded.
-- I tested fresh sign-in denial after expiry. I did not test whether an already authenticated application session terminated automatically or whether existing tokens were revoked.
-- I captured portal configuration, approval, assignment, role-claim, and application-result screenshots. I did not collect a separate entitlement-management audit-log export or correlated Entra sign-in-log entry for this lab.
-- I did not test external requests, denial decisions, extensions, access reviews, or separation-of-duties policies in this exercise.
+I retained the catalog and access package after Tim's temporary assignment expired. I used neither a manual assignment removal nor reader-group membership to produce the expiry result. I stopped Flask after testing.
 
 ## What I Learned
 
 I connected a self-service access request to a specific application role, enforced a justified approval decision, and verified both the granted permission and the permission Tim did not receive. I also distinguished approval from delivery, the approval deadline from assignment expiry, and portal expiration status from actual application access. The final fresh-sign-in test verified access removal beyond the package's status label.
+
+## Limitations
+
+- One operator used both accounts; the approval did not involve an independent human reviewer. The assignment list omitted start time and role column; role delivery was checked in the app.
+
+- The roughly four-minute status delay is an observation, not exact backend timing. Only fresh-sign-in denial was tested after expiry, not existing-session or token revocation.
+
+- No separate audit export or correlated Entra sign-in event was collected. External requests, rejection, extensions, access reviews, and separation-of-duties policies were outside scope. App-credential deletion was not recorded.
 
 ## References
 
@@ -166,4 +169,3 @@ I connected a self-service access request to a specific application role, enforc
 - [Create an access package](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-create)
 
 [Back to portfolio](../../README.md)
-
