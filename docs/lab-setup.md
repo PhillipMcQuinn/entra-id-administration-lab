@@ -54,25 +54,25 @@ Application permissions depend on configured group-to-role assignments, not grou
 
 ## Authentication and Conditional Access
 
-The documented authentication methods include Microsoft Authenticator push, software OATH-TOTP, and device-bound Windows Hello passkeys. I did not use a FIDO2 hardware security key. The Free-tenant MFA exercise used Security Defaults; **Security Defaults remained disabled in the P2 environment** after the Lab 07 transition to Conditional Access.
+The documented authentication methods include Microsoft Authenticator push, software OATH-TOTP, and device-bound Windows Hello passkeys. I did not use a FIDO2 hardware security key. The Free-tenant MFA exercise used Security Defaults. In the advanced tenant, I disabled Security Defaults during the Conditional Access exercises. At October 31 closeout, I turned all seven lab policies Off and enabled Security Defaults; the portal displayed “Your organization is protected by security defaults.”
 
-**Recovery-account controls and limits:** I verified a Windows Hello passkey sign-in and administrative access for the separate recovery account, with a permanently active Global Administrator assignment. On October 31, I confirmed that my passwords are stored on an encrypted storage device that I disconnect and store separately when it is not in use. Encrypted offline storage and physical separation are operator-confirmed; a recovery test using the stored credentials was not recorded. Automated alerts on every recovery-account sign-in have not been configured or tested. On October 31, the Diagnostic settings page reported that an Azure subscription was required. I did not create a subscription, configure a Log Analytics destination, or test Azure Monitor alert delivery; that alerting path remains blocked pending an available subscription. This observation does not establish that all other possible notification mechanisms are unavailable. They remain hardening items; I do not claim that the policy exclusion is fully compensated by monitoring or that this single recovery account implements Microsoft's complete emergency-access design. See [Lab 07](../labs/07-conditional-access/README.md#recovery-account-controls-and-remaining-hardening) and [Microsoft's emergency-access guidance](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access).
+**Recovery-account controls and limits:** I verified a Windows Hello passkey sign-in and administrative access for the separate recovery account, with a permanently active Global Administrator assignment. On October 31, I confirmed that my passwords are stored on an encrypted storage device that I disconnect and store separately when it is not in use. Encrypted offline storage and physical separation are operator-confirmed; a recovery test using the stored credentials was not recorded. Automated alerts on every recovery-account sign-in have not been configured or tested. On October 31, the Diagnostic settings page reported that an Azure subscription was required. I did not create a subscription, configure a Log Analytics destination, or test Azure Monitor alert delivery; that alerting path remains blocked pending an available subscription. This observation does not establish that all other possible notification mechanisms are unavailable. They remain hardening items; I do not claim that the historical Conditional Access exclusion was fully compensated by monitoring or that this single recovery account implements Microsoft's complete emergency-access design. See [Lab 07](../labs/07-conditional-access/README.md#recovery-account-controls-and-remaining-hardening) and [Microsoft's emergency-access guidance](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access).
 
 ### Policy inventory after Lab 17
 
-| Policy | Final documented state | Purpose | Introduced |
-|---|---|---|---|
-| `CA-00-Lab-Admin-MFA` | On | Regular administrator MFA | Lab 07 |
-| `CA-01-Lab-Users-MFA` | On | Scoped regular-user MFA | Lab 07 |
-| `CA-02-Admins-PhishingResistant` | On | Administrator phishing-resistant authentication strength | Lab 07 |
-| `CA-03-Lab-Block-Legacy` | On | Scoped legacy-client block | Lab 07 |
-| `CA-04-Lab-Recovery-MFA` | Report-only | Recovery-account authentication evaluation | Lab 07 |
-| `CA-05-Lab-SignInRisk-MFA` | Report-only | Medium/High sign-in-risk evaluation | Lab 07 |
-| `CA-06-Lab-Tim-High-User-Risk-Remediation` | Report-only | Tim-only High user-risk remediation | Lab 17 |
+| Policy | State after lab testing | Closeout state | Purpose | Introduced |
+|---|---|---|---|---|
+| `CA-00-Lab-Admin-MFA` | On | Off | Regular administrator MFA | Lab 07 |
+| `CA-01-Lab-Users-MFA` | On | Off | Scoped regular-user MFA | Lab 07 |
+| `CA-02-Admins-PhishingResistant` | On | Off | Administrator phishing-resistant authentication strength | Lab 07 |
+| `CA-03-Lab-Block-Legacy` | On | Off | Scoped legacy-client block | Lab 07 |
+| `CA-04-Lab-Recovery-MFA` | Report-only | Off | Recovery-account authentication evaluation | Lab 07 |
+| `CA-05-Lab-SignInRisk-MFA` | Report-only | Off | Medium/High sign-in-risk evaluation | Lab 07 |
+| `CA-06-Lab-Tim-High-User-Risk-Remediation` | Report-only | Off | Tim-only High user-risk remediation | Lab 17 |
 
-**Timeline:** Lab 07 ended with six policies: four On and two Report-only. I added CA-06 in [Lab 17](../labs/17-identity-protection/README.md) and returned it to Report-only after testing. The October 31 snapshot therefore contains **seven policies: four On and three Report-only**. The earlier six-policy inventory is historical, not a different count of the final configuration.
+**Timeline:** Lab 07 ended with six policies: four On and two Report-only. I added CA-06 in [Lab 17](../labs/17-identity-protection/README.md) and returned it to Report-only after testing. The post-test inventory contained **seven policies: four On and three Report-only**. Later on October 31, I set all seven Off for the transition to Security Defaults. The earlier six- and seven-policy states describe different stages, not contradictory current counts.
 
-I rechecked the full policy list on October 31 after retiring Pim-Test. It showed seven user-created policies, zero Microsoft-managed policies, and the states listed above: four On and three Report-only.
+I rechecked the full policy list on October 31 after retiring Pim-Test. It showed seven user-created policies, zero Microsoft-managed policies, and the post-test states above: four On and three Report-only. A subsequent closeout screenshot showed all seven Off.
 
 Policy state records configuration, not proof of every intended enforcement outcome. Targeting, exclusions, simulations, actual sign-in results, and evidence limits remain in [Lab 07](../labs/07-conditional-access/README.md) and [Lab 17](../labs/17-identity-protection/README.md).
 
@@ -87,7 +87,7 @@ Policy state records configuration, not proof of every intended enforcement outc
 
 I used a Windows workstation, separate browser sessions for account testing, Microsoft Entra admin center, Microsoft Authenticator, Windows Hello, and Graph Explorer. Exact application identifiers, redirect configurations, dependencies, and runnable instructions remain with the applicable application lab.
 
-## Licensing Snapshot and Planned Transition
+## Licensing Snapshot and Completed Protection Transition
 
 On **October 30, 2026**, I verified that the P2 free trial was Active with **10 of 25 licenses assigned**, an expiration date of **November 7, 2026**, and recurring renewal disabled. A separate billing field showed November 8; I used November 7 as the preparation deadline. This is a dated observation, not a live licensing query.
 
@@ -95,7 +95,9 @@ I exported the six policies present on October 30. On October 31, I also downloa
 
 After removing Pim-Test's direct P2 assignment on October 31, its page showed Licenses (0) and 16 of 25 P2 licenses available (9 assigned). This later count supersedes the October 30 assigned-seat count without changing the trial expiry/renewal observation.
 
-The planned return to Security Defaults and later post-expiry observations have not been completed. I will document those changes separately rather than infer them from the trial end date.
+**Protection transition completed October 31, before trial expiry:** I verified recovery-administrator portal access, retained the private policy backups, set CA-00 through CA-06 Off, and enabled Security Defaults. I then signed out and back in separately as Lab Recovery Administrator and Phillip's regular administrator account; both sign-ins succeeded and required Windows Hello, as I reported during the checks. These checks establish post-change administrator access, not exhaustive verification of every Security Defaults control or proof of which control caused each prompt. Security Defaults does not preserve the former per-account CA exclusions.
+
+The tenant still had its P2 trial at closeout; this was preparation for expiry, not evidence of an actual licensing downgrade. Post-expiry behavior and a fresh billing/renewal check remain unverified. The last recorded renewal setting is the October 30 observation above.
 
 ## Where to Find Procedures and Results
 
