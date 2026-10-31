@@ -49,8 +49,11 @@ The table records the planned department mapping. The included screenshots docum
 ## Prerequisites
 
 - Fictional employee accounts in the original Entra ID Free lab tenant.
+
 - Administrator permission to create security groups and modify their memberships.
+
 - Existing membership information for comparison before and after the transfer.
+
 - Access to Microsoft Entra ID group membership views and audit logs.
 
 ## Part 1: Create and Review Security Groups
@@ -144,19 +147,47 @@ This behavior required manual removal from the former department group and manua
 After completing the transfer tests, I restored Dick Grayson's original lab configuration:
 
 - **Department:** IT
+
 - **Member of:** `SG-IT-Employees`
+
 - **Not a member of:** `SG-Procurement-Employees`
 
 I recorded this cleanup as completed in my lab notes. A separate post-cleanup screenshot was not listed among the nine evidence images in this README.
 
+**Environment note:** Labs 01–05 use the original `phillipmcquinngmail.onmicrosoft.com` Entra ID Free tenant. Labs 06–08 use the separate GothamLabz Entra ID P2 tenant.
+
+## Skills Practiced
+
+- **Assigned security groups:** I created department security groups and administered explicit membership.
+
+- **Department transfers:** I updated Dick Grayson's Department attribute and manually moved his membership from IT to Procurement.
+
+- **Membership verification:** I checked group and user membership views before and after the transfer.
+
+- **Audit investigation:** I reviewed group administration and membership-change events.
+
+- **Configuration restoration:** I restored the original IT department and memberships after testing; the cleanup is recorded in my notes without a separate screenshot.
+
 ## Lessons Learned
 
 - **Assigned security groups require explicit membership administration.** Editing a user's department attribute does not automatically move that user between Assigned groups.
+
 - **Department transfers involve more than profile updates.** Old group membership should be removed and new membership assigned as appropriate to avoid retaining unnecessary entitlements.
+
 - **Membership should be validated from multiple views.** The group's member list and the user's group membership view help confirm changes.
+
 - **Audit logs support accountability and troubleshooting.** They can record changes, their status, timestamps, and actor information, depending on the audit event.
+
 - **Group membership and application authorization are not synonymous.** This exercise establishes directory group administration; separate resource tests are needed to demonstrate application access.
+
+## References
+
+Microsoft documentation supporting the procedures and behavior discussed in this lab:
+
+- [Manage groups and group membership](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups)
+
+- [Microsoft Entra audit logs](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-audit-logs)
 
 ---
 
-**Environment note:** Labs 01–05 use the original `phillipmcquinngmail.onmicrosoft.com` Entra ID Free tenant. Labs 06–08 use the separate GothamLabz Entra ID P2 tenant.
+[Return to portfolio](../../README.md)

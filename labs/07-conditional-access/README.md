@@ -34,17 +34,25 @@ Gotham IAM Lab uses seven fictional regular users and two administrator accounts
 ## Prerequisites
 
 - Access to the personal Gotham IAM Lab tenant.
+
 - Global Administrator privileges for the administrator actions performed.
+
 - Microsoft Entra ID P2 licenses for the targeted test accounts.
+
 - `SG-CA-Lab-Users` with seven regular users.
+
 - Microsoft Authenticator registered for the lab accounts.
+
 - Windows Hello passkeys registered and independently tested for the regular and recovery administrators.
+
 - A working recovery administrator session before enforcing Conditional Access.
+
 - Access to Conditional Access, What If, sign-in logs, and Identity Protection.
 
 Administrative environment used:
 
 - **Administrator role:** Global Administrator
+
 - **License edition:** Microsoft Entra ID P2
 
 ## Part 1: Identity, Licensing, and Authentication Preparation
@@ -217,15 +225,21 @@ The policy is configured and On, and its What If targeting was successful. Howev
 ## Cleanup
 
 - Keep the four baseline protection policies **On** in the lab unless intentionally conducting a controlled change.
+
 - Keep the recovery training policy and risk-policy simulation **Report-only** until their intended enforcement behavior is separately planned and tested.
+
 - Keep the Lab Recovery Administrator available and its authentication methods intact.
+
 - Record any future policy changes, exclusions, rollback actions, and timestamps.
+
 - No deletion or restoration of these six policies was documented as part of this exercise.
 
 ## Issues and Troubleshooting
 
 - **Security Defaults prevented custom Conditional Access enforcement.** The transition was deferred until replacement policies and recovery access were prepared.
+
 - **Report-only and disabled sign-in log results initially caused confusion.** I verified targeting through What If and later verified actual enforcement separately.
+
 - **Recovery passkey profile naming/assignment was confusing.** I confirmed the custom profile, group targeting, allowed Windows Hello authenticators, and successful passkey registration.
 **Issue: Windows Hello Passkey Registration**
 
@@ -238,15 +252,49 @@ The policy is configured and On, and its What If targeting was successful. Howev
 **Verification:** I confirmed successful authentication using the registered Windows Hello passkey to access the Microsoft Entra admin center.
 
 **Lesson Learned:** Browser compatibility can affect passkey registration and authentication workflows. When troubleshooting passkey enrollment issues, verify browser support before investigating account configuration or tenant authentication policies.
+
 - **Sign-in logs sometimes reported previously satisfied MFA.** I recorded that result without claiming a fresh prompt for the specific event.
+
 - **No actual legacy-client event appeared in the filtered logs.** I recorded the protocol block as not tested rather than claiming a demonstrated denial.
+
+## Skills Practiced
+
+- **Conditional Access configuration:** I configured six policies for user/admin MFA, authentication strength, legacy clients, and sign-in risk.
+
+- **Policy targeting and simulation:** I used What If to inspect user, administrator, recovery-account, client, and simulated risk conditions.
+
+- **Authentication method preparation:** I verified MFA registration and registered and tested administrator Windows Hello passkeys.
+
+- **Staged enforcement and recovery planning:** I prepared recovery access, transitioned from Security Defaults, and enabled four policies while retaining two in Report-only.
+
+- **Sign-in evidence interpretation:** I reviewed actual Conditional Access results and separated Previously satisfied claims, simulations, and untested legacy/risky sign-in enforcement.
 
 ## Lessons Learned
 
 - MFA-capable registration is different from MFA enforcement.
+
 - Conditional Access What If confirms targeting but not successful real-world authentication.
+
 - Phishing-resistant administrator access requires a compatible method such as a Windows Hello passkey; Authenticator push alone does not satisfy that authentication strength.
+
 - Administrator recovery planning should precede policy activation.
+
 - An enforced-policy Success result may be satisfied by a previously issued authentication claim.
+
 - Legacy client blocking requires a matching real sign-in event to demonstrate actual denial.
+
 - P2 Identity Protection simulations can validate risk-policy scope without creating risk detections.
+
+## References
+
+Microsoft documentation supporting the procedures and behavior discussed in this lab:
+
+- [Conditional Access What If tool](https://learn.microsoft.com/en-us/entra/identity/conditional-access/what-if-tool)
+
+- [Evaluate Conditional Access policy impact](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-report-only)
+
+- [Security Defaults](https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults)
+
+---
+
+[Return to portfolio](../../README.md)

@@ -66,8 +66,11 @@ I added Barbara Gordon to `SG-IT-Employees` and reviewed the account's group mem
 I opened a separate private browser session and signed in with Barbara Gordon's test account.
 
 **Observed results:**
+
 - I was prompted to change the initial password when signing in as Barbara.
+
 - I was prompted to register Microsoft Authenticator for Barbara.
+
 - After I completed the prompts, interactive sign-in succeeded.
 
 These observations verify onboarding sign-in behavior. They do not by themselves establish that any specific application role or resource entitlement was granted.
@@ -124,14 +127,44 @@ I did not record significant issues during user creation, account changes, sign-
 
 During verification, I could sign in again after removing the sign-in block. This helped distinguish an account-level sign-in block from session revocation: re-enabling an account permits new authentication, while revoking sessions generally requires renewed authentication but is not equivalent to disabling the account.
 
+**Lab scope:** Microsoft Entra ID Free in the `phillipmcquinngmail.onmicrosoft.com` tenant. The separate GothamLabz Microsoft Entra ID P2 environment is used for later labs.
+
+## Skills Practiced
+
+- **User lifecycle administration:** I created a fictional employee account, maintained employee attributes, and deleted the account after testing.
+
+- **Group-based onboarding and offboarding:** I added and removed IT department membership and checked the resulting directory state.
+
+- **Authentication verification:** I used a separate private session to verify initial password-change, Authenticator-registration, and successful sign-in behavior.
+
+- **Account and session controls:** I practiced blocking sign-in and the documented session-revocation workflow while recording the limits of the retained evidence.
+
+- **Audit review:** I reviewed onboarding audit activity and documented cleanup.
+
 ## Lessons Learned
 
 - **Identity lifecycle administration involves more than account creation.** Employee attributes, department group membership, sign-in behavior, access removal, and final cleanup each require attention.
+
 - **Blocking sign-in differs from revoking sessions.** Blocking sign-in prevents new authentication while the block remains in effect. Revoking sessions invalidates supported sign-in sessions or refresh tokens, but does not by itself disable the user account or guarantee immediate termination of every application session.
+
 - **Access changes should be validated.** Reviewing group membership and performing actual sign-in tests provides stronger evidence than recording configuration changes alone.
+
 - **Audit logs support accountability.** Microsoft Entra audit records can help identify which changes occurred and which administrator performed them; the available evidence should be interpreted according to what the logs actually show.
+
 - **Cleanup matters in a lab.** Deleting test accounts after completing an exercise keeps the training environment organized and avoids leaving unnecessary identities active.
+
+## References
+
+Microsoft documentation supporting the procedures and behavior discussed in this lab:
+
+- [Create, invite, and delete users](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users)
+
+- [Manage groups and group membership](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups)
+
+- [Revoke user access and understand application-session limits](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access)
+
+- [Microsoft Entra audit logs](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-audit-logs)
 
 ---
 
-**Lab scope:** Microsoft Entra ID Free in the `phillipmcquinngmail.onmicrosoft.com` tenant. The separate GothamLabz Microsoft Entra ID P2 environment is used for later labs.
+[Return to portfolio](../../README.md)

@@ -34,8 +34,11 @@ A help desk employee needs sufficient privileges to reset a standard user's pass
 ## Prerequisites
 
 - An existing `helpdesk-test` account and a standard user account for Dick Grayson.
+
 - A separate administrator with permission to assign and remove Entra administrator roles.
+
 - Separate authenticated browser sessions for the test administrator and employee.
+
 - Access to Microsoft Entra role assignments and audit logs.
 
 ## Part 1: Select a Least-Privilege Administrator Role
@@ -119,19 +122,51 @@ After the role was removed, the test account could no longer perform the passwor
 ## Cleanup
 
 - I removed the temporary Helpdesk Administrator role from `helpdesk-test`.
+
 - I verified that the account had zero administrator roles after removal.
+
 - I deleted the dedicated `helpdesk-test` account upon completion of the lab.
+
 - My notes do not independently document Dick Grayson's final password or restoration state, so I do not claim a particular final credential configuration.
+
 - Screenshots document configuration and behavior without including temporary passwords.
+
+**Scope:** Personal Microsoft Entra ID Free lab, `phillipmcquinngmail.onmicrosoft.com`. This exercise does not claim production administrative access or testing against privileged target accounts.
+
+## Skills Practiced
+
+- **Least-privilege role selection:** I selected Helpdesk Administrator for a standard-user password-reset task.
+
+- **Directory role administration:** I assigned and removed the temporary tenant-scoped role and verified the account had zero roles afterward.
+
+- **Positive and negative permission testing:** I reset a standard user's password, confirmed role assignment was unavailable, and retested the reset action after role removal.
+
+- **Credential recovery verification:** I signed in as Dick with the temporary password and verified the required password-change prompt.
+
+- **Administrative audit review:** I reviewed role-change and password-reset events without publishing credentials.
 
 ## Lessons Learned
 
 - **Least privilege is testable:** Helpdesk Administrator allowed a standard-user password reset without granting broad Entra role-management rights.
+
 - **Administrator roles differ from security group membership:** A group can organize user membership and support access assignments, while an Entra administrator role delegates directory administration permissions.
+
 - **Negative tests matter:** The disabled **Add assignments** control demonstrated an authorization boundary, complementing the successful password-reset test.
+
 - **Access removal must be verified:** Confirming zero assigned roles and retesting the password-reset task provided stronger evidence than removing the assignment alone.
+
 - **Audit logs support accountability:** Administrator role and password-reset events can help reconstruct administrative activity.
+
+## References
+
+Microsoft documentation supporting the procedures and behavior discussed in this lab:
+
+- [Microsoft Entra built-in roles and permissions](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference)
+
+- [Assign Microsoft Entra roles](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/manage-roles-portal)
+
+- [Microsoft Entra audit logs](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-audit-logs)
 
 ---
 
-**Scope:** Personal Microsoft Entra ID Free lab, `phillipmcquinngmail.onmicrosoft.com`. This exercise does not claim production administrative access or testing against privileged target accounts.
+[Return to portfolio](../../README.md)

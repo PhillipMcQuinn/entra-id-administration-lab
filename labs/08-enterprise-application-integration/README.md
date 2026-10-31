@@ -43,12 +43,19 @@ I added the restored Gotham Access Lab source in [`app/`](app/README.md) after c
 ## Prerequisites
 
 - Personal GothamLabz Microsoft Entra ID tenant.
+
 - Administrator permissions to review application registrations, enterprise applications, consent, users, and group membership.
+
 - Existing Gotham Access Lab registration, app roles, and group-to-role assignments.
+
 - Microsoft Entra ID P2 licensing in the lab.
+
 - Windows workstation with Python and Flask dependencies for running the local application.
+
 - Separate administrator and Tim Drake browser sessions.
+
 - Access to sign-in logs.
+
 - A private local `.env` configuration containing the tenant ID, application ID, client secret, redirect URI, and a session secret. **Do not commit the `.env` file or secrets to GitHub.**
 
 Administrator role used: Global Administrator.
@@ -124,6 +131,7 @@ Evidence:
 Gotham Access Lab did not initially appear in Tim's My Apps portal. The enterprise application properties showed:
 
 - **Assignment required?** Yes
+
 - **Visible to users?** No
 
 I changed **Visible to users?** to **Yes**, then confirmed that the application tile appeared while signed in as Tim. I did not capture a separate My Apps tile screenshot.
@@ -147,11 +155,15 @@ Evidence:
 I started the local Flask application and successfully authenticated Tim Drake through Microsoft Entra ID.
 
 Observed role claims:
+
 - `Procurement.Reader`: Yes
+
 - `IT.Reader`: No
 
 Observed authorization:
+
 - Procurement: Allowed
+
 - IT Inventory: Denied
 
 I observed these application outcomes during the live exercise, **without capturing separate screenshots for this evidence package**.
@@ -200,12 +212,44 @@ The restored local application's `.env` file and client secret must remain priva
 | Existing session still had Procurement access | Tested after removing group membership | Existing Flask session retained access until sign-out |
 | Fresh sign-in failed after removal | Reviewed Microsoft sign-in message and audit details | AADSTS50105 confirmed assignment-required denial |
 
+## Skills Practiced
+
+- **Enterprise application administration:** I reviewed registration, app roles, assignment-required access, and group-to-role assignments.
+
+- **Consent troubleshooting:** I inspected delegated Graph User.Read administrator consent and distinguished consent from user assignment.
+
+- **My Apps investigation:** I corrected application visibility and investigated a separate tile launch failure without claiming that launch was repaired.
+
+- **Role-based authorization testing:** I used the local Flask/OIDC app to observe Procurement access and IT denial with Tim's Procurement.Reader claim.
+
+- **Access removal and session testing:** I compared retained access in an existing app session with fresh-sign-in denial after group removal and reviewed error 50105 in the sign-in log.
+
 ## Lessons Learned
 
 - **Application visibility and application authorization are separate controls.** A hidden My Apps tile does not prove that Entra has denied application access.
+
 - **Admin consent and application assignment solve different problems.** An administrator-approved API permission does not assign individual users to an enterprise application.
+
 - **Group-to-role assignment and role claims require end-to-end testing.** Procurement access succeeded while IT Inventory remained forbidden.
+
 - **Removing access does not necessarily terminate an existing application session immediately.** The local Flask session continued authorizing its previously signed-in user until the sign-out and fresh authentication test.
+
 - **AADSTS50105 demonstrates missing application assignment.** It is not, by itself, evidence that a user account has been disabled or that Conditional Access blocked authentication.
+
 - **Evidence should distinguish screenshots from observed results.** Tests without independent screenshots remain explicitly documented as observations.
 
+## References
+
+Microsoft documentation supporting the procedures and behavior discussed in this lab:
+
+- [Manage user and group assignments to an application](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/assign-user-or-group-access-portal)
+
+- [Enterprise application properties](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/application-properties)
+
+- [Add app roles and receive them in tokens](https://learn.microsoft.com/en-us/entra/identity-platform/howto-add-app-roles-in-apps)
+
+- [Revoke user access and understand application-session limits](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access)
+
+---
+
+[Return to portfolio](../../README.md)

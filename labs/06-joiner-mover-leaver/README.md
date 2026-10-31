@@ -31,16 +31,23 @@ Tim Drake is the fictional employee in Gotham IAM Lab. He begins with access to 
 ## Prerequisites
 
 - Access to the personal Gotham IAM Lab tenant.
+
 - Administrator permissions to manage users, groups, application assignments, and access reviews.
+
 - Tim Drake account and the IT and Procurement reader groups.
+
 - Fictional IT inventory and Procurement application resources used for the access tests.
+
 - Microsoft Entra ID P2 license (assigned in the Joiner evidence).
+
 - Separate employee browser session for access tests.
+
 - Access to Entra ID audit and sign-in logs.
 
 Administrative environment used:
 
 - **Administrator role:** Global Administrator
+
 - **License edition:** Microsoft Entra ID P2
 
 ## Part 1: Baseline and Joiner — Onboarding
@@ -100,9 +107,13 @@ Evidence:
 I verified Tim's job information now shows:
 
 - **Department:** Procurement
+
 - **Company:** Gotham IT Labs
+
 - **Employee ID:** WE006
+
 - **Employee type:** FTE
+
 - **Job title:** Communication Specialist
 
 Evidence:
@@ -199,10 +210,40 @@ I restored Tim Drake's account to the Procurement department and re-enabled it f
 
 **Result:** Neither action produced a noticeable improvement. The delay remained unresolved during this exercise.
 
+## Skills Practiced
+
+- **Joiner–mover–leaver administration:** I managed Tim's department, reader-group membership, licensing verification, and offboarding state.
+
+- **Application role verification:** I inspected identity claims and tested IT and Procurement pages to compare allowed and forbidden access.
+
+- **Access reviews:** I recorded a Deny decision, reviewed activity, and checked membership removal and downstream application denial.
+
+- **Offboarding controls:** I disabled the account and tested a fresh sign-in; the session-revocation screenshot records a confirmation dialog rather than completed revocation.
+
+- **Failure classification:** I distinguished missing application assignment from an account-level sign-in block and documented unresolved log delays.
+
 ## Lessons Learned
 
 - JML controls require both identity attribute changes and access assignment changes.
+
 - Security group membership can determine application access, but should be verified through actual resource tests.
+
 - An access-review **Deny** decision can be validated using both membership evidence and downstream application denial.
+
 - An application assignment error such as **AADSTS50105** is different from disabled-account enforcement.
+
 - Audit and sign-in log visibility may be delayed; record the observed timing rather than assuming immediate propagation.
+
+## References
+
+Microsoft documentation supporting the procedures and behavior discussed in this lab:
+
+- [Manage user and group assignments to an application](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/assign-user-or-group-access-portal)
+
+- [Complete an access review of groups and applications](https://learn.microsoft.com/en-us/entra/id-governance/complete-access-review)
+
+- [Revoke user access and understand application-session limits](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access)
+
+---
+
+[Return to portfolio](../../README.md)

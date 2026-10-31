@@ -29,8 +29,11 @@ This exercise used the original Free-license tenant for Labs 01–05, not the se
 ## Prerequisites
 
 - Dick Grayson's account existed and initially permitted sign-in.
+
 - A successful baseline sign-in had been established.
+
 - An authorized administrator could inspect sign-in logs and update the test account.
+
 - Separate administrator and employee browser sessions were available.
 
 ## Investigation Method
@@ -135,24 +138,55 @@ I completed a successful fresh sign-in as Dick Grayson after re-enabling the acc
 ## Issues and Troubleshooting
 
 - **Sign-in log reporting delay:** Events sometimes took a couple of minutes to become visible in the Entra admin center. The relevant event was identified by matching user and event details rather than assuming immediate log availability.
+
 - **Event selection:** Matching timestamps and failure information helped distinguish the intended test events from other sign-ins.
+
 - **Browser sessions:** No browser-session interference was reported during this exercise.
+
 - **Permissions:** No issues accessing sign-in logs or performing the authorized lab changes were reported.
+
 - **Additional failures:** No additional failure condition was observed during the successful retests.
 
 ## Cleanup
 
 I returned Dick Grayson's account to an **enabled** state after the disabled-account test. My original notes do not independently confirm session sign-out, other configuration restoration, or screenshot redaction as separate completed cleanup actions, so those are not claimed as verified results.
 
+**Scope note:** This lab documents basic troubleshooting in a personal Microsoft Entra ID Free environment. It does not claim production incident response or advanced P2 sign-in risk testing.
+
+## Skills Practiced
+
+- **Controlled authentication testing:** I reproduced incorrect-password and disabled-account sign-in failures with a fictional user.
+
+- **Sign-in log investigation:** I matched user identity, timestamps, and failure details to the test attempts.
+
+- **Error interpretation:** I distinguished error 50126 for invalid credentials from 50057 for a disabled account.
+
+- **Targeted remediation:** I used the correct password for the first scenario and re-enabled the authorized test account for the second.
+
+- **Recovery verification:** I performed fresh successful sign-ins after both corrections and accounted for delayed log visibility.
+
 ## Lessons Learned
 
 - **Correlate user reports with the correct sign-in event.** User identity, timestamps, application context, and failure information help narrow an investigation when logs contain multiple records.
+
 - **Read the error code alongside its failure reason.** Error **50126** was consistent with invalid credentials; error **50057** indicated a disabled user account. The diagnosis should be supported by the surrounding context.
+
 - **Check account configuration.** Sign-in logs identified the failure, while account settings independently confirmed that the test user was blocked in the second scenario.
+
 - **Choose targeted fixes.** Re-entering a correct password and re-enabling an authorized test account addressed different causes; neither required changing MFA settings.
+
 - **Verify a fix with a fresh test.** A successful sign-in after remediation demonstrated recovery for both scenarios. If the retest had failed, further investigation would have been necessary.
+
 - **Account for log delays.** Sign-in activity may not appear instantaneously in the admin center, so recorded event times and careful matching improve troubleshooting accuracy.
+
+## References
+
+Microsoft documentation supporting the procedures and behavior discussed in this lab:
+
+- [Troubleshoot Microsoft Entra sign-in errors](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-troubleshoot-sign-in-errors)
+
+- [Authentication and authorization error codes](https://learn.microsoft.com/en-us/entra/identity-platform/reference-error-codes)
 
 ---
 
-**Scope note:** This lab documents basic troubleshooting in a personal Microsoft Entra ID Free environment. It does not claim production incident response or advanced P2 sign-in risk testing.
+[Return to portfolio](../../README.md)

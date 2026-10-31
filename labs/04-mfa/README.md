@@ -34,9 +34,13 @@ The scenario uses a personal lab account and a test device; it does not involve 
 ## Prerequisites
 
 - An enabled Selina Kyle account without assigned administrator roles.
+
 - Microsoft Authenticator on the test mobile device.
+
 - A separate browser session for testing Selina's sign-in.
+
 - An authorized administrator able to review and manage user authentication methods.
+
 - Continued access to the primary administrator account.
 
 ## Part 1: Review MFA Configuration
@@ -78,8 +82,11 @@ From my administrator session, I used **Require re-register multifactor authenti
 **Observed sequence:**
 
 1. I initiated the MFA re-registration action from my administrator account.
+
 2. During the subsequent sign-in attempt as Selina, I encountered an MFA-related error, which I recorded in my validation table.
+
 3. I completed Microsoft Authenticator setup for Selina on the intended mobile device.
+
 4. The new registration succeeded.
 
 I did not record an error code or detailed failure reason for the interim error. It should not be attributed to a particular Entra policy or service condition without the corresponding sign-in details.
@@ -129,14 +136,42 @@ Selina's lab account remained available after successful MFA recovery. The final
 
 My original cleanup checklist recommended confirming primary administrator access and ensuring no secrets were visible in screenshots; it does not independently record screenshots or separate results for those checks. No temporary administrator role assignment was described for the test user.
 
+**Lab scope:** Microsoft Entra ID Free in the `phillipmcquinngmail.onmicrosoft.com` tenant. Labs 06–08 use the separate GothamLabz Microsoft Entra ID P2 environment.
+
+## Skills Practiced
+
+- **MFA configuration review:** I inspected Security Defaults and distinguished enforcement settings from method enrollment.
+
+- **Authenticator registration:** I enrolled Microsoft Authenticator for a fictional standard user and checked the registered method.
+
+- **Administrator-assisted recovery:** I required MFA re-registration to simulate a phone replacement and completed re-enrollment.
+
+- **Authentication investigation:** I reviewed sign-in Authentication Details and documented the interim error without assigning an unverified cause.
+
+- **Recovery validation:** I completed a successful sign-in with MFA after re-registration.
+
 ## Lessons Learned
 
 - **Registration and enforcement are different.** Enrolling Microsoft Authenticator makes the method available; the applicable authentication configuration determines when MFA is required.
+
 - **Authentication Details provide verification context.** Sign-in logs help distinguish successful authentication, a newly performed challenge, and MFA satisfied by an existing claim when those details are available.
+
 - **Re-registration supports account recovery.** Requiring MFA re-registration can be part of an administrator-assisted recovery workflow when a user changes devices or must reset their authentication methods.
+
 - **Password changes and MFA recovery are separate actions.** Changing a password does not automatically establish or replace an Authenticator registration.
+
 - **Evidence must support the diagnosis.** An observed MFA error should be recorded with its exact code and failure details before claiming a specific cause.
+
+## References
+
+Microsoft documentation supporting the procedures and behavior discussed in this lab:
+
+- [Security Defaults](https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults)
+
+- [Manage user authentication methods](https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-userdevicesettings)
+
+- [Troubleshoot Microsoft Entra sign-in errors](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-troubleshoot-sign-in-errors)
 
 ---
 
-**Lab scope:** Microsoft Entra ID Free in the `phillipmcquinngmail.onmicrosoft.com` tenant. Labs 06–08 use the separate GothamLabz Microsoft Entra ID P2 environment.
+[Return to portfolio](../../README.md)
