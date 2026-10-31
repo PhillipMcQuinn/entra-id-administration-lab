@@ -1,6 +1,6 @@
 # Microsoft Entra ID Lab Setup
 
-> **Environment snapshot — October 30, 2026:** Labs 01–05 use the original Entra ID Free tenant. Labs 06–15 use the separate GothamLabz tenant with a **P2 free trial**. The October 5 setup values are retained below as historical context; the GothamLabz column and later lab sections record the subsequent environment. I verified the trial expiration date as November 7, 2026 and disabled recurring renewal. Post-expiry feature availability has not been tested.
+> **Environment snapshot — October 30, 2026:** Labs 01–05 use the original Entra ID Free tenant. Labs 06–16 use the separate GothamLabz tenant with a **P2 free trial**. The October 5 setup values are retained below as historical context; the GothamLabz column and later lab sections record the subsequent environment. I verified the trial expiration date as November 7, 2026 and disabled recurring renewal. Post-expiry feature availability has not been tested.
 
 ## Purpose and Scope
 
@@ -23,7 +23,7 @@ This environment was used for introductory IAM administration exercises:
 - Lab 04: MFA Registration and Recovery
 - Lab 05: Sign-in Troubleshooting
 
-### Environment 2 — Microsoft Entra ID P2 (Labs 06–15)
+### Environment 2 — Microsoft Entra ID P2 (Labs 06–16)
 
 **Tenant:** `GothamLabz.onmicrosoft.com`  
 **License:** Microsoft Entra ID P2 free trial
@@ -40,6 +40,7 @@ This environment was used for advanced IAM security, governance, and application
 - Lab 13: Software OATH-TOTP Registration and Recovery
 - Lab 14: Entitlement Management and Temporary Application Access
 - Lab 15: Dynamic Groups and Automated Department Transfers
+- Lab 16: PIM for Groups and Just-in-Time Application Access
 
 Labs 06–08 recorded two administrator accounts and seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments. Lab 09 added a dedicated PIM test account with an Entra ID P2 license and Microsoft Authenticator registration. Its eligible Helpdesk Administrator assignment was removed during cleanup.
 
@@ -58,7 +59,7 @@ Configuration settings, licenses, user accounts, and test results should be inte
 | Authenticator | Microsoft Authenticator | Microsoft Authenticator; Windows Hello passkeys on administrator accounts |
 | Admin center | [Microsoft Entra admin center](https://entra.microsoft.com) | [Microsoft Entra admin center](https://entra.microsoft.com) |
 
-The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–15 use GothamLabz.
+The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–16 use GothamLabz.
 
 ## Administrator and Test Accounts
 
@@ -301,6 +302,16 @@ I restored Department Procurement and confirmed its dynamic membership returned 
 
 See [Lab 15](../labs/15-dynamic-groups/README.md) for rules, role-assignment audit properties, test results, timing limits, and screenshots.
 
+## PIM for Groups (Lab 16)
+
+I created the assigned cloud security group **PIM-GothamApp-Procurement-Readers** (`642c23fd-62ee-4196-a2f0-01700833fe6b`), managed it through PIM, and assigned it Procurement Reader in Gotham Access Lab. Member activation required Azure MFA, justification, approval by my administrator account, and a maximum duration of one hour. I gave Tim a one-day eligible Member assignment and temporarily changed Department to Lab-NoAccess at 8:06 PM MDT on October 30. His dynamic reader membership disappeared within one minute.
+
+Fresh application sign-in failed with AADSTS50105 before activation and while approval was pending. I operated requester and approver accounts myself. No fresh MFA prompt was observed during the request; existing-claim satisfaction was not independently verified. After approval, Tim's activated membership ran from 8:18:54 PM to 9:18:53 PM MDT. A fresh session displayed Procurement.Reader only, allowed Procurement, and denied IT Inventory.
+
+After automatic expiry, the PIM group was already absent when I loaded Tim's Groups page, PIM no longer listed him as active, and a fresh sign-in failed with AADSTS50105. I did not measure exact removal latency or test existing-session termination. I removed his remaining eligibility, restored Department Procurement and its dynamic membership, stopped Flask, and closed test Incognito windows. I retained the PIM group, settings, application assignment, and my permanent Owner assignment.
+
+See [Lab 16](../labs/16-pim-for-groups/README.md) for configuration, the validation matrix, screenshots, and evidence limits.
+
 ## Trial Status
 
 On October 30, 2026, I verified that my P2 free trial was Active, with **10 of 25 licenses assigned** and an expiration date of **November 7, 2026**. I disabled recurring renewal; the portal then stated that the trial would expire and the subscription would be canceled. A separate recurring-billing field displayed November 8, so I used November 7 as my preparation deadline. I have not recorded the post-expiry subscription state or feature behavior.
@@ -311,6 +322,7 @@ The planned transition to Security Defaults and the later post-expiry observatio
 
 ## Maintenance Notes
 
-This is a snapshot of the environment documented through **October 30, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, Lab 11 OIDC/PKCE and session tests, Lab 12 OAuth API token-validation and read/write authorization tests, Lab 13 software OATH-TOTP registration, deletion, and replacement tests, Lab 14 entitlement-management request, approval, delivery, expiry, and fresh-sign-in denial tests, and Lab 15 dynamic membership, department transfers, application-role authorization, and access removal tests. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+This is a snapshot of the environment documented through **October 30, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, Lab 11 OIDC/PKCE and session tests, Lab 12 OAuth API token-validation and read/write authorization tests, Lab 13 software OATH-TOTP registration, deletion, and replacement tests, Lab 14 entitlement-management request, approval, delivery, expiry, and fresh-sign-in denial tests, Lab 15 dynamic membership, department transfers, application-role authorization, and access removal tests, and Lab 16 approval-controlled PIM group membership, application access, automatic expiry, and eligibility cleanup. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+
 
 

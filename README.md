@@ -15,6 +15,7 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | Authentication recovery | Registered software OATH-TOTP, rejected incorrect and deleted-registration codes, and validated a replacement while preserving Authenticator push |
 | Entitlement management | Verified self-service request, justified approval, one-hour application-role delivery, automatic expiry, and fresh-sign-in denial |
 | Dynamic access | Verified Department-driven group and app-role changes, both transfer directions, and fresh-sign-in denial after automatic membership removal |
+| PIM for Groups | Verified approval-controlled temporary application access, one-hour membership expiry, and fresh-sign-in denial after expiry |
 | Identity lifecycle | Tested joiner, mover, leaver, role changes, access reviews, and access removal with a fictional employee account |
 | Conditional Access | Configured six policies; enabled four and retained two in Report-only mode |
 | Administrator security | Registered and tested Windows Hello passkeys and verified an enforced phishing-resistant MFA requirement |
@@ -41,12 +42,13 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | 13 | [Software OATH-TOTP Registration and Recovery](labs/13-oath-totp-recovery/README.md) | TOTP enrollment, incorrect-code rejection, registration deletion, and replacement-code validation |
 | 14 | [Entitlement Management and Temporary Application Access](labs/14-entitlement-management/README.md) | Self-service requests, approval, app-role delivery, one-hour expiry, and access removal |
 | 15 | [Dynamic Groups and Automated Department Transfers](labs/15-dynamic-groups/README.md) | Department rules, automatic membership, app-role changes, least privilege, and access removal |
+| 16 | [PIM for Groups and Just-in-Time Application Access](labs/16-pim-for-groups/README.md) | Eligible membership, approval, temporary app-role access, automatic expiry, and cleanup |
 
 ## Lab Environments
 
-The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–15** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
+The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–16** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
 
-**Trial licensing:** I used a Microsoft Entra ID P2 free trial for Labs 06–15. On October 30, 2026, I verified an expiration date of **November 7, 2026** and disabled recurring renewal. The subscription was still Active. Post-expiry feature availability has not been tested.
+**Trial licensing:** I used a Microsoft Entra ID P2 free trial for Labs 06–16. On October 30, 2026, I verified an expiration date of **November 7, 2026** and disabled recurring renewal. The subscription was still Active. Post-expiry feature availability has not been tested.
 
 ### GothamLabz P2 environment
 
@@ -56,7 +58,7 @@ The portfolio uses two intentional lab environments: **Labs 01–05** were compl
 | License | Microsoft Entra ID P2 |
 | Test identities | Fictional users and separate administrator accounts; Lab 09 added a dedicated PIM test account |
 | Authentication | Microsoft Authenticator push, software OATH-TOTP, and device-bound Windows Hello passkeys |
-| Access control | Assigned and department-based dynamic security groups, application roles, Conditional Access, and PIM eligible directory roles |
+| Access control | Assigned and department-based dynamic security groups, application roles, Conditional Access, PIM eligible directory roles, and PIM for Groups |
 | Test applications | Gotham Access Lab — local Python Flask/OIDC application; Gotham SAML Lab — hosted SAML Toolkit integration; Gotham OIDC Lab — local MSAL SPA; Gotham OAuth API/Client Lab — local SPA and protected Python API |
 
 For the environment snapshot through October 30, 2026, including historical Free-tenant context, P2 trial licensing, and evidence limits, see [Lab Setup](docs/lab-setup.md).
@@ -67,7 +69,7 @@ For the environment snapshot through October 30, 2026, including historical Free
 - **Entitlement management:** catalogs, access packages, scoped self-service requests, justified approval, application-role delivery, and automatic assignment expiry.
 - **Dynamic membership:** department-based rules, rule validation, automatic group changes, and application-role authorization after transfers.
 - **Access control:** least privilege, role-based access control (RBAC), enterprise app assignments, and access reviews.
-- **Privileged Identity Management:** time-limited eligibility, just-in-time role activation, justification, approval, manual deactivation, automatic expiry, and correlated audit events.
+- **Privileged Identity Management:** directory-role and group-member eligibility, temporary application access, just-in-time role activation, justification, approval, manual deactivation, automatic expiry, and correlated audit events.
 - **Authentication:** Microsoft Authenticator MFA, software OATH-TOTP registration and recovery, Windows Hello passkeys, and phishing-resistant authentication strengths.
 - **Conditional Access:** policy targeting and exclusions, Report-only evaluation, staged enforcement, and sign-in investigation.
 - **Identity Protection:** sign-in risk-based What If simulations using Entra ID P2.
@@ -81,7 +83,7 @@ Evidence is organized within each lab's `screenshots/` folder and linked from th
 
 - **Verified configuration:** a setting or assignment shown in the Entra portal.
 - **Validated privileged operation:** password-reset success during active role windows, with denial before activation, while approval was pending, after deactivation, and after expiry.
-- **MFA observation in Lab 09:** MFA was configured as an activation requirement, but no fresh MFA prompt was observed during the first activation; existing-claim satisfaction was not independently verified.
+- **MFA observation in Labs 09 and 16:** MFA was configured as an activation requirement, but no fresh MFA prompt was observed during the first Lab 09 activation or the Lab 16 request; existing-claim satisfaction was not independently verified.
 - **What If simulation:** a policy-matching test, not a real enforced authentication event.
 - **Enforced sign-in:** an observed authentication event with an applicable Conditional Access result.
 - **Observed without screenshot:** a result recorded during hands-on testing without a separate image.
@@ -96,5 +98,6 @@ All employees, scenarios, and organization names in the labs are fictional. Secr
 I built these labs to expand on my enterprise technical support experience and demonstrate practical skills relevant to IAM Analyst, Identity Security Analyst, Access Management Analyst, and Identity Operations roles.
 
 [LinkedIn](https://www.linkedin.com/in/phillipmcquinn/)
+
 
 
