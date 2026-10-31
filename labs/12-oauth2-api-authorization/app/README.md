@@ -52,7 +52,7 @@ Capture the API responses and history after the baseline. No raw token is displa
 ## Grant write and verify recovery
 
 1. In Gotham OAuth Client Lab > API permissions, add the API's delegated **Inventory.Write** permission.
-2. Grant admin consent for Gotham Labs.
+2. Grant admin consent for the Gotham IAM Lab tenant.
 3. Return to the app and click **Request read + write token**. Complete an interaction if prompted.
 4. Click **Write with current token**. Expect HTTP 200 and `scp` containing Inventory.Write.
 5. Confirm the fictional quantity increments. Updates are in memory and reset when the server stops.
@@ -93,3 +93,4 @@ These fixture tests are implementation checks. They are not evidence of a succes
 - https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens
 - https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis
 - https://pyjwt.readthedocs.io/en/stable/usage.html
+

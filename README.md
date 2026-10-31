@@ -47,11 +47,13 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 
 ## Lab Environments
 
+I use **Gotham IAM Lab** as the fictional organization name in this portfolio. Historical company attributes and portal display labels are explained in [Lab Setup](docs/lab-setup.md#purpose-and-naming).
+
 The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–17** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
 
 **Trial licensing:** I used a Microsoft Entra ID P2 free trial for Labs 06–17. On October 30, 2026, I verified an expiration date of **November 7, 2026** and disabled recurring renewal. The subscription was still Active. Post-expiry feature availability has not been tested.
 
-### GothamLabz P2 environment
+### Gotham IAM Lab — P2 environment
 
 | Component | Lab configuration |
 |---|---|
@@ -62,7 +64,7 @@ The portfolio uses two intentional lab environments: **Labs 01–05** were compl
 | Access control | Assigned and department-based dynamic security groups, application roles, Conditional Access, PIM eligible directory roles, and PIM for Groups |
 | Test applications | Gotham Access Lab — local Python Flask/OIDC application; Gotham SAML Lab — hosted SAML Toolkit integration; Gotham OIDC Lab — local MSAL SPA; Gotham OAuth API/Client Lab — local SPA and protected Python API |
 
-For the environment snapshot through October 31, 2026, including historical Free-tenant context, P2 trial licensing, and evidence limits, see [Lab Setup](docs/lab-setup.md).
+For the environment snapshot through October 31, 2026, including tenant separation, P2 trial licensing, and the seven-policy inventory, see [Lab Setup](docs/lab-setup.md).
 
 ## IAM Skills Practiced
 
@@ -100,6 +102,7 @@ All employees, scenarios, and organization names in the labs are fictional. Secr
 I built these labs to expand on my enterprise technical support experience and demonstrate practical skills relevant to IAM Analyst, Identity Security Analyst, Access Management Analyst, and Identity Operations roles.
 
 [LinkedIn](https://www.linkedin.com/in/phillipmcquinn/)
+
 
 
 

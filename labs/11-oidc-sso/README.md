@@ -59,7 +59,7 @@ The five PASS checks compare `aud` with the client ID, `iss` with the tenant v2 
 
 ### Assignment and consent are separate controls
 
-My initial sign-in attempt as the unassigned Dick Grayson account failed with AADSTS50105. After I assigned the account, the next attempt reached an administrator-approval requirement. I reviewed the API permissions, which initially showed delegated `User.Read`, then configured the three OIDC scopes and granted consent for Gotham Labs. I signed in successfully after this change. This sequence does not establish that `User.Read` inherently requires administrator consent in every tenant.
+My initial sign-in attempt as the unassigned Dick Grayson account failed with AADSTS50105. After I assigned the account, the next attempt reached an administrator-approval requirement. I reviewed the API permissions, which initially showed delegated `User.Read`, then configured the three OIDC scopes and granted consent for my Gotham IAM Lab tenant. I signed in successfully after this change. This sequence does not establish that `User.Read` inherently requires administrator consent in every tenant.
 
 ![Initial assignment denial](screenshots/04-initial-unassigned-denial.png)
 ![Administrator approval required](screenshots/05-admin-approval-required.png)
@@ -148,3 +148,4 @@ See [application instructions](app/README.md) for setup and diagnostic details. 
 - [MSAL resources and scopes](https://learn.microsoft.com/en-us/entra/msal/javascript/browser/resources-and-scopes)
 
 [Return to portfolio](../../README.md)
+

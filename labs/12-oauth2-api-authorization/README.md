@@ -31,8 +31,8 @@ I configured separate Microsoft Entra API and SPA client registrations, exposed 
 | Implicit access and ID token grants | Both unchecked |
 | Allow public client flows | Disabled |
 | Client secret | None used |
-| Initial consent | Delegated Inventory.Read granted for Gotham Labs |
-| Final API consent | Delegated Inventory.Read and Inventory.Write granted for Gotham Labs |
+| Initial consent | Delegated Inventory.Read granted for Gotham IAM Lab |
+| Final API consent | Delegated Inventory.Read and Inventory.Write granted for Gotham IAM Lab |
 
 The root URL hosts the MSAL v5 redirect bridge; the interactive page is `lab.html`. The SPA and API share the loopback origin to avoid a separate cross-origin setup. Registration IDs are identifiers, not credentials. Lab 11 uses a separate client registration.
 
@@ -89,7 +89,7 @@ The response explicitly showed **tokenValidation: passed**. This separates a val
 
 ## Grant Write Consent and Verify Recovery — 200
 
-I added the API's delegated Inventory.Write permission to the client registration and granted administrator consent. Both Inventory.Read and Inventory.Write then showed **Granted for Gotham Labs**. The consent dialog offered to retain other existing grants; I kept them. The published API screenshot establishes the two custom API permissions and does not inventory any rows outside the captured view.
+I added the API's delegated Inventory.Write permission to the client registration and granted administrator consent. Both Inventory.Read and Inventory.Write then showed **Granted for Gotham Labs** (the historical portal display label for my Gotham IAM Lab tenant). The consent dialog offered to retain other existing grants; I kept them. The published API screenshot establishes the two custom API permissions and does not inventory any rows outside the captured view.
 
 Granting consent did not rewrite the token already held by the app. I used the app's **Request read + write token** action to acquire a token for both scopes. A repeated write returned HTTP 200 with `scp: Inventory.Read Inventory.Write`, quantity **11**, and updates **1**.
 
@@ -174,3 +174,4 @@ See [app instructions](app/README.md) for setup, the consent sequence, security 
 - [PyJWT usage](https://pyjwt.readthedocs.io/en/stable/usage.html)
 
 [Return to portfolio](../../README.md)
+

@@ -17,13 +17,13 @@ Completed — functional tests and cleanup confirmed on October 29, 2026.
 | Setting | Value |
 |---|---|
 | Environment | Personal, nonproduction IAM lab; fictional test identities |
-| Tenant | Gotham Labs (`GothamLabz.onmicrosoft.com`) |
+| Tenant | Gotham IAM Lab (`GothamLabz.onmicrosoft.com`) |
 | License | Microsoft Entra ID P2 assigned to PIM Test Administrator |
 | Date performed | October 29, 2026 |
 | Configuring administrator and approver | Phillip McQuinn, Global Administrator |
 | Eligible administrator | PIM Test Administrator (`Pim-Test@GothamLabz.onmicrosoft.com`) |
 | Role | Helpdesk Administrator |
-| Scope | Directory / Gotham Labs |
+| Scope | Directory / `Gotham Labs` (historical tenant display label) |
 | Assignment | Direct, time-limited eligibility; October 29–30, 2026 |
 | Password-reset target | Dick Grayson (`DickGrayson@GothamLabz.onmicrosoft.com`) |
 | Registered authentication method | Microsoft Authenticator |
@@ -206,3 +206,4 @@ I did not delete the account as part of the confirmed cleanup. The final Helpdes
 - [Configure Microsoft Entra role settings in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)
 - [Assign Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-add-role-to-user)
 - [Activate Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role)
+

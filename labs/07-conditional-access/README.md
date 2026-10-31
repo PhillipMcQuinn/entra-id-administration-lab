@@ -106,6 +106,8 @@ I created and evaluated six policies, recording their intended identity scope, g
 | `CA-04-Lab-Recovery-MFA` | Evaluate phishing-resistant authentication for recovery account | Report-only |
 | `CA-05-Lab-SignInRisk-MFA` | Evaluate Medium- and High-risk sign-ins for the user group | Report-only |
 
+**Historical scope:** This table records the end of Lab 07: six policies, with four On and two Report-only. I later added `CA-06-Lab-Tim-High-User-Risk-Remediation` in [Lab 17](../17-identity-protection/README.md) and returned it to Report-only after testing. The final October 31 inventory therefore has **seven policies: four On and three Report-only**; see [Lab Setup](../../docs/lab-setup.md#policy-inventory-after-lab-17).
+
 The original six-policy list was captured while all policies were in **Report-only** mode.
 
 Evidence:
@@ -224,37 +226,34 @@ The policy is configured and On, and its What If targeting was successful. Howev
 
 ## Cleanup
 
-- Keep the four baseline protection policies **On** in the lab unless intentionally conducting a controlled change.
-
-- Keep the recovery training policy and risk-policy simulation **Report-only** until their intended enforcement behavior is separately planned and tested.
-
-- Keep the Lab Recovery Administrator available and its authentication methods intact.
-
-- Record any future policy changes, exclusions, rollback actions, and timestamps.
-
-- No deletion or restoration of these six policies was documented as part of this exercise.
+- I left `CA-00` through `CA-03` **On** at the end of this exercise.
+- I retained `CA-04` and `CA-05` in **Report-only**.
+- I retained the Lab Recovery Administrator and its authentication methods for recovery access.
+- I did not document deletion or restoration of the six policies as part of Lab 07. Later policy changes are recorded in the corresponding labs and the dated setup snapshot.
 
 ## Issues and Troubleshooting
 
-- **Security Defaults prevented custom Conditional Access enforcement.** The transition was deferred until replacement policies and recovery access were prepared.
+### Security Defaults and policy evaluation
 
-- **Report-only and disabled sign-in log results initially caused confusion.** I verified targeting through What If and later verified actual enforcement separately.
+- **Security Defaults prevented custom Conditional Access enforcement.** I deferred the transition until I had prepared replacement policies and recovery access.
+- **Report-only and disabled sign-in log results initially caused confusion.** I checked targeting through What If and verified actual enforcement separately.
+- **Recovery passkey profile naming and assignment were confusing.** I checked the custom profile, group targeting, allowed Windows Hello authenticators, and successful passkey registration.
 
-- **Recovery passkey profile naming/assignment was confusing.** I confirmed the custom profile, group targeting, allowed Windows Hello authenticators, and successful passkey registration.
-**Issue: Windows Hello Passkey Registration**
+### Windows Hello Passkey Registration
 
-**Symptom:** Windows Hello passkey registration could not be completed using the DuckDuckGo browser.
+**Symptom:** I could not complete Windows Hello passkey registration using the DuckDuckGo browser.
 
 **Investigation:** I retried registration and identified browser compatibility as a potential contributing factor.
 
 **Resolution:** I switched to a compatible browser and successfully registered the Windows Hello passkey.
 
-**Verification:** I confirmed successful authentication using the registered Windows Hello passkey to access the Microsoft Entra admin center.
+**Verification:** I used the registered Windows Hello passkey to access the Microsoft Entra admin center.
 
-**Lesson Learned:** Browser compatibility can affect passkey registration and authentication workflows. When troubleshooting passkey enrollment issues, verify browser support before investigating account configuration or tenant authentication policies.
+**Lesson learned:** I learned to check browser support when troubleshooting passkey enrollment before attributing the issue to account configuration or tenant policy. The successful retry did not isolate the underlying browser failure.
 
-- **Sign-in logs sometimes reported previously satisfied MFA.** I recorded that result without claiming a fresh prompt for the specific event.
+### Sign-in evidence
 
+- **Some logs reported previously satisfied MFA.** I recorded that result without claiming a fresh prompt for the specific event.
 - **No actual legacy-client event appeared in the filtered logs.** I recorded the protocol block as not tested rather than claiming a demonstrated denial.
 
 ## Skills Practiced
@@ -298,3 +297,4 @@ Microsoft documentation supporting the procedures and behavior discussed in this
 ---
 
 [Return to portfolio](../../README.md)
+

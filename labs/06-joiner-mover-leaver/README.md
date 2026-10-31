@@ -28,6 +28,8 @@ Tim Drake is the fictional employee in Gotham IAM Lab. He begins with access to 
 | Manager | Lucius Fox | Selina Kyle |
 | App-reader group | `SG-GothamApp-IT-Readers` | `SG-GothamApp-Procurement-Readers` |
 
+**Historical attribute label:** The saved Company value was `Gotham IT Labs`. I preserve that value in the evidence and tables; the portfolio organization name is Gotham IAM Lab.
+
 ## Prerequisites
 
 - Access to the personal Gotham IAM Lab tenant.
@@ -88,7 +90,7 @@ Evidence:
 
 ### 5. Verify application role and access
 
-I inspected the claims/identity page for the IT Reader role. Test the fictional IT inventory and Procurement endpoints from the employee session.
+I inspected the claims/identity page for the IT Reader role and tested the fictional IT inventory and Procurement endpoints from the employee session.
 
 **Observed:** The IT inventory returned **IT Reader access allowed**; Procurement returned **Forbidden**.
 
@@ -247,3 +249,4 @@ Microsoft documentation supporting the procedures and behavior discussed in this
 ---
 
 [Return to portfolio](../../README.md)
+
