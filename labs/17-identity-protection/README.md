@@ -163,7 +163,7 @@ The 10:48 and 10:51 Authentication Details tabs showed Previously satisfied. The
 
 ![Previously satisfied MFA](screenshots/18-post-remediation-auth.png)
 
-## Cleanup and final state
+## Cleanup and historical post-test state
 
 I restored CA-06 to **Report-only**; the saved summary shows modification at **11:10:17 AM MDT**. I retained the policy for future evaluation, left the other policies unchanged, and kept Tim's restored Procurement access and new password. Graph had already confirmed riskLevel none and riskState remediated.
 
@@ -172,6 +172,8 @@ I restored CA-06 to **Report-only**; the saved summary shows modification at **1
 I stopped Flask, closed the test Incognito windows, and signed out of Graph Explorer. Security Defaults remained disabled.
 
 **Later October 31 cleanup check:** I reconfirmed CA-06 as Report-only and downloaded its JSON export for my private policy backup. The download was operator-confirmed; the export contents were not inspected in this review. The full policy list still showed seven user-created policies: CA-00 through CA-03 On, and CA-04 through CA-06 Report-only.
+
+**Subsequent pre-expiry closeout:** Later on October 31, I set CA-00 through CA-06 Off and enabled Security Defaults. Both administrator accounts subsequently signed back in successfully using Windows Hello. This supersedes CA-06's earlier Report-only state; the Lab 17 test results above remain historical. See the [current environment snapshot](../../docs/lab-setup.md).
 
 ## What I learned
 
@@ -183,7 +185,7 @@ I practiced scoped risk-policy configuration, High-versus-Low What If comparison
 
 - Risk was administrator-generated, not an organic compromise or risky-sign-in detection. Password-change/email observations lack separate images, and captured logs show Previously satisfied MFA.
 
-- Log-ingestion delay and the initial 405 cause were not isolated. Graph consent removal, a repeated IT-denial test, existing-session revocation, and the licensing transition were not verified or tested.
+- Log-ingestion delay and the initial 405 cause were not isolated. Graph consent removal, a repeated IT-denial test, existing-session revocation, and post-expiry behavior were not verified or tested. The later protection transition to Security Defaults is documented above; it was performed while the P2 trial was still active.
 
 ## References
 
