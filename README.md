@@ -14,6 +14,7 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | OAuth API authorization | Verified server token validation, 401 rejection of missing/tampered/ID tokens, 403 for insufficient scope, and 200 after write consent and a new token |
 | Authentication recovery | Registered software OATH-TOTP, rejected incorrect and deleted-registration codes, and validated a replacement while preserving Authenticator push |
 | Entitlement management | Verified self-service request, justified approval, one-hour application-role delivery, automatic expiry, and fresh-sign-in denial |
+| Dynamic access | Verified Department-driven group and app-role changes, both transfer directions, and fresh-sign-in denial after automatic membership removal |
 | Identity lifecycle | Tested joiner, mover, leaver, role changes, access reviews, and access removal with a fictional employee account |
 | Conditional Access | Configured six policies; enabled four and retained two in Report-only mode |
 | Administrator security | Registered and tested Windows Hello passkeys and verified an enforced phishing-resistant MFA requirement |
@@ -39,12 +40,13 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 | 12 | [OAuth 2.0 API Authorization](labs/12-oauth2-api-authorization/README.md) | Access-token validation, delegated scopes, admin consent, 401 versus 403, and read/write authorization |
 | 13 | [Software OATH-TOTP Registration and Recovery](labs/13-oath-totp-recovery/README.md) | TOTP enrollment, incorrect-code rejection, registration deletion, and replacement-code validation |
 | 14 | [Entitlement Management and Temporary Application Access](labs/14-entitlement-management/README.md) | Self-service requests, approval, app-role delivery, one-hour expiry, and access removal |
+| 15 | [Dynamic Groups and Automated Department Transfers](labs/15-dynamic-groups/README.md) | Department rules, automatic membership, app-role changes, least privilege, and access removal |
 
 ## Lab Environments
 
-The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–14** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
+The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–15** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
 
-**Trial licensing:** I used a Microsoft Entra ID P2 free trial for Labs 06–14. On October 30, 2026, I verified an expiration date of **November 7, 2026** and disabled recurring renewal. The subscription was still Active. Post-expiry feature availability has not been tested.
+**Trial licensing:** I used a Microsoft Entra ID P2 free trial for Labs 06–15. On October 30, 2026, I verified an expiration date of **November 7, 2026** and disabled recurring renewal. The subscription was still Active. Post-expiry feature availability has not been tested.
 
 ### GothamLabz P2 environment
 
@@ -54,7 +56,7 @@ The portfolio uses two intentional lab environments: **Labs 01–05** were compl
 | License | Microsoft Entra ID P2 |
 | Test identities | Fictional users and separate administrator accounts; Lab 09 added a dedicated PIM test account |
 | Authentication | Microsoft Authenticator push, software OATH-TOTP, and device-bound Windows Hello passkeys |
-| Access control | Assigned security groups, application roles, Conditional Access, and PIM eligible directory roles |
+| Access control | Assigned and department-based dynamic security groups, application roles, Conditional Access, and PIM eligible directory roles |
 | Test applications | Gotham Access Lab — local Python Flask/OIDC application; Gotham SAML Lab — hosted SAML Toolkit integration; Gotham OIDC Lab — local MSAL SPA; Gotham OAuth API/Client Lab — local SPA and protected Python API |
 
 For the environment snapshot through October 30, 2026, including historical Free-tenant context, P2 trial licensing, and evidence limits, see [Lab Setup](docs/lab-setup.md).
@@ -63,6 +65,7 @@ For the environment snapshot through October 30, 2026, including historical Free
 
 - **Identity lifecycle:** account creation, attribute updates, group management, joiner–mover–leaver processes, and offboarding.
 - **Entitlement management:** catalogs, access packages, scoped self-service requests, justified approval, application-role delivery, and automatic assignment expiry.
+- **Dynamic membership:** department-based rules, rule validation, automatic group changes, and application-role authorization after transfers.
 - **Access control:** least privilege, role-based access control (RBAC), enterprise app assignments, and access reviews.
 - **Privileged Identity Management:** time-limited eligibility, just-in-time role activation, justification, approval, manual deactivation, automatic expiry, and correlated audit events.
 - **Authentication:** Microsoft Authenticator MFA, software OATH-TOTP registration and recovery, Windows Hello passkeys, and phishing-resistant authentication strengths.
@@ -93,4 +96,5 @@ All employees, scenarios, and organization names in the labs are fictional. Secr
 I built these labs to expand on my enterprise technical support experience and demonstrate practical skills relevant to IAM Analyst, Identity Security Analyst, Access Management Analyst, and Identity Operations roles.
 
 [LinkedIn](https://www.linkedin.com/in/phillipmcquinn/)
+
 
