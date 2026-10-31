@@ -31,9 +31,9 @@ These are two intentional tenant environments, not a domain rename or migration.
 | Fictional employees | Bruce Wayne, Alfred Pennyworth, Lucius Fox, Barbara Gordon, Dick Grayson, Selina Kyle, and Tim Drake across the lab scenarios |
 | PIM Test Administrator | Dedicated P2 directory-role test account introduced in Lab 09 |
 
-Account creation, deletion, membership, and temporary role assignments vary by lab. This table describes account purposes, not a current directory inventory. The administrator assignment verification is dated October 30; lab-specific cleanup is documented with each exercise.
+Account creation, deletion, membership, and temporary role assignments vary by lab. This table describes account purposes, not a current directory inventory. The October 31 PIM active-assignment screenshot again showed the regular and recovery accounts as direct, permanent Global Administrators; lab-specific cleanup is documented with each exercise.
 
-**PIM test-account retention:** I retained the dedicated Lab 09 identity and its trial P2 license so I can repeat PIM exercises without using my regular administrator as the test identity. At the documented Lab 09 cleanup, its eligible role assignment was removed and no active administrator role or pending request remained. I have not performed a fresh live directory/license inventory in this repository review. Account deletion and license reclamation remain part of trial cleanup when repeat testing is finished.
+**PIM test-account retirement — October 31, 2026:** After completing repeat testing, I checked the PIM assignment lists: the active list showed only my regular and recovery Global Administrators, and the eligible list returned no results for Pim-Test. I removed the directly assigned Entra ID P2 license in Microsoft 365 Admin Center, verified Licenses (0), and deleted PIM Test Administrator. The portal confirmed deletion; I did not permanently purge the deleted account. The license page showed 16 of 25 P2 licenses available after removal.
 
 ## Groups and Application Roles
 
@@ -72,6 +72,8 @@ The documented authentication methods include Microsoft Authenticator push, soft
 
 **Timeline:** Lab 07 ended with six policies: four On and two Report-only. I added CA-06 in [Lab 17](../labs/17-identity-protection/README.md) and returned it to Report-only after testing. The October 31 snapshot therefore contains **seven policies: four On and three Report-only**. The earlier six-policy inventory is historical, not a different count of the final configuration.
 
+I rechecked the full policy list on October 31 after retiring Pim-Test. It showed seven user-created policies, zero Microsoft-managed policies, and the states listed above: four On and three Report-only.
+
 Policy state records configuration, not proof of every intended enforcement outcome. Targeting, exclusions, simulations, actual sign-in results, and evidence limits remain in [Lab 07](../labs/07-conditional-access/README.md) and [Lab 17](../labs/17-identity-protection/README.md).
 
 ## Applications and Local Tools
@@ -89,7 +91,9 @@ I used a Windows workstation, separate browser sessions for account testing, Mic
 
 On **October 30, 2026**, I verified that the P2 free trial was Active with **10 of 25 licenses assigned**, an expiration date of **November 7, 2026**, and recurring renewal disabled. A separate billing field showed November 8; I used November 7 as the preparation deadline. This is a dated observation, not a live licensing query.
 
-I exported the six policies present on October 30. CA-06 was added the next day; no CA-06 JSON export was collected. Policy exports remain outside this public repository.
+I exported the six policies present on October 30. On October 31, I also downloaded the CA-06 JSON export and reconfirmed its Report-only state. The download was operator-confirmed; the exported file's contents were not inspected in this review. Policy exports remain outside this public repository.
+
+After removing Pim-Test's direct P2 assignment on October 31, its page showed Licenses (0) and 16 of 25 P2 licenses available (9 assigned). This later count supersedes the October 30 assigned-seat count without changing the trial expiry/renewal observation.
 
 The planned return to Security Defaults and later post-expiry observations have not been completed. I will document those changes separately rather than infer them from the trial end date.
 
