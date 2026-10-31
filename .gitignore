@@ -1,0 +1,5 @@
+# Local runtime credentials in any directory.
+.env
+.env.*
+# Keep sanitized configuration templates publishable.
+!.env.example

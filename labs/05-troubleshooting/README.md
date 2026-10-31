@@ -17,7 +17,7 @@ I investigated Microsoft Entra ID sign-in failures by comparing the errors I rep
 | Setting | Value |
 |---|---|
 | Lab environment | Original Gotham IAM Lab |
-| Tenant | `phillipmcquinngmail.onmicrosoft.com` |
+| Tenant | `<free-lab-tenant>.onmicrosoft.com` |
 | License | Microsoft Entra ID Free |
 | Date performed | October 6, 2026 |
 | Test user | Dick Grayson |

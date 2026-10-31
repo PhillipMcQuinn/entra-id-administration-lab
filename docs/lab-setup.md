@@ -14,9 +14,11 @@ I operated the administrator and fictional test accounts myself in personal, non
 |---|---|---|
 | Labs | 01–05 | 06–17 |
 | Organization | Gotham IAM Lab | Gotham IAM Lab |
-| Tenant domain | `phillipmcquinngmail.onmicrosoft.com` | `GothamLabz.onmicrosoft.com` |
+| Tenant domain | `<free-lab-tenant>.onmicrosoft.com` | `GothamLabz.onmicrosoft.com` |
 | Edition used | Microsoft Entra ID Free | Microsoft Entra ID P2 free trial |
 | Tenant type | Workforce | Workforce |
+
+The Free-tenant domain shown here is a privacy placeholder. Historical screenshots and commits may still contain the original personal domain; see the [security review](evidence-review.md#privacy-and-history-limits).
 
 These are two intentional tenant environments, not a domain rename or migration. P2 describes the advanced lab environment; it does not mean every feature demonstrated there requires P2.
 
@@ -30,6 +32,8 @@ These are two intentional tenant environments, not a domain rename or migration.
 | PIM Test Administrator | Dedicated P2 directory-role test account introduced in Lab 09 |
 
 Account creation, deletion, membership, and temporary role assignments vary by lab. This table describes account purposes, not a current directory inventory. The administrator assignment verification is dated October 30; lab-specific cleanup is documented with each exercise.
+
+**PIM test-account retention:** I retained the dedicated Lab 09 identity and its trial P2 license so I can repeat PIM exercises without using my regular administrator as the test identity. At the documented Lab 09 cleanup, its eligible role assignment was removed and no active administrator role or pending request remained. I have not performed a fresh live directory/license inventory in this repository review. Account deletion and license reclamation remain part of trial cleanup when repeat testing is finished.
 
 ## Groups and Application Roles
 
@@ -51,6 +55,8 @@ Application permissions depend on configured group-to-role assignments, not grou
 ## Authentication and Conditional Access
 
 The documented authentication methods include Microsoft Authenticator push, software OATH-TOTP, and device-bound Windows Hello passkeys. I did not use a FIDO2 hardware security key. The Free-tenant MFA exercise used Security Defaults; **Security Defaults remained disabled in the P2 environment** after the Lab 07 transition to Conditional Access.
+
+**Recovery-account controls and limits:** I verified a Windows Hello passkey sign-in and administrative access for the separate recovery account, with a permanently active Global Administrator assignment. Automated alerts on every recovery-account sign-in and offline credential storage have not been verified. They remain hardening items; I do not claim that the policy exclusion is fully compensated by monitoring or that this single recovery account implements Microsoft's complete emergency-access design. See [Lab 07](../labs/07-conditional-access/README.md#recovery-account-controls-and-remaining-hardening) and [Microsoft's emergency-access guidance](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access).
 
 ### Policy inventory after Lab 17
 

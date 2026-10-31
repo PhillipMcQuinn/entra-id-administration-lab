@@ -19,7 +19,7 @@ Barbara Gordon joins Gotham IAM Lab as a System Administrator in the IT departme
 | Attribute | Value |
 |---|---|
 | Display name | Barbara Gordon |
-| User principal name | `BarbaraGordon@phillipmcquinngmail.onmicrosoft.com` |
+| User principal name | `BarbaraGordon@<free-lab-tenant>.onmicrosoft.com` |
 | Job title | System Administrator |
 | Department | IT |
 | Manager | Lucius Fox |
@@ -31,7 +31,7 @@ Barbara Gordon joins Gotham IAM Lab as a System Administrator in the IT departme
 
 | Setting | Value |
 |---|---|
-| Tenant | `phillipmcquinngmail.onmicrosoft.com` |
+| Tenant | `<free-lab-tenant>.onmicrosoft.com` |
 | License edition | Microsoft Entra ID Free |
 | Administrator role used | Global Administrator |
 | Test account | Barbara Gordon |
@@ -127,7 +127,7 @@ I did not record significant issues during user creation, account changes, sign-
 
 During verification, I could sign in again after removing the sign-in block. This helped distinguish an account-level sign-in block from session revocation: re-enabling an account permits new authentication, while revoking sessions generally requires renewed authentication but is not equivalent to disabling the account.
 
-**Lab scope:** Microsoft Entra ID Free in the `phillipmcquinngmail.onmicrosoft.com` tenant. The separate GothamLabz Microsoft Entra ID P2 environment is used for later labs.
+**Lab scope:** Microsoft Entra ID Free in the `<free-lab-tenant>.onmicrosoft.com` tenant. The separate GothamLabz Microsoft Entra ID P2 environment is used for later labs.
 
 ## Skills Practiced
 

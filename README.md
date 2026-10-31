@@ -49,7 +49,7 @@ Each lab records the scenario, configuration steps, observed outcomes, troublesh
 
 I use **Gotham IAM Lab** as the fictional organization name in this portfolio. Historical company attributes and portal display labels are explained in [Lab Setup](docs/lab-setup.md#purpose-and-naming).
 
-The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`phillipmcquinngmail.onmicrosoft.com`), while **Labs 06–17** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
+The portfolio uses two intentional lab environments: **Labs 01–05** were completed in the original **Microsoft Entra ID Free** tenant (`<free-lab-tenant>.onmicrosoft.com`), while **Labs 06–17** were completed in the **Microsoft Entra ID P2** tenant (`GothamLabz.onmicrosoft.com`).
 
 **Trial licensing:** I used a Microsoft Entra ID P2 free trial for Labs 06–17. On October 30, 2026, I verified an expiration date of **November 7, 2026** and disabled recurring renewal. The subscription was still Active. Post-expiry feature availability has not been tested.
 
@@ -93,7 +93,9 @@ Evidence is organized within each lab's `screenshots/` folder and linked from th
 - **Risk remediation (Lab 17):** Graph verified High/confirmedCompromised changing to none/remediated through a secured password change. Captured CA-06 log rows were Not Applied; direct policy enforcement was not independently correlated.
 - **Not tested:** a control without a corresponding real-world event, such as an actual legacy-client block or risky sign-in detection.
 
-For the screenshot screening performed on October 30, 2026, see [Evidence Review](docs/evidence-review.md).
+For the October 31, 2026 screenshot, source, and Git-history screening, including findings and limitations, see [Evidence and Repository Security Review](docs/evidence-review.md).
+
+The original Free-tenant domain is represented by `<free-lab-tenant>.onmicrosoft.com` in current prose to reduce personal-handle disclosure. Older screenshots and Git history can still contain the original domain; this is not full anonymization.
 
 All employees, scenarios, and organization names in the labs are fictional. Secrets, passwords, authentication tokens, and local `.env` settings are not intended for publication.
 

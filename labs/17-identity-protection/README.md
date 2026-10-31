@@ -184,4 +184,6 @@ I practiced scoped risk-policy configuration, High-versus-Low What If comparison
 - [Microsoft Graph: Get riskyUser](https://learn.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0)
 - [Microsoft: User risk-based Conditional Access policy](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-risk-based-user)
 
+The [October 31 security review](../../docs/evidence-review.md#screenshot-rescreening) rescreened all 19 published Lab 17 images and found no public-IP or credential-pattern candidates. It also confirmed that the two omitted IP-bearing source images are not present as exact blobs in reachable Git history.
+
 I selected screenshots without passwords, tokens, application secrets, or public IP addresses. Identifiers shown belong to my lab identities and resources. The sign-in list images containing my public IP are omitted.

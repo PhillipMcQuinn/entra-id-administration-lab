@@ -16,7 +16,7 @@ I practiced Microsoft Authenticator enrollment and recovery using a standard Mic
 
 | Setting | Value |
 |---|---|
-| Tenant | `phillipmcquinngmail.onmicrosoft.com` (original Gotham IAM Lab environment) |
+| Tenant | `<free-lab-tenant>.onmicrosoft.com` (original Gotham IAM Lab environment) |
 | License | Microsoft Entra ID Free |
 | Date performed | October 6, 2026 |
 | Test user | Selina Kyle |
@@ -136,7 +136,7 @@ Selina's lab account remained available after successful MFA recovery. The final
 
 My original cleanup checklist recommended confirming primary administrator access and ensuring no secrets were visible in screenshots; it does not independently record screenshots or separate results for those checks. No temporary administrator role assignment was described for the test user.
 
-**Lab scope:** Microsoft Entra ID Free in the `phillipmcquinngmail.onmicrosoft.com` tenant. Labs 06–08 use the separate GothamLabz Microsoft Entra ID P2 environment.
+**Lab scope:** Microsoft Entra ID Free in the `<free-lab-tenant>.onmicrosoft.com` tenant. Labs 06–08 use the separate GothamLabz Microsoft Entra ID P2 environment.
 
 ## Skills Practiced
 

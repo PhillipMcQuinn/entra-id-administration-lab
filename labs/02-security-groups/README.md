@@ -17,7 +17,7 @@ I administered Microsoft Entra ID **Assigned** security groups for fictional dep
 | Setting | Value |
 |---|---|
 | Lab environment | Gotham IAM Lab (foundational labs) |
-| Microsoft Entra tenant | `phillipmcquinngmail.onmicrosoft.com` |
+| Microsoft Entra tenant | `<free-lab-tenant>.onmicrosoft.com` |
 | License | Microsoft Entra ID Free |
 | Administrator role used | Global Administrator |
 | Date performed | October 6, 2026 |
@@ -154,7 +154,7 @@ After completing the transfer tests, I restored Dick Grayson's original lab conf
 
 I recorded this cleanup as completed in my lab notes. A separate post-cleanup screenshot was not listed among the nine evidence images in this README.
 
-**Environment note:** Labs 01–05 use the original `phillipmcquinngmail.onmicrosoft.com` Entra ID Free tenant. Labs 06–08 use the separate GothamLabz Entra ID P2 tenant.
+**Environment note:** Labs 01–05 use the original `<free-lab-tenant>.onmicrosoft.com` Entra ID Free tenant. Labs 06–08 use the separate GothamLabz Entra ID P2 tenant.
 
 ## Skills Practiced
 

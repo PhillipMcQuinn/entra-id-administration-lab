@@ -17,7 +17,7 @@ I tested Microsoft Entra ID role-based administrative access by temporarily assi
 | Setting | Value |
 |---|---|
 | Lab environment | Original Gotham IAM Lab (Microsoft Entra ID Free) |
-| Tenant domain | `phillipmcquinngmail.onmicrosoft.com` |
+| Tenant domain | `<free-lab-tenant>.onmicrosoft.com` |
 | License | Microsoft Entra ID Free |
 | Test administrator | `helpdesk-test` |
 | Temporary role | Helpdesk Administrator |
@@ -131,7 +131,7 @@ After the role was removed, the test account could no longer perform the passwor
 
 - Screenshots document configuration and behavior without including temporary passwords.
 
-**Scope:** Personal Microsoft Entra ID Free lab, `phillipmcquinngmail.onmicrosoft.com`. This exercise does not claim production administrative access or testing against privileged target accounts.
+**Scope:** Personal Microsoft Entra ID Free lab, `<free-lab-tenant>.onmicrosoft.com`. This exercise does not claim production administrative access or testing against privileged target accounts.
 
 ## Skills Practiced
 

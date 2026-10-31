@@ -208,6 +208,14 @@ Evidence:
 
 After enforcement, I signed in as the Lab Recovery Administrator using Windows Hello and accessed the Conditional Access policies page. I observed this directly during the exercise; the minimal screenshots document passkey registration but not a dedicated method-specific sign-in log for this test.
 
+### Recovery-account controls and remaining hardening
+
+I verified Windows Hello passkey authentication and access to the Conditional Access page for the separate Lab Recovery Administrator. The October 30 administrator check also recorded its direct, permanently active Global Administrator assignment. These are the documented controls supporting recovery while the account is excluded from the enforced policy scopes and P2 Security Defaults is disabled.
+
+I have not verified automated alerts for every recovery-account sign-in or secure offline storage of its recovery credentials. The user-at-risk email observed for Tim in Lab 17 is not evidence of recovery-administrator sign-in monitoring. I treat those missing verifications as remaining hardening work, rather than claiming controls that I did not demonstrate.
+
+Microsoft's [emergency-access guidance](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access) recommends multiple emergency accounts, resilient phishing-resistant authentication, protected credential storage, and alerts on account use. My single-recovery-account training configuration is a limited lab design, not a complete production implementation of that guidance.
+
 ## Part 5: Legacy Authentication Investigation
 
 ### 1. Search for legacy client sign-in attempts
