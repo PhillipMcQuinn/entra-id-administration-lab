@@ -63,9 +63,9 @@ This was credential screening and source inspection, not a penetration test or d
 
 ## GitHub Secret Protection Status
 
-GitHub documents free automatic secret scanning for public repositories. Owner-visible alerts, Secret Protection settings, and push protection still require repository-specific verification. The connected GitHub integration did not expose security-administration settings or the owner-only alerts view, so I **did not verify or change those settings** and do not claim zero GitHub alerts.
+On October 31, 2026, I verified the repository settings in the GitHub settings screenshot: **Secret Protection was enabled** (the available action was Disable), and **Push protection was On**.
 
-The owner follow-up is **Settings → Advanced Security → Secret Protection**, confirm or enable it, then enable **Push protection** and review the Secret scanning alerts. This is separate from the completed local Gitleaks scans.
+The connected GitHub integration did not expose security-administration settings; I confirmed these settings through the owner-side screenshot rather than an API change. The screenshot did not show the Secret scanning alerts list or its open-alert count, so I **do not claim zero GitHub alerts**. Reviewing and triaging that list remains separate from verifying the enabled settings and completing the local Gitleaks scans.
 
 ## Privacy and History Limits
 
