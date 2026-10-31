@@ -59,6 +59,12 @@ Screenshots are linked within each lab. The [October 31 security review](docs/ev
 
 The personal Free-tenant domain is masked in current prose; historical screenshots and commits can still disclose it. Private `.env` files, passwords, secrets, and raw authentication tokens are excluded from the intended publication scope.
 
+## License
+
+My original application code and lab write-ups are available under the [MIT License](LICENSE), copyright 2026 Phillip McQuinn.
+
+Third-party libraries retain their existing licenses and notices. Product UI screenshots, logos, and trademarks are excluded from this license grant and remain subject to their respective owners' rights.
+
 ## About Me
 
 I built this portfolio to expand on my enterprise technical support experience and demonstrate practical skills for IAM Analyst, Identity Security Analyst, Access Management Analyst, and Identity Operations roles.
