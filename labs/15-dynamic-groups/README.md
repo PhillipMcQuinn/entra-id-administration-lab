@@ -19,6 +19,8 @@ Tim began with Department **Procurement** and no membership in either original a
 
 ![Tim Department set to Procurement before testing](screenshots/01-tim-procurement-baseline.png)
 
+I kept the shared runnable application in [Lab 08’s `app/` folder](../08-enterprise-application-integration/app/README.md), including dependency and local configuration instructions.
+
 ## 1. I created and validated the dynamic rules
 
 I created two cloud security groups with **Dynamic User** membership and configured the following rules. I assigned each group separately to its corresponding application role.
@@ -142,3 +144,4 @@ I learned to distinguish rule validation from completed membership processing, g
 - [Manage dynamic group processing](https://learn.microsoft.com/en-us/entra/identity/users/manage-dynamic-group)
 
 [Back to portfolio](../../README.md)
+

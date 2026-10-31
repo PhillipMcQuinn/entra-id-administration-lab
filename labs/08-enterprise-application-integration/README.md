@@ -36,6 +36,10 @@ Gotham Access Lab is a local Python Flask application that authenticates against
 | Visible to users | Initially No; changed to Yes |
 | Final Tim Drake assignment | Neither reader group; no direct application assignment observed |
 
+## Runnable Application Source
+
+I added the restored Gotham Access Lab source in [`app/`](app/README.md) after completing Labs 14 and 15. That folder includes the Flask application, dependency ranges, a placeholder `.env.example`, and Windows setup instructions. I retained the historical results below; adding the source does not turn results recorded without screenshots into screenshot-backed evidence. The source is the recreated application, not a byte-for-byte recovery of the earlier original files.
+
 ## Prerequisites
 
 - Personal GothamLabz Microsoft Entra ID tenant.
@@ -204,3 +208,4 @@ The restored local application's `.env` file and client secret must remain priva
 - **Removing access does not necessarily terminate an existing application session immediately.** The local Flask session continued authorizing its previously signed-in user until the sign-out and fresh authentication test.
 - **AADSTS50105 demonstrates missing application assignment.** It is not, by itself, evidence that a user account has been disabled or that Conditional Access blocked authentication.
 - **Evidence should distinguish screenshots from observed results.** Tests without independent screenshots remain explicitly documented as observations.
+

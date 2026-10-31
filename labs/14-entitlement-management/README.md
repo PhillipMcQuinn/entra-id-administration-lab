@@ -15,6 +15,8 @@ I performed all configuration and testing myself. I used Tim's fictional account
 
 I used a temporary procurement task to test governed application access from request through expiry. I reused the existing Gotham Access Lab enterprise application and local Flask application from [Lab 08](../08-enterprise-application-integration/README.md). I added its application role directly to the access package, rather than granting group membership through the package.
 
+I kept the shared runnable application in [Lab 08’s `app/` folder](../08-enterprise-application-integration/app/README.md), including dependency and local configuration instructions.
+
 ## Configuration
 
 | Setting | Configuration I used |
@@ -164,3 +166,4 @@ I connected a self-service access request to a specific application role, enforc
 - [Create an access package](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-create)
 
 [Back to portfolio](../../README.md)
+
