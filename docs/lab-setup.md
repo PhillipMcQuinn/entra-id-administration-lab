@@ -97,7 +97,7 @@ After removing Pim-Test's direct P2 assignment on October 31, its page showed Li
 
 **Protection transition completed October 31, before trial expiry:** I verified recovery-administrator portal access, retained the private policy backups, set CA-00 through CA-06 Off, and enabled Security Defaults. I then signed out and back in separately as Lab Recovery Administrator and Phillip's regular administrator account; both sign-ins succeeded and required Windows Hello, as I reported during the checks. These checks establish post-change administrator access, not exhaustive verification of every Security Defaults control or proof of which control caused each prompt. Security Defaults does not preserve the former per-account CA exclusions.
 
-The tenant still had its P2 trial at closeout; this was preparation for expiry, not evidence of an actual licensing downgrade. Post-expiry behavior and a fresh billing/renewal check remain unverified. The last recorded renewal setting is the October 30 observation above.
+The tenant still had its P2 trial at closeout; this was preparation for expiry, not evidence of an actual licensing downgrade. **Final billing recheck — October 31:** The Microsoft 365 Admin Center displayed November 7, 2026 as the P2 trial expiration date, said the subscription would be canceled when it expired, and stated that buying a paid subscription would require turning on recurring billing. This confirms the trial was set not to renew at the time of the check. I did not cancel it early or delete the subscription. Post-expiry behavior remains unverified.
 
 ## Where to Find Procedures and Results
 
