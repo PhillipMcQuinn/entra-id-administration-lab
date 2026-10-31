@@ -1,6 +1,6 @@
 # Microsoft Entra ID Lab Setup
 
-> **Environment snapshot — October 30, 2026:** Labs 01–05 use the original Entra ID Free tenant. Labs 06–16 use the separate GothamLabz tenant with a **P2 free trial**. The October 5 setup values are retained below as historical context; the GothamLabz column and later lab sections record the subsequent environment. I verified the trial expiration date as November 7, 2026 and disabled recurring renewal. Post-expiry feature availability has not been tested.
+> **Environment snapshot — October 31, 2026:** Labs 01–05 use the original Entra ID Free tenant. Labs 06–17 use the separate GothamLabz tenant with a **P2 free trial**. The October 5 setup values are retained below as historical context; the GothamLabz column and later lab sections record the subsequent environment. I verified the trial expiration date as November 7, 2026 and disabled recurring renewal. Post-expiry feature availability has not been tested.
 
 ## Purpose and Scope
 
@@ -23,7 +23,7 @@ This environment was used for introductory IAM administration exercises:
 - Lab 04: MFA Registration and Recovery
 - Lab 05: Sign-in Troubleshooting
 
-### Environment 2 — Microsoft Entra ID P2 (Labs 06–16)
+### Environment 2 — Microsoft Entra ID P2 (Labs 06–17)
 
 **Tenant:** `GothamLabz.onmicrosoft.com`  
 **License:** Microsoft Entra ID P2 free trial
@@ -41,6 +41,7 @@ This environment was used for advanced IAM security, governance, and application
 - Lab 14: Entitlement Management and Temporary Application Access
 - Lab 15: Dynamic Groups and Automated Department Transfers
 - Lab 16: PIM for Groups and Just-in-Time Application Access
+- Lab 17: Identity Protection and Controlled User-Risk Remediation
 
 Labs 06–08 recorded two administrator accounts and seven standard user accounts, Microsoft Authenticator enrollment, Windows Hello passkeys for administrators, Conditional Access policies, and group-based application role assignments. Lab 09 added a dedicated PIM test account with an Entra ID P2 license and Microsoft Authenticator registration. Its eligible Helpdesk Administrator assignment was removed during cleanup.
 
@@ -48,7 +49,7 @@ Labs 06–08 recorded two administrator accounts and seven standard user account
 
 Configuration settings, licenses, user accounts, and test results should be interpreted within their respective environments rather than assumed to apply across both tenants.
 
-| Setting | Original setup record (October 5, 2026) | GothamLabz lab configuration (October 8–30, 2026) |
+| Setting | Original setup record (October 5, 2026) | GothamLabz lab configuration (October 8–31, 2026) |
 |---|---|---|
 | Organization label | Gotham IAM Lab | Gotham IAM Lab / Gotham IT Labs; Gotham Labs in Lab 09 |
 | Tenant type | Workforce | Microsoft Entra workforce identity lab |
@@ -59,7 +60,7 @@ Configuration settings, licenses, user accounts, and test results should be inte
 | Authenticator | Microsoft Authenticator | Microsoft Authenticator; Windows Hello passkeys on administrator accounts |
 | Admin center | [Microsoft Entra admin center](https://entra.microsoft.com) | [Microsoft Entra admin center](https://entra.microsoft.com) |
 
-The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–16 use GothamLabz.
+The two tenant domains represent separate environments, not a domain rename or migration. Labs 01–05 retain their original Free-tenant context; Labs 06–17 use GothamLabz.
 
 ## Administrator and Test Accounts
 
@@ -312,17 +313,30 @@ After automatic expiry, the PIM group was already absent when I loaded Tim's Gro
 
 See [Lab 16](../labs/16-pim-for-groups/README.md) for configuration, the validation matrix, screenshots, and evidence limits.
 
+## Identity Protection and User-Risk Remediation (Lab 17)
+
+On October 31, I created **CA-06-Lab-Tim-High-User-Risk-Remediation**, scoped to Tim Drake only, All resources, and High user risk. Its saved requirements were risk remediation, Multifactor authentication strength, and a new sign-in for each session. I compared High and Low user-risk What If results before enabling it at 9:55:24 AM MDT.
+
+I used Graph Explorer to confirm Tim compromised and verified **high / confirmedCompromised / adminConfirmedUserCompromised** at 10:39:53 AM MDT. During a new sign-in I was required to change the password and received a user-at-risk email; these observations have no separate prompt/email screenshots. Graph then verified **none / remediated / userPerformedSecuredPasswordChange** at 10:48:29 AM MDT. A subsequent fresh sign-in required MFA without another password change and retained Procurement.Reader and Procurement access.
+
+Sign-in records initially appeared delayed. Later records included incomplete MFA, an expected Stay signed in interruption, and a successful post-remediation event. All captured CA-06 rows were Not Applied. I did not capture a distinct record directly attributing remediation to CA-06, measure ingestion latency, or test existing-session revocation. This was administrator-generated user risk, not an organic compromise or actual risky sign-in detection.
+
+I restored CA-06 to Report-only at 11:10:17 AM MDT, stopped Flask, closed test Incognito windows, and signed out of Graph Explorer. I kept Tim's new password and Procurement access. Graph Explorer delegated-consent removal was not verified. The final Conditional Access state is **CA-00 through CA-03 On; CA-04 through CA-06 Report-only**. Security Defaults remained disabled. The October 30 export covered the original six policies; no CA-06 JSON export was collected.
+
+See [Lab 17](../labs/17-identity-protection/README.md) for configuration, API requests, screenshots, and evidence limits.
+
 ## Trial Status
 
 On October 30, 2026, I verified that my P2 free trial was Active, with **10 of 25 licenses assigned** and an expiration date of **November 7, 2026**. I disabled recurring renewal; the portal then stated that the trial would expire and the subscription would be canceled. A separate recurring-billing field displayed November 8, so I used November 7 as my preparation deadline. I have not recorded the post-expiry subscription state or feature behavior.
 
-I exported all six Conditional Access policies and confirmed their current states: CA-00 through CA-03 On, CA-04 and CA-05 Report-only. I verified that my regular administrator and Lab Recovery Administrator had direct, permanently active Global Administrator assignments, and tested a fresh recovery-account passkey sign-in and access to the Conditional Access page.
+On October 30, I exported the six policies then present and confirmed their states at that time: CA-00 through CA-03 On, CA-04 and CA-05 Report-only. I verified that my regular administrator and Lab Recovery Administrator had direct, permanently active Global Administrator assignments, and tested a fresh recovery-account passkey sign-in and access to the Conditional Access page.
 
 The planned transition to Security Defaults and the later post-expiry observations are not completed results. Security Defaults remained disabled during these P2 labs. Any future documentation will distinguish changes I make before expiry from effects I actually observe after licensing changes. The policy exports remain outside this public repository.
 
 ## Maintenance Notes
 
-This is a snapshot of the environment documented through **October 30, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, Lab 11 OIDC/PKCE and session tests, Lab 12 OAuth API token-validation and read/write authorization tests, Lab 13 software OATH-TOTP registration, deletion, and replacement tests, Lab 14 entitlement-management request, approval, delivery, expiry, and fresh-sign-in denial tests, Lab 15 dynamic membership, department transfers, application-role authorization, and access removal tests, and Lab 16 approval-controlled PIM group membership, application access, automatic expiry, and eligibility cleanup. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+This is a snapshot of the environment documented through **October 31, 2026**, including Lab 09 PIM testing and cleanup and Lab 10 SAML SSO validation and assignment removal, Lab 11 OIDC/PKCE and session tests, Lab 12 OAuth API token-validation and read/write authorization tests, Lab 13 software OATH-TOTP registration, deletion, and replacement tests, Lab 14 entitlement-management request, approval, delivery, expiry, and fresh-sign-in denial tests, Lab 15 dynamic membership, department transfers, application-role authorization, and access removal tests, Lab 16 approval-controlled PIM group membership, application access, automatic expiry, and eligibility cleanup, and Lab 17 controlled user-risk creation, secured-password-change remediation, and final Report-only policy restoration. Subsequent lab changes may alter users, group membership, assignments, licenses, or Conditional Access policy states. Update this file when those configurations change, and keep detailed test evidence in each lab's own README.
+
 
 
 
