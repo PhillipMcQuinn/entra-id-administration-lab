@@ -189,9 +189,9 @@ I completed the following cleanup:
 - I confirmed no active administrator roles or pending requests remained for Pim-Test.
 - I signed in as Dick Grayson with the latest temporary password and completed the password change to leave his account usable.
 
-**Retention rationale:** I retained the dedicated PIM test account and its trial P2 license for optional repeat testing, rather than using my normal administrator as the test identity. Its eligible assignment was removed and no active administrator roles or pending requests remained at the documented cleanup. I will remove the account or reclaim its license when repeat testing is finished; neither deletion nor license removal is a completed result.
+**Subsequent retirement — October 31, 2026:** I initially retained the account and its P2 license for repeat testing. Once testing was finished, I checked the PIM active list, which showed only my regular and recovery Global Administrators, and searched the eligible list for Pim-Test, which returned no results. I removed its directly assigned Entra ID P2 license in Microsoft 365 Admin Center and verified Licenses (0), with 16 of 25 P2 licenses available. I then deleted PIM Test Administrator and received the portal's deletion confirmation. I did not permanently purge the deleted account. These later actions supersede the initial retention decision; the October 29 test results remain historical.
 
-I did not delete the account as part of the confirmed cleanup. The final Helpdesk Administrator activation configuration required MFA, justification, and approval with a 1-hour maximum; I did not report restoring the earlier role settings.
+The final Helpdesk Administrator activation configuration required MFA, justification, and approval with a 1-hour maximum; I did not report restoring the earlier role settings.
 
 ## Lessons Learned
 
@@ -207,7 +207,7 @@ I did not delete the account as part of the confirmed cleanup. The final Helpdes
 
 - Permission tests covered one standard user. Privileged targets, approval rejection, every role permission, and authentication-context enforcement were outside scope.
 
-- The audit timestamp comparison is not a permission-removal latency guarantee. Final settings restoration and a fresh directory/license inventory were not recorded.
+- The audit timestamp comparison is not a permission-removal latency guarantee. Final role-settings restoration was not recorded. The October 31 retirement checks cover Pim-Test's role-list visibility, license removal, and deletion; they are not a full tenant inventory.
 
 ## References
 
