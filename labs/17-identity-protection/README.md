@@ -171,6 +171,8 @@ I restored CA-06 to **Report-only**; the saved summary shows modification at **1
 
 I stopped Flask, closed the test Incognito windows, and signed out of Graph Explorer. Security Defaults remained disabled.
 
+**Later October 31 cleanup check:** I reconfirmed CA-06 as Report-only and downloaded its JSON export for my private policy backup. The download was operator-confirmed; the export contents were not inspected in this review. The full policy list still showed seven user-created policies: CA-00 through CA-03 On, and CA-04 through CA-06 Report-only.
+
 ## What I learned
 
 I practiced scoped risk-policy configuration, High-versus-Low What If comparisons, Graph action and request troubleshooting, controlled user-risk creation, and API verification of self-remediation. I also learned to separate user risk from sign-in risk, incomplete authentication stages from completed sign-ins, and a verified remediation result from direct evidence of a particular policy's enforcement.
