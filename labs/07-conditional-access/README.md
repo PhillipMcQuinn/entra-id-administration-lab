@@ -106,7 +106,7 @@ I created and evaluated six policies, recording their intended identity scope, g
 | `CA-04-Lab-Recovery-MFA` | Evaluate phishing-resistant authentication for recovery account | Report-only |
 | `CA-05-Lab-SignInRisk-MFA` | Evaluate Medium- and High-risk sign-ins for the user group | Report-only |
 
-**Historical scope:** This table records the end of Lab 07: six policies, with four On and two Report-only. I later added `CA-06-Lab-Tim-High-User-Risk-Remediation` in [Lab 17](../17-identity-protection/README.md) and returned it to Report-only after testing. The final October 31 inventory therefore has **seven policies: four On and three Report-only**; see [Lab Setup](../../docs/lab-setup.md#policy-inventory-after-lab-17).
+**Historical scope:** This table records the end of Lab 07: six policies, with four On and two Report-only. I later added `CA-06-Lab-Tim-High-User-Risk-Remediation` in [Lab 17](../17-identity-protection/README.md) and returned it to Report-only after testing. The post-test October 31 inventory had **seven policies: four On and three Report-only**. At later closeout, I turned all seven Off and enabled Security Defaults; see [Lab Setup](../../docs/lab-setup.md#policy-inventory-after-lab-17).
 
 The original six-policy list was captured while all policies were in **Report-only** mode.
 
@@ -210,7 +210,7 @@ After enforcement, I signed in as the Lab Recovery Administrator using Windows H
 
 ### Recovery-account controls and remaining hardening
 
-I verified Windows Hello passkey authentication and access to the Conditional Access page for the separate Lab Recovery Administrator. The October 30 administrator check also recorded its direct, permanently active Global Administrator assignment. These are the documented controls supporting recovery while the account is excluded from the enforced policy scopes and P2 Security Defaults is disabled.
+I verified Windows Hello passkey authentication and access to the Conditional Access page for the separate Lab Recovery Administrator. The October 30 administrator check also recorded its direct, permanently active Global Administrator assignment. These supported recovery during the historical CA configuration, when the account was excluded from enforced policy scopes and Security Defaults was disabled. At October 31 closeout, all seven CA policies were turned Off and Security Defaults was enabled; the earlier CA exclusions no longer describe the current protection model.
 
 On October 31, I confirmed that my passwords are stored on an encrypted storage device that I disconnect and store separately when it is not in use. Encrypted offline storage and physical separation are operator-confirmed; a recovery test using the stored credentials was not recorded. The Diagnostic settings page required an Azure subscription, so I did not configure or test Azure Monitor recovery-account sign-in alerts. The user-at-risk email observed for Tim in Lab 17 is not evidence of recovery-administrator sign-in monitoring. I treat those missing verifications as remaining hardening work, rather than claiming controls that I did not demonstrate.
 
@@ -273,6 +273,12 @@ Evidence:
 - **Staged enforcement and recovery planning:** I prepared recovery access, transitioned from Security Defaults, and enabled four policies while retaining two in Report-only.
 
 - **Sign-in evidence interpretation:** I reviewed actual Conditional Access results and separated Previously satisfied claims, simulations, and untested legacy/risky sign-in enforcement.
+
+## October 31 Closeout: Return to Security Defaults
+
+Before the P2 trial expired, I confirmed recovery-administrator portal access, turned CA-00 through CA-06 Off, and enabled Security Defaults. The saved portal page displayed “Your organization is protected by security defaults.” I retained the seven policies and their private JSON backups rather than deleting them.
+
+I then signed out and back in separately as Lab Recovery Administrator and my regular Phillip administrator account. Both sign-ins succeeded and required Windows Hello, as I reported during verification. I did not isolate which control caused those prompts or test every Security Defaults control. This later closeout supersedes the historical On/Report-only state recorded during Lab 07. It is not a post-expiry test. The latest environment and remaining limits are in [Lab Setup](../../docs/lab-setup.md).
 
 ## Lessons Learned
 
