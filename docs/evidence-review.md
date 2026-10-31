@@ -65,7 +65,9 @@ This was credential screening and source inspection, not a penetration test or d
 
 On October 31, 2026, I verified the repository settings in the GitHub settings screenshot: **Secret Protection was enabled** (the available action was Disable), and **Push protection was On**.
 
-The connected GitHub integration did not expose security-administration settings; I confirmed these settings through the owner-side screenshot rather than an API change. The screenshot did not show the Secret scanning alerts list or its open-alert count, so I **do not claim zero GitHub alerts**. Reviewing and triaging that list remains separate from verifying the enabled settings and completing the local Gitleaks scans.
+The connected GitHub integration did not expose security-administration settings; I confirmed these settings through the owner-side screenshot rather than an API change.
+
+I then reviewed the Secret scanning alerts screenshot on October 31, 2026. With the `is:open` filter displayed, GitHub showed **0 Open**, **0 Closed**, and **No secrets found**. This verifies that no unresolved alerts were displayed in that view at the time of review. It is a dated alert-view observation, not a guarantee that every credential format or future commit is free of secrets.
 
 ## Privacy and History Limits
 
