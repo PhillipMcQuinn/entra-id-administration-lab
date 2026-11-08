@@ -175,6 +175,8 @@ I stopped Flask, closed the test Incognito windows, and signed out of Graph Expl
 
 **Subsequent pre-expiry closeout:** Later on October 31, I set CA-00 through CA-06 Off and enabled Security Defaults. Both administrator accounts subsequently signed back in successfully using Windows Hello. This supersedes CA-06's earlier Report-only state; the Lab 17 test results above remain historical. See the [current environment snapshot](../../docs/lab-setup.md).
 
+**November 8 post-expiry check:** P2 showed Disabled, Security Defaults remained enabled, and all seven CA policies—including CA-06—remained Off. Both administrator sign-ins succeeded using Windows Hello MFA, as I reported. I did not repeat the user-risk remediation exercise after expiry. See the [post-expiry environment verification](../../docs/lab-setup.md#post-expiry-verification--november-8-2026).
+
 ## What I learned
 
 I practiced scoped risk-policy configuration, High-versus-Low What If comparisons, Graph action and request troubleshooting, controlled user-risk creation, and API verification of self-remediation. I also learned to separate user risk from sign-in risk, incomplete authentication stages from completed sign-ins, and a verified remediation result from direct evidence of a particular policy's enforcement.
@@ -185,7 +187,7 @@ I practiced scoped risk-policy configuration, High-versus-Low What If comparison
 
 - Risk was administrator-generated, not an organic compromise or risky-sign-in detection. Password-change/email observations lack separate images, and captured logs show Previously satisfied MFA.
 
-- Log-ingestion delay and the initial 405 cause were not isolated. Graph consent removal, a repeated IT-denial test, existing-session revocation, and post-expiry behavior were not verified or tested. The later protection transition to Security Defaults is documented above; it was performed while the P2 trial was still active.
+- Log-ingestion delay and the initial 405 cause were not isolated. Graph consent removal, a repeated IT-denial test, existing-session revocation, and post-expiry Identity Protection remediation were not verified or tested. The later protection transition to Security Defaults is documented above; it was performed while the P2 trial was still active.
 
 ## References
 
