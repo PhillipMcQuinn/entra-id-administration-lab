@@ -1,6 +1,6 @@
 # Microsoft Entra ID Lab Setup
 
-> **Environment snapshot — October 31, 2026.** This file records my lab infrastructure and final documented configuration. Procedures, test results, cleanup evidence, and limitations belong in the individual [lab READMEs](../README.md#lab-projects).
+> **Environment snapshot — November 8, 2026; historical observations are dated below.** This file records my lab infrastructure and final documented configuration. Procedures, test results, cleanup evidence, and limitations belong in the individual [lab READMEs](../README.md#lab-projects).
 
 ## Purpose and Naming
 
@@ -97,7 +97,22 @@ After removing Pim-Test's direct P2 assignment on October 31, its page showed Li
 
 **Protection transition completed October 31, before trial expiry:** I verified recovery-administrator portal access, retained the private policy backups, set CA-00 through CA-06 Off, and enabled Security Defaults. I then signed out and back in separately as Lab Recovery Administrator and Phillip's regular administrator account; both sign-ins succeeded and required Windows Hello, as I reported during the checks. These checks establish post-change administrator access, not exhaustive verification of every Security Defaults control or proof of which control caused each prompt. Security Defaults does not preserve the former per-account CA exclusions.
 
-The tenant still had its P2 trial at closeout; this was preparation for expiry, not evidence of an actual licensing downgrade. **Final billing recheck — October 31:** The Microsoft 365 Admin Center displayed November 7, 2026 as the P2 trial expiration date, said the subscription would be canceled when it expired, and stated that buying a paid subscription would require turning on recurring billing. This confirms the trial was set not to renew at the time of the check. I did not cancel it early or delete the subscription. Post-expiry behavior remains unverified.
+The tenant still had its P2 trial at closeout; this was preparation for expiry, not evidence of an actual licensing downgrade. **Final billing recheck — October 31:** The Microsoft 365 Admin Center displayed November 7, 2026 as the P2 trial expiration date, said the subscription would be canceled when it expired, and stated that buying a paid subscription would require turning on recurring billing. This confirms the trial was set not to renew at the time of the check. I did not cancel it early or delete the subscription. The November 8 post-expiry checks are recorded below.
+
+## Post-expiry Verification — November 8, 2026
+
+I completed these checks after the trial's recorded November 7 expiration, without changing the tenant configuration.
+
+| Check | Observed result | Evidence basis |
+|---|---|---|
+| P2 subscription | Expired banner and subscription status **Disabled**; expiration date November 7, 2026 | Microsoft 365 Admin Center screenshot |
+| Security Defaults | **Enabled (recommended)**; portal confirmed the organization was using Security Defaults | Security Defaults screenshot |
+| Conditional Access | Seven retained user-created policies, CA-00 through CA-06, all **Off**; zero Microsoft-managed policies | Policy-list screenshot |
+| Licensing restrictions visible in CA | Insufficient-licensing warning; New policy, template, upload, and What If controls appeared disabled | Policy-list screenshot |
+| Regular Global Administrator sign-in | Phillip administrator sign-in succeeded using Windows Hello MFA | My report during the requested fresh-session checks |
+| Recovery administrator sign-in | Lab Recovery Administrator sign-in succeeded using Windows Hello MFA | My report during the requested fresh-session checks |
+
+These results confirm the observed subscription state, retained configuration, and successful administrator sign-ins on the check date. I did not attempt to save a policy edit, test policy deletion, isolate which control caused each authentication prompt, or retest all premium features or application access. Disabled creation controls alone do not prove every policy-editing operation is unavailable. This is a dated verification, not a guarantee of future service behavior. Recovery-account alerting and a credential-retrieval recovery drill remain outside the completed checks.
 
 ## Where to Find Procedures and Results
 
