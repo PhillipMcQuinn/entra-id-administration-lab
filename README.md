@@ -45,7 +45,7 @@ Each includes configuration, screenshots, results, and a short **Limitations** s
 
 ## Environment and Scope
 
-I use **Gotham IAM Lab** as the fictional organization name. Labs **01–05** used Entra ID Free; Labs **06–17** used the separate GothamLabz Entra ID P2 trial tenant. The dated [environment setup](docs/lab-setup.md) records tenant separation, licensing, applications, recovery-account controls, and the seven-policy inventory. At October 31 closeout, I retained all seven lab policies **Off**, enabled **Security Defaults**, and successfully signed back in to both administrator accounts using Windows Hello.
+I use **Gotham IAM Lab** as the fictional organization name. Labs **01–05** used Entra ID Free; Labs **06–17** used the separate GothamLabz Entra ID P2 trial tenant. The dated [environment setup](docs/lab-setup.md) records tenant separation, licensing, applications, recovery-account controls, and the seven-policy inventory. At October 31 closeout, I retained all seven lab policies **Off**, enabled **Security Defaults**, and successfully signed back in to both administrator accounts using Windows Hello. On November 8, after the P2 subscription showed **Disabled**, I rechecked Security Defaults and the seven Off policies and confirmed both administrator sign-ins still succeeded with Windows Hello; see the [post-expiry verification](docs/lab-setup.md#post-expiry-verification--november-8-2026).
 
 I operated all test identities myself, including requester and approver accounts. Individual labs distinguish configuration, What If simulations, observed behavior, and log-backed results. Their **Limitations** sections identify evidence gaps and untested controls.
 
