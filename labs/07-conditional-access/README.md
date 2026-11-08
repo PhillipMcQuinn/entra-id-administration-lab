@@ -296,6 +296,10 @@ I then signed out and back in separately as Lab Recovery Administrator and my re
 
 - P2 Identity Protection simulations can validate risk-policy scope without creating risk detections.
 
+## November 8 Post-expiry Verification
+
+After the P2 trial expired, I confirmed its subscription status was Disabled. Security Defaults still showed Enabled, and the CA list retained all seven lab policies Off with an insufficient-licensing warning and disabled policy-creation controls. I completed the requested fresh-session administrator checks and reported successful Windows Hello MFA sign-ins for both my regular Global Administrator and Lab Recovery Administrator. I did not attempt a policy save or isolate the control responsible for each prompt. The [dated environment verification](../../docs/lab-setup.md#post-expiry-verification--november-8-2026) records the evidence and limits.
+
 ## Limitations
 
 - Legacy-client blocking and sign-in risk were simulated; no real legacy block or risky sign-in enforcement event was captured.
